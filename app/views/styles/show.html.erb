@@ -1,0 +1,75 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<%= @style.name %>
+	</div>
+
+	<div class="panel-body">
+		<div class="panel-heading">Variations</div>
+		<div class="panel-body">
+			<ul class="list-group">
+				<li class="list-group-item table-header">
+					<div class="row">
+						<div class="col-xs-2">
+							Vendor Color
+						</div>
+						<div class="col-xs-2">
+							Wholesale Price
+						</div>
+						<div class="col-xs-2">
+							Retail Price
+						</div>
+						<div class="col-xs-1">
+							IMU
+						</div>
+						<div class="col-xs-1">
+							Shipment Window
+						</div>
+						<div class="col-xs-1">
+							Sizing
+						</div>
+						<div class="col-xs-1">
+							Notes
+						</div>
+					</div>
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-xs-2 form-group">
+								<%=  text_field :name, :placeholder => 'ex: Yolanda', :class => 'form-control' %> <%#input first time then show/edit #%>
+							</div>
+							<div class="col-xs-2">
+								input here
+							</div>
+							<div class="col-xs-2">
+								input here
+							</div>
+							<div class="col-xs-1">
+								333%
+							</div>
+							<div class="col-xs-1">
+								Bakersfield
+							</div>
+							<div class="col-xs-1">
+								input
+							</div>
+							<div class="col-xs-1">
+								asdfasdfasdfasdf
+							</div>
+							<div class="col-xs-1 text-right">
+								<%#= link_to "Edit", edit_appointment_style_variation_path(variation) %>
+							</div>
+						</div>
+					</li>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+<!--     	t.string :color
+    	t.decimal :wholesale_price, :precision => 10, :scale => 2
+    	t.decimal :retail_price, :precision => 10, :scale => 2
+    	t.date :begin_shipment_window_date
+    	t.date :end_shipment_window_date
+    	t.string :sizing_schema
+    	t.string :size
+    	t.text :notes -->

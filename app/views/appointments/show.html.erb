@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+	<div class="panel-heading">
+		<%= @appointment.name %>
+	</div>
+
+	<div class="panel-body">
+		<div class="strong">Styles:</div>
+		<ul class='list-group'>
+			<%- @appointment.styles.each do |style| %>
+				<li class='list-group-item' > 
+					<%= link_to style.name, appointment_style_path(@appointment, style) %> | <%= style.appointment_id %>
+					<%= link_to "Edit", edit_appointment_style_path(@appointment, style), class: "pull-right" %>
+				</li>
+			<% end %>	
+		</ul>
+		<div>
+			<%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary" %>
+			<%= link_to "Edit #{@appointment.name}", edit_appointment_path(@appointment), class: "btn btn-default pull-right" %>
+		</div>
+	</div>
+</div>
