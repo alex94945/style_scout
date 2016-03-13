@@ -1,72 +1,102 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<%= @style.name %>
+		<%= link_to @appointment.name, appointment_path(@appointment) %>
+		>
+		<%= @style.name || @style.number %>
 	</div>
 
 	<div class="panel-body">
-		<div class="panel-heading">Variations</div>
-		<div class="panel-body">
-			<ul class="list-group">
-				<li class="list-group-item table-header">
-					<div class="row">
-						<div class="col-xs-2">
-							Vendor Color
+		<div class="row form-group">
+			<div class="col-md-4">
+				style vendor number:
+			</div>
+			<div class="col-md-4">
+				style vendor number:
+			</div>
+			<div class="col-md-4">
+				style vendor number:
+			</div>
+		</div>
+		<hr>
+		<hr>
+
+		<h5>Variations </h5>
+		<div class="row">
+			<%- @style.variations.each do |v| %>
+				<div class="col-md-4">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							<%= v.color.upcase %>
 						</div>
-						<div class="col-xs-2">
-							Wholesale Price
-						</div>
-						<div class="col-xs-2">
-							Retail Price
-						</div>
-						<div class="col-xs-1">
-							IMU
-						</div>
-						<div class="col-xs-1">
-							Shipment Window
-						</div>
-						<div class="col-xs-1">
-							Sizing
-						</div>
-						<div class="col-xs-1">
-							Notes
+						<div class="panel-body">
+							<%= v.inspect %>
 						</div>
 					</div>
-					<%- @style.variations.each do |variation| %>
-						<li class="list-group-item">
-							<div class="row">
-								<div class="col-xs-2">
-									<%= variation.color %> 
-								</div>
-								<div class="col-xs-2">
-									input here
-								</div>
-								<div class="col-xs-2">
-									input here
-								</div>
-								<div class="col-xs-1">
-									333%
-								</div>
-								<div class="col-xs-1">
-									Bakersfield
-								</div>
-								<div class="col-xs-1">
-									input
-								</div>
-								<div class="col-xs-1">
-									asdfasdfasdfasdf
-								</div>
-								<div class="col-xs-1 text-right">
-									<%#= link_to "Edit", edit_appointment_style_variation_path(variation) %>
-								</div>
-							</div>
-						</li>
-					<% end %>
-					<li class="list-group-item">
-						<%= render partial: 'shared/variations/form' %>
-					</li>
-				</li>
-			</ul>
+				</div>
+			<% end %>
 		</div>
+		<!-- <ul class="list-group">
+			<li class="list-group-item table-header">
+				<div class="row">
+					<div class="col-xs-2">
+						Vendor Color
+					</div>
+					<div class="col-xs-2">
+						Wholesale Price
+					</div>
+					<div class="col-xs-2">
+						Retail Price
+					</div>
+					<div class="col-xs-1">
+						IMU
+					</div>
+					<div class="col-xs-1">
+						Shipment Window
+					</div>
+					<div class="col-xs-1">
+						Sizing
+					</div>
+					<div class="col-xs-1">
+						Notes
+					</div>
+				</div>
+				<%- @style.variations.each do |variation| %>
+
+					<li class="list-group-item">
+						<div class="row">
+							<div class="col-xs-2">
+								<%= variation.color %> 
+							</div>
+							<div class="col-xs-2">
+								input here
+							</div>
+							<div class="col-xs-2">
+								input here
+							</div>
+							<div class="col-xs-1">
+								333%
+							</div>
+							<div class="col-xs-1">
+								Bakersfield
+							</div>
+							<div class="col-xs-1">
+								input
+							</div>
+							<div class="col-xs-1">
+								asdfasdfasdfasdf
+							</div>
+							<div class="col-xs-1 text-right">
+								<%#= link_to "Edit", edit_appointment_style_variation_path(variation) %>
+							</div>
+						</div>
+					</li>
+				<% end %>
+				<li class="list-group-item">
+					<%= render partial: 'shared/variations/form' %>
+				</li>
+			</li>
+		</ul>				
+		-->
 	</div>
 </div>
 
