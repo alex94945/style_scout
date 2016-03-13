@@ -2,19 +2,23 @@
 	<div class="panel-heading">
 		<%= link_to @appointment.name, appointment_path(@appointment) %>
 		>
-		<%= @style.name || @style.number %>
+		<%= style_name_helper(@style) %>
 	</div>
 
 	<div class="panel-body">
 		<div class="row form-group">
 			<div class="col-md-4">
-				style vendor number:
+				Vendor Style Number:
+				<code>
+					<%= @style.vendor_style_number %>
+				</code>
 			</div>
 			<div class="col-md-4">
 				style vendor number:
 			</div>
 			<div class="col-md-4">
-				style vendor number:
+				Category:
+				<%= @style.category.name %>
 			</div>
 		</div>
 		<hr>

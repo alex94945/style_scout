@@ -40,6 +40,6 @@ class StylesController < ApplicationController
 
 	  private
 	  	def style_params
-	  		params.require(:style).permit(:name, :taxonomy, :vendor_underscore_style_number)
+	  		params.require(:style).permit(:name, :category_id, :vendor_style_number)
 	     end
 end
