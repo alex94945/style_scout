@@ -1,0 +1,28 @@
+<%= form_for @variation, url: appointment_style_variations_path(@appointment, @style), method: :post do |f| %>
+	<div class="row">
+		<div class="col-xs-2 form-group">
+			<%=  f.text_field :color, :placeholder => 'ex: Powder Blue', :class => 'form-control' %>
+		</div>
+		<div class="col-xs-2">
+			input here
+		</div>
+		<div class="col-xs-2">
+			input here
+		</div>
+		<div class="col-xs-1">
+			333%
+		</div>
+		<div class="col-xs-1">
+			Bakersfield
+		</div>
+		<div class="col-xs-1">
+			input
+		</div>
+		<div class="col-xs-1">
+			asdfasdfasdfasdf
+		</div>
+		<div class="col-xs-2 text-right">
+			<%= f.submit 'add', class: 'btn btn-sm btn-primary' %>
+		</div>
+	</div>
+<% end %>
