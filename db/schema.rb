@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160307052542) do
+ActiveRecord::Schema.define(version: 20160312231319) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "name"
     t.date     "scout_date"
-    t.string   "planner"
+    t.string   "buyer"
     t.string   "vendor"
     t.string   "location"
     t.text     "notes"

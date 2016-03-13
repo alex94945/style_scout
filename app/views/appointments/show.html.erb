@@ -1,21 +1,50 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<%= @appointment.name %>
+		<div class="pull-right">
+			<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment} %>
+		</div>	
 	</div>
 
 	<div class="panel-body">
 		<div class="strong">Styles:</div>
 		<ul class='list-group'>
+			<li class="list-group-item table-header">
+				<div class="row">
+					<div class="col-sm-3">
+						Name
+					</div>
+					<div class="col-sm-3">
+						Taxonomy
+					</div>
+					<div class="col-sm-3">
+						Vendor Style Number
+					</div>
+					<div class="col-sm-3">
+					</div>
+				</div>
+			</li>
 			<%- @appointment.styles.each do |style| %>
 				<li class='list-group-item' > 
-					<%= link_to style.name, appointment_style_path(@appointment, style) %> | <%= style.appointment_id %>
-					<%= link_to "Edit", edit_appointment_style_path(@appointment, style), class: "pull-right" %>
+					<div class="row">
+						<div class="col-sm-3">
+							<%= link_to style.name, appointment_style_path(@appointment, style) %>
+						</div>
+						<div class="col-sm-3">
+							<%= style.taxonomy %>
+						</div>
+						<div class="col-sm-3">
+							<%= style.vendor_underscore_style_number %>
+						</div>
+						<div class="col-sm-3">
+							<%= link_to "Edit", edit_appointment_style_path(@appointment, style), class: "pull-right" %>
+						</div>
+					</div>
 				</li>
 			<% end %>	
 		</ul>
 		<div>
 			<%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary" %>
-			<%= link_to "Edit #{@appointment.name}", edit_appointment_path(@appointment), class: "btn btn-default pull-right" %>
 		</div>
 	</div>
 </div>

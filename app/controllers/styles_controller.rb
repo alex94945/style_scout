@@ -15,15 +15,10 @@ class StylesController < ApplicationController
 	  end
 
 	  def edit
-	      @style = Style.find(params[:id]) #do i need to do more with this? :style_id?
-	      @appointment = Appointment.find(params[:appointment_id])
+	  	@appointment = Appointment.find(params[:appointment_id])
+	      @style = @appointment.styles.find(params[:id]) 
 	  end
 
-	  # def update
-	  #     @appointment = Appointment.find(params[:id])
-	  #     @appointment.update(appointment_params)
-	  #     redirect_to root_url
-	  # end
 	  def update
 	      @style = Style.find(params[:id])
 	      @appointment = Appointment.find(params[:appointment_id])
@@ -32,7 +27,9 @@ class StylesController < ApplicationController
 	  end
 
       def show
-          @style = Style.find(params[:id])
+      	@appointment = Appointment.find(params[:appointment_id])
+	     @style = @appointment.styles.find(params[:id]) 
+          @variation = Variation.new
       end
 
       def destroy
@@ -43,6 +40,6 @@ class StylesController < ApplicationController
 
 	  private
 	  	def style_params
-	  		params.require(:style).permit(:name)
+	  		params.require(:style).permit(:name, :taxonomy, :vendor_underscore_style_number)
 	     end
 end

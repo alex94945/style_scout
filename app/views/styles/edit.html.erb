@@ -6,12 +6,8 @@
 			</div>
 			<div class="panel-body">
 				<%= form_for @style, url: appointment_style_path(@appointment, @style), method: :put do |f| %>
-					<div class="form-group">
-						<label>Name</label>
-						<%= f.text_field :name, placeholder: @style.name, :class => 'form-control' %> <%# shows the style name after deleted #%>
-					</div>
+					<%= render partial: 'shared/styles/form', locals: {form: f} %>
 					<div>
-						<%= f.submit "Update Style", class: "btn btn-primary" %>
 						<%= link_to "Delete", appointment_style_path(@appointment, @style), method: :delete, class: "btn btn-danger pull-right" %>
 					</div>
 					<dir>

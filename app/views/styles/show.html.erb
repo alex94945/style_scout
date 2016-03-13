@@ -31,33 +31,38 @@
 							Notes
 						</div>
 					</div>
+					<%- @style.variations.each do |variation| %>
+						<li class="list-group-item">
+							<div class="row">
+								<div class="col-xs-2">
+									<%= variation.color %> 
+								</div>
+								<div class="col-xs-2">
+									input here
+								</div>
+								<div class="col-xs-2">
+									input here
+								</div>
+								<div class="col-xs-1">
+									333%
+								</div>
+								<div class="col-xs-1">
+									Bakersfield
+								</div>
+								<div class="col-xs-1">
+									input
+								</div>
+								<div class="col-xs-1">
+									asdfasdfasdfasdf
+								</div>
+								<div class="col-xs-1 text-right">
+									<%#= link_to "Edit", edit_appointment_style_variation_path(variation) %>
+								</div>
+							</div>
+						</li>
+					<% end %>
 					<li class="list-group-item">
-						<div class="row">
-							<div class="col-xs-2 form-group">
-								<%=  text_field :name, :placeholder => 'ex: Yolanda', :class => 'form-control' %> <%#input first time then show/edit #%>
-							</div>
-							<div class="col-xs-2">
-								input here
-							</div>
-							<div class="col-xs-2">
-								input here
-							</div>
-							<div class="col-xs-1">
-								333%
-							</div>
-							<div class="col-xs-1">
-								Bakersfield
-							</div>
-							<div class="col-xs-1">
-								input
-							</div>
-							<div class="col-xs-1">
-								asdfasdfasdfasdf
-							</div>
-							<div class="col-xs-1 text-right">
-								<%#= link_to "Edit", edit_appointment_style_variation_path(variation) %>
-							</div>
-						</div>
+						<%= render partial: 'shared/variations/form' %>
 					</li>
 				</li>
 			</ul>

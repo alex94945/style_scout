@@ -11,22 +11,22 @@
 							<div class="col-xs-2">
 								Name
 							</div>
-							<div class="col-xs-2">
-								Number of Styles
-							</div>
 							<div class="col-xs-1">
+								Styles
+							</div>
+							<div class="col-xs-2">
 								Buyer
 							</div>
-							<div class="col-xs-1">
+							<div class="col-xs-2">
 								Date
 							</div>
-							<div class="col-xs-1">
+							<div class="col-xs-2">
 								Location
 							</div>
 							<div class="col-xs-2">
 								Average IMU %
 							</div>
-							<div class="col-xs-3">
+							<div class="col-xs-1">
 							</div>
 						</div>
 					</li>
@@ -36,23 +36,27 @@
 								<div class="col-xs-2">
 									<%= link_to appointment.name, appointment_path(appointment) %>
 								</div>
-								<div class="col-xs-2">
+								<div class="col-xs-1">
 									<%= appointment.styles.length %>
 								</div>
-								<div class="col-xs-1">
-									need to create	 this
+								<div class="col-xs-2">
+									<%= appointment.buyer %>
 								</div>
-								<div class="col-xs-1">
-									need to create this
+								<div class="col-xs-2">
+									<%- if appointment.scout_date.present? %>
+										<%= appointment.scout_date.strftime('%B %e, %Y') %>
+									<%- else %>
+										N/A
+									<% end %>
 								</div>
-								<div class="col-xs-1">
-									Bakersfield
+								<div class="col-xs-2">
+									<%= appointment.location %>
 								</div>
 								<div class="col-xs-2">
 									10000%
 								</div>
-								<div class="col-xs-3 text-right">
-									<%= link_to "Edit", edit_appointment_path(appointment) %>
+								<div class="col-xs-1 text-right">
+									<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>
 								</div>
 							</div>
 						</li>
