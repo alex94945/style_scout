@@ -1,8 +1,15 @@
 <div id="appointment-metadata-<%= appointment.id %>" class="collapse">
-	<div class="row">
+	<div class="row" style="margin-top: 15px">
 		<%- appointment.styles.each do |style| %>
 			<div class="col-md-2">
-				<%= style_name_helper(style.name) %>
+				<%= link_to appointment_style_path(appointment, style) do %>
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<%= image_tag('https://www.placecage.com/100/100', style: "max-width: 50px;") %>
+							<%= style_name_helper(style) %>
+						</div>
+					</div>
+				<% end %>
 			</div>
 		<% end %>
 	</div>
