@@ -43,6 +43,6 @@ class StylesController < ApplicationController
 
 	  private
 	  	def style_params
-	  		params.require(:style).permit(:name, :category_id, :vendor_style_number, :wholesale_price, :negotiated_price, :retail_price)
+	  		params.require(:style).permit(:name, :category_id, :vendor_style_number, :wholesale_cost, :negotiated_cost, :retail_price)
 	     end
 end

@@ -9,6 +9,6 @@ class Style < ActiveRecord::Base
 
 	private 
 		def wholesale_or_negotiated_cost
-			negotiated_price.present? ? negotiated_price : wholesale_price || 0
+			negotiated_cost.present? ? negotiated_cost : wholesale_cost || 0
 		end
 end
