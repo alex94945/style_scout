@@ -14,6 +14,20 @@
 		<%= form.text_field :name, placeholder: 'ex: Style Name', :class => 'form-control' %>
 	</div>
 </div>
+<div class="row form-group"> 
+	<div class="col-sm-4">
+		<label>Wholesale Cost</label>
+		<%= form.number_field :wholesale_price, step: '.01', placeholder: '26.99', :class => 'form-control' %>
+	</div>
+	<div class="col-sm-4">
+		<label>Negotiated Cost</label>
+		<%= form.number_field :negotiated_price, step: '.01', placeholder: '25.01', :class => 'form-control' %>
+	</div>
+	<div class="col-sm-4">
+		<label>Retail Price</label>
+		<%= form.number_field :retail_price, step: '.01', placeholder: '100.00', :class => 'form-control' %>
+	</div>
+</div>
 <div class="form-group">
 	<%= form.submit %>
 </div>

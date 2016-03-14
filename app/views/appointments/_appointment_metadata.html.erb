@@ -1,0 +1,9 @@
+<div id="appointment-metadata-<%= appointment.id %>" class="collapse">
+	<div class="row">
+		<%- appointment.styles.each do |style| %>
+			<div class="col-md-2">
+				<%= style_name_helper(style.name) %>
+			</div>
+		<% end %>
+	</div>
+</div>

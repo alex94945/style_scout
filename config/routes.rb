@@ -6,9 +6,7 @@ Rails.application.routes.draw do
   root 'appointments#index'
 
   resources :appointments do
-    resources :styles do
-      resources :variations
-    end
+    resources :styles
   end
   
   # Example of regular route:

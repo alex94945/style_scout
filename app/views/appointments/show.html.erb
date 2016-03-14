@@ -15,15 +15,18 @@
 			<li class="list-group-item table-header">
 				<div class="row">
 					<div class="col-sm-3">
-						Name
+						Vendor Style Number
 					</div>
 					<div class="col-sm-3">
 						Category
 					</div>
 					<div class="col-sm-3">
-						Vendor Style Number
+						Name
 					</div>
-					<div class="col-sm-3">
+					<div class="col-sm-2">
+						IMU %
+					</div>
+					<div class="col-sm-1">
 					</div>
 				</div>
 			</li>
@@ -31,15 +34,18 @@
 				<li class='list-group-item' > 
 					<div class="row">
 						<div class="col-sm-3">
-							<%= link_to style_name_helper(style), appointment_style_path(@appointment, style) %>
+							<%= link_to style.vendor_style_number, appointment_style_path(@appointment, style) %>
 						</div>
 						<div class="col-sm-3">
 							<%= style.category.name %>
 						</div>
 						<div class="col-sm-3">
-							<%= style.vendor_style_number %>
+							<%= style.name %>
 						</div>
-						<div class="col-sm-3">
+						<div class="col-sm-2">
+							<%= number_to_percentage(style.initial_mark_up, precision: 2) if style.initial_mark_up > 0 %>
+						</div>
+						<div class="col-sm-1">
 							<%= link_to "Edit", edit_appointment_style_path(@appointment, style), class: "pull-right" %>
 						</div>
 					</div>

@@ -21,94 +21,21 @@
 				<%= @style.category.name %>
 			</div>
 		</div>
-		<hr>
-		<hr>
-
-		<h5>Variations </h5>
-		<div class="row">
-			<%- @style.variations.each do |v| %>
-				<div class="col-md-4">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<%= v.color.upcase %>
-						</div>
-						<div class="panel-body">
-							<%= v.inspect %>
-						</div>
-					</div>
-				</div>
-			<% end %>
+		<div class="row form-group">
+			<div class="col-md-4">
+				Cost
+				<%= number_to_currency @style.wholesale_price %>
+			</div>
+			<div class="col-md-4">
+				Negotiated Cost
+				<%= number_to_currency @style.negotiated_price %>
+			</div>
+			<div class="col-md-4">
+				Retail Price
+				<%= number_to_currency @style.retail_price %>
+			</div>
 		</div>
-		<!-- <ul class="list-group">
-			<li class="list-group-item table-header">
-				<div class="row">
-					<div class="col-xs-2">
-						Vendor Color
-					</div>
-					<div class="col-xs-2">
-						Wholesale Price
-					</div>
-					<div class="col-xs-2">
-						Retail Price
-					</div>
-					<div class="col-xs-1">
-						IMU
-					</div>
-					<div class="col-xs-1">
-						Shipment Window
-					</div>
-					<div class="col-xs-1">
-						Sizing
-					</div>
-					<div class="col-xs-1">
-						Notes
-					</div>
-				</div>
-				<%- @style.variations.each do |variation| %>
-
-					<li class="list-group-item">
-						<div class="row">
-							<div class="col-xs-2">
-								<%= variation.color %> 
-							</div>
-							<div class="col-xs-2">
-								input here
-							</div>
-							<div class="col-xs-2">
-								input here
-							</div>
-							<div class="col-xs-1">
-								333%
-							</div>
-							<div class="col-xs-1">
-								Bakersfield
-							</div>
-							<div class="col-xs-1">
-								input
-							</div>
-							<div class="col-xs-1">
-								asdfasdfasdfasdf
-							</div>
-							<div class="col-xs-1 text-right">
-								<%#= link_to "Edit", edit_appointment_style_variation_path(variation) %>
-							</div>
-						</div>
-					</li>
-				<% end %>
-				<li class="list-group-item">
-					<%= render partial: 'shared/variations/form' %>
-				</li>
-			</li>
-		</ul>				
-		-->
+		<hr>
+		<hr>
 	</div>
 </div>
-
-<!--     	t.string :color
-    	t.decimal :wholesale_price, :precision => 10, :scale => 2
-    	t.decimal :retail_price, :precision => 10, :scale => 2
-    	t.date :begin_shipment_window_date
-    	t.date :end_shipment_window_date
-    	t.string :sizing_schema
-    	t.string :size
-    	t.text :notes -->

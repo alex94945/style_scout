@@ -34,7 +34,7 @@
 						<li class="list-group-item">
 							<div class="row">
 								<div class="col-xs-2">
-									<%= link_to appointment.name, appointment_path(appointment) %>
+									<%= link_to appointment.name, "#", "data-toggle" => "collapse", "data-target" => "#appointment-metadata-#{appointment.id}" %>
 								</div>
 								<div class="col-xs-1">
 									<%= appointment.styles.length %>
@@ -53,12 +53,13 @@
 									<%= appointment.location %>
 								</div>
 								<div class="col-xs-2">
-									10000%
+									<%= number_to_percentage appointment.average_imu, precision: 2 %> 
 								</div>
 								<div class="col-xs-1 text-right">
 									<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>
 								</div>
 							</div>
+							<%= render partial: "appointment_metadata", locals: {appointment: appointment} %>
 						</li>
 					<% end %>
 				</ul>

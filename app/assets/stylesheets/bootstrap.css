@@ -1,0 +1,14 @@
+/*
+  =require twitter-bootstrap-static/bootstrap
+  =require twitter-bootstrap-static/fontawesome
+
+*/
+
+.modal-header-primary {
+	background-color: #428bca;
+	color: #ffffff;
+}
+
+.modal-content {
+	overflow: hidden;
+}

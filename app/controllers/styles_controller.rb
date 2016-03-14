@@ -12,6 +12,10 @@ class StylesController < ApplicationController
 	 def new
 	  	@style = Style.new
 	  	@appointment = Appointment.find(params[:appointment_id])
+	  	respond_to do |format|
+	  		format.html {redirect_to appointment_path(@appointment)}
+	  		format.js {render "new"}
+	  	end
 	  end
 
 	  def edit
@@ -29,7 +33,6 @@ class StylesController < ApplicationController
       def show
       	@appointment = Appointment.find(params[:appointment_id])
 	     @style = @appointment.styles.find(params[:id]) 
-          @variation = Variation.new
       end
 
       def destroy
@@ -40,6 +43,6 @@ class StylesController < ApplicationController
 
 	  private
 	  	def style_params
-	  		params.require(:style).permit(:name, :category_id, :vendor_style_number)
+	  		params.require(:style).permit(:name, :category_id, :vendor_style_number, :wholesale_price, :negotiated_price, :retail_price)
 	     end
 end

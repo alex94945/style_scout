@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160313225833) do
+ActiveRecord::Schema.define(version: 20160314013822) do
 
   create_table "appointments", force: :cascade do |t|
     t.string   "name"
@@ -41,21 +41,6 @@ ActiveRecord::Schema.define(version: 20160313225833) do
     t.decimal  "negotiated_price",    precision: 10, scale: 2
     t.decimal  "retail_price",        precision: 10, scale: 2
     t.decimal  "wholesale_price",     precision: 10, scale: 2
-  end
-
-  create_table "variations", force: :cascade do |t|
-    t.string   "color"
-    t.decimal  "wholesale_price",            precision: 10, scale: 2
-    t.decimal  "retail_price",               precision: 10, scale: 2
-    t.date     "begin_shipment_window_date"
-    t.date     "end_shipment_window_date"
-    t.string   "sizing_schema"
-    t.string   "size"
-    t.text     "notes"
-    t.integer  "style_id"
-    t.datetime "created_at",                                          null: false
-    t.datetime "updated_at",                                          null: false
-    t.decimal  "negotiated_price",           precision: 10, scale: 2
   end
 
 end
