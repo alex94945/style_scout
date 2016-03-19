@@ -1,18 +1,22 @@
 <div class="row">
 	<div class="col-md-12">
-		<div class="panel panel-primary">
-			<div class="panel-heading">
-				Edit Style
+		<div class="panel panel-default">
+			<div class="panel-heading panel-heading-overflow">
+				<div class="half-wide"> 
+					Edit Style
+				</div>
+				<div class="half-wide text-right">
+			        <%= link_to appointment_style_path(@appointment, @style), method: :delete, data: {confirm: 'Are you sure you want to delete?'}  do %>
+			          <i class="fa fa-trash-o fa-lg"></i>
+			        <% end %>
+			      </div>
 			</div>
 			<div class="panel-body">
 				<%= form_for @style, url: appointment_style_path(@appointment, @style), method: :put do |f| %>
 					<%= render partial: 'shared/styles/form', locals: {form: f} %>
 					<div>
-						<%= link_to "Delete", appointment_style_path(@appointment, @style), method: :delete, class: "btn btn-danger pull-right" %>
-					</div>
-					<dir>
 						<%= link_to "Cancel", appointment_style_path%>
-					</dir>
+					</div>
 				<% end %>
 			</div>
 		</div>

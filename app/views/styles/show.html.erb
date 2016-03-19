@@ -1,10 +1,8 @@
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<%= link_to @appointment.name, appointment_path(@appointment) %>
-		>
-		<%= style_name_helper(@style) %>
-	</div>
-
+	<ul class="panel-heading breadcrumb">
+		<li><%= link_to @appointment.name, appointment_path(@appointment) %></li>
+		<li class="active"><%= style_name_helper(@style) %></li>
+	</ul>
 	<div class="panel-body">
 		<div class="row form-group">
 			<div class="col-md-4">

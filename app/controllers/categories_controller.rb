@@ -6,7 +6,7 @@ class CategoriesController < ApplicationController
 
   def update
     @category = Category.find(params[:id])
-    @category.update(name:params["category"]["name"] )
+    @category.update( name:params["category"]["name"] )
     redirect_to settings_path
   end
 
