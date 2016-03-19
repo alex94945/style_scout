@@ -1,6 +1,11 @@
 <div class="panel panel-default">
 	<div class="panel-heading">
-		<%= @appointment.name %>
+		<%= @appointment.name %> | 
+		<%- if @appointment.scout_date.present? %>
+			<%= @appointment.scout_date.strftime('%b %e, %Y') %>
+		<%- else %>
+			N/A
+		<% end %>
 		<div class="pull-right">
 			<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment} %>
 		</div>	

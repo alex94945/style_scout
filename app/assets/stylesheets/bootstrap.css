@@ -12,3 +12,12 @@
 .modal-content {
 	overflow: hidden;
 }
+
+.half-wide {
+  width: 50%;
+  float: left;
+}
+
+.panel-heading-overflow {
+  overflow: hidden;
+}

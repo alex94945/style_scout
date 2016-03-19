@@ -1,10 +1,10 @@
 class AppointmentsController < ApplicationController
 	def index
-		@appointments= Appointment.all
+		@appointments= current_user.appointments.all
 	end
 
 	 def create
-	  	@appointment = Appointment.create(appointment_params)
+	  	@appointment = current_user.appointments.create(appointment_params)
 	  	redirect_to appointment_path(@appointment)
 	 end
 
@@ -13,21 +13,21 @@ class AppointmentsController < ApplicationController
 	  end
 
 	  def edit
-	      @appointment = Appointment.find(params[:id])
+	      @appointment = current_user.appointments.find(params[:id])
 	  end
 
 	  def update
-	      @appointment = Appointment.find(params[:id])
+	      @appointment = current_user.appointments.find(params[:id])
 	      @appointment.update(appointment_params)
 	      redirect_to root_url
 	  end
 
       def show
-          @appointment = Appointment.find(params[:id])
+          @appointment = current_user.appointments.find(params[:id])
       end
 
       def destroy
-      	@appointment = Appointment.find(params[:id])
+      	@appointment = current_user.appointments.find(params[:id])
       	@appointment.destroy
       	redirect_to root_url
       end

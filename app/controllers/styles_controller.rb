@@ -4,14 +4,14 @@ class StylesController < ApplicationController
 	end
 
 	 def create
-	  	@appointment = Appointment.find(params[:appointment_id])
+	  	@appointment = current_user.appointments.find(params[:appointment_id])
 	  	@appointment.styles.create(style_params)
 	  	redirect_to appointment_path(@appointment)
 	 end
 
 	 def new
 	  	@style = Style.new
-	  	@appointment = Appointment.find(params[:appointment_id])
+	  	@appointment = current_user.appointments.find(params[:appointment_id])
 	  	respond_to do |format|
 	  		format.html {redirect_to appointment_path(@appointment)}
 	  		format.js {render "new"}
@@ -19,26 +19,26 @@ class StylesController < ApplicationController
 	  end
 
 	  def edit
-	  	@appointment = Appointment.find(params[:appointment_id])
+	  	@appointment = current_user.appointments.find(params[:appointment_id])
 	      @style = @appointment.styles.find(params[:id]) 
 	  end
 
 	  def update
 	      @style = Style.find(params[:id])
-	      @appointment = Appointment.find(params[:appointment_id])
+	      @appointment = current_user.appointments.find(params[:appointment_id])
 	      @style.update(style_params)
 	      redirect_to appointment_path(@appointment)
 	  end
 
       def show
-      	@appointment = Appointment.find(params[:appointment_id])
+      	@appointment = current_user.appointments.find(params[:appointment_id])
 	     @style = @appointment.styles.find(params[:id]) 
       end
 
       def destroy
-      	@appointment = Appointment.find(params[:id])
-      	@appointment.destroy
-      	redirect_to root_url
+      	@appointment = current_user.appointments.find(params[:id])
+      	@appointment.styles.find(params[:id]).destroy
+      	redirect_to appointment_path(@appointment)
       end
 
 	  private

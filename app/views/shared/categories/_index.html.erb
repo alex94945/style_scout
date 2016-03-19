@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-6">
+    <ul class="list-group">
+        <%- @categories.each do |c| %>
+            <li class="list-group-item">
+                <%= link_to c.name, edit_category_path(c), remote: true %>
+            </li>
+        <% end %>
+    </ul>
+  </div>
+  <div class="col-md-6">
+    <div id="form-container">
+    </div>
+  </div>
+</div>

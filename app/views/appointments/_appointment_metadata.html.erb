@@ -1,7 +1,7 @@
 <div id="appointment-metadata-<%= appointment.id %>" class="collapse">
 	<div class="row" style="margin-top: 15px">
 		<%- appointment.styles.each do |style| %>
-			<div class="col-md-2">
+			<div class="col-md-3">
 				<%= link_to appointment_style_path(appointment, style) do %>
 					<div class="panel panel-default">
 						<div class="panel-body">
@@ -14,7 +14,7 @@
 		<% end %>
 	</div>
 	<div class="row">
-		<div class="col-md-12">
+		<div class="col-md-11">
 			<%= link_to 'View the damn thang', appointment_path(appointment) %>
 		</div>
 	</div>
