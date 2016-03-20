@@ -14,6 +14,8 @@ Rails.application.routes.draw do
   
   get '/settings' => 'settings#index'
 
+  devise_for :users, controllers: { registrations: "users/registrations" }
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

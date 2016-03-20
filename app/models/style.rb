@@ -1,6 +1,5 @@
 class Style < ActiveRecord::Base
 	belongs_to :appointment
-	belongs_to :category
 
 	def initial_mark_up
 		return 0 unless retail_price.present?

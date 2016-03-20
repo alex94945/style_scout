@@ -1,2 +1,1 @@
-console.log($('#modal'))
 $('#modal').html("<%= j(render partial: 'styles/new_form', locals: {appointment: @appointment, style: @style} ) %> ").modal('show');
