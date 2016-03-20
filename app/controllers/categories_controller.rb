@@ -19,6 +19,12 @@ class CategoriesController < ApplicationController
     redirect_to settings_path
   end
 
+  def destroy
+    @category = Category.find(params[:id])
+    @category.destroy
+    redirect_to settings_path
+  end
+
   private
     def category_params
       params.require(:category).permit(:name)
