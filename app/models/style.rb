@@ -1,5 +1,6 @@
 class Style < ActiveRecord::Base
 	belongs_to :appointment
+      enum status: [ :created, :approved, :order_placed, :received, :cancelled, :deleted ]
 
 	def initial_mark_up
 		return 0 unless retail_price.present?

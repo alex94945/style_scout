@@ -1,21 +1,41 @@
 <div id="appointment-metadata-<%= appointment.id %>" class="collapse">
-	<div class="row" style="margin-top: 15px">
-		<%- appointment.styles.each do |style| %>
-			<div class="col-md-3">
-				<%= link_to appointment_style_path(appointment, style) do %>
+	<div class='well'>
+		<div class="row" style="margin-top: 15px">
+			<%- appointment.styles.each do |style| %>
+				<div class="col-md-2">
+					<%= link_to appointment_style_path(appointment, style) do %>
+						<div class="panel panel-default">
+							<div class="panel-body text-center">
+								<div>
+									<%= style_name_helper(style) %>
+								</div>
+								<div>
+									<%= image_tag('https://www.placecage.com/100/100', style: "max-width: 100%;") %>
+								</div>
+								<div>
+									<%= style.status.titleize %>
+								</div>
+							</div>
+						</div>
+					<% end %>
+				</div>
+			<% end %>
+			<div class="col-md-2">
+				<%= link_to new_appointment_style_path(appointment), remote: true do %>
 					<div class="panel panel-default">
-						<div class="panel-body">
-							<%= image_tag('https://www.placecage.com/100/100', style: "max-width: 50px;") %>
-							<%= style_name_helper(style) %>
+						<div class="panel-body text-center">
+							<div>
+								<i class="fa fa-plus-square fa-5x" style="margin: 34px 0"></i>
+							</div>
 						</div>
 					</div>
 				<% end %>
 			</div>
-		<% end %>
-	</div>
-	<div class="row">
-		<div class="col-md-11">
-			<%= link_to 'View the damn thang', appointment_path(appointment) %>
+		</div>
+		<div class="row">
+			<div class="col-md-11">
+				<%= link_to 'View the damn thang', appointment_path(appointment) %>
+			</div>
 		</div>
 	</div>
 </div>
