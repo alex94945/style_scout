@@ -1,15 +1,17 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-sm-6">
     <ul class="list-group">
         <%- @categories.each do |c| %>
             <li class="list-group-item">
                 <%= link_to c.name, edit_category_path(c), remote: true %>
             </li>
         <% end %>
-        <%= link_to "Add New Category", new_category_path, remote: true %>
     </ul>
+  <div>
+    <%= link_to "Add New Category", new_category_path, class: 'btn btn-default', remote: true %>
   </div>
-  <div class="col-md-6">
+  </div>
+  <div class="col-sm-6">
     <div id="form-container">
       <!-- this container gets stuff dynamically from javascript like edit and new -->
     </div>

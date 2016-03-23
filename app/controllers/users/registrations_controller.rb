@@ -13,6 +13,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  private
+      def appointment_params
+        params.require(:appointment).permit(:name, :buyer, :scout_date, :location)
+       end
+
   # GET /resource/edit
   # def edit
   #   super

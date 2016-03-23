@@ -5,7 +5,8 @@
 	</div>
 	<div class="col-sm-6">
 		<label>Buyer</label>
-		<%= form.text_field :buyer, :placeholder => 'ex: Buyer', :class => 'form-control', :required => true%>
+		<%= form.select :user_id, options_for_select( User.all.map{ |u| [u.name, u.id] }, current_user), { }, class: 'form-control' %>
+
 	</div>
 </div>
 <div class="row form-group"> 

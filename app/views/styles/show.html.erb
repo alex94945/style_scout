@@ -33,7 +33,16 @@
 				<%= number_to_currency @style.retail_price %>
 			</div>
 		</div>
-		<hr>
+		<div class="row form-group">
+			<div class="col-md-4">
+				Quantity:
+				<%= @style.quantity%>
+			</div>
+			<div class="col-md-4">
+				Delivery Date:
+				<%= @style.delivery_date %>
+			</div>
+		</div>
 		<hr>
 	</div>
 </div>
