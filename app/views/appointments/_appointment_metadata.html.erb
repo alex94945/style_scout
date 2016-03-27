@@ -4,7 +4,7 @@
 			<%- appointment.styles.each do |style| %>
 				<div class="col-md-2">
 					<%= link_to appointment_style_path(appointment, style) do %>
-						<div class="panel panel-default">
+						<div class="panel panel-default highlight">
 							<div class="panel-body text-center">
 								<div>
 									<%= style_name_helper(style) %>
@@ -22,7 +22,7 @@
 			<% end %>
 			<div class="col-md-2">
 				<%= link_to new_appointment_style_path(appointment), remote: true do %>
-					<div class="panel panel-default">
+					<div class="panel panel-default highlight">
 						<div class="panel-body text-center">
 							<div>
 								<i class="fa fa-plus-square fa-5x" style="margin: 34px 0"></i>
@@ -34,7 +34,7 @@
 		</div>
 		<div class="row">
 			<div class="col-md-11">
-				<%= link_to 'View the damn thang', appointment_path(appointment) %>
+				<%= link_to 'View Appointment', appointment_path(appointment) %>
 			</div>
 		</div>
 	</div>

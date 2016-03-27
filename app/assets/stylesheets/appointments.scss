@@ -1,4 +1,14 @@
-// Place all the styles related to the Sets controller here.
+// Place all the styles related to the Appointments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+div.highlight:hover {
+  position: relative;
+  transition: all .5s ease-out;
+}
+
+div.highlight:hover {
+  box-shadow: 2.5px 4.33px 10px 0px rgba(0, 0, 0, .1);
+  right: 1px;
+  bottom: 1px;
+}
