@@ -1,0 +1,7 @@
+<%= link_to edit_appointment_style_path(appointment, style)  do %>
+  <i class="fa fa-pencil"></i>
+<% end %>
+&nbsp; | &nbsp;
+<%= link_to appointment_style_path(appointment, style), method: :delete, data: {confirm: 'Are You Sure?'}  do %>
+  <i class="fa fa-trash-o"></i>
+<% end %>

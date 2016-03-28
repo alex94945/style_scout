@@ -1,0 +1,12 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header modal-header-primary">
+      New Appointment
+    </div>
+    <div class="modal-body">
+      <%= form_for @appointment, url: appointments_path, method: :post do |f| %>
+        <%= render partial: 'shared/appointments/form', locals: {form: f} %>
+      <% end %>
+    </div>
+  </div>
+</div>

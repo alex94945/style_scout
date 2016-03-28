@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 	<ul class="panel-heading breadcrumb">
 		<li><%= link_to @appointment.name, appointment_path(@appointment) %></li>
-		<li class="active"><%= style_name_helper(@style) %></li>
+		<li class="active"><%= style_name_helper(@style) %> - <%=@style.status.titleize%></li>
 	</ul>
 	<div class="panel-body">
 		<div class="row form-group">

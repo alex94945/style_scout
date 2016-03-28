@@ -51,7 +51,7 @@
 							<%= number_to_percentage(style.initial_mark_up, precision: 2) if style.initial_mark_up > 0 %>
 						</div>
 						<div class="col-sm-1">
-							<%= link_to "Edit", edit_appointment_style_path(@appointment, style), class: "pull-right" %>
+							<%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style} %>
 						</div>
 					</div>
 				</li>

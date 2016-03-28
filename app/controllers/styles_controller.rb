@@ -36,7 +36,7 @@ class StylesController < ApplicationController
       end
 
       def destroy
-      	@appointment = Appointment.find(params[:id])
+      	@appointment = Appointment.find(params[:appointment_id])
       	@appointment.styles.find(params[:id]).destroy
       	redirect_to appointment_path(@appointment)
       end
