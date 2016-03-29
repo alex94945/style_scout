@@ -19,7 +19,7 @@ class AppointmentsController < ApplicationController
 	  def update
 	      @appointment = Appointment.find(params[:id])
 	      @appointment.update(appointment_params)
-	      redirect_to root_url
+	      redirect_to appointment_path(@appointment)
 	  end
 
       def show
@@ -34,6 +34,6 @@ class AppointmentsController < ApplicationController
 
 	  private
 	  	def appointment_params
-	  		params.require(:appointment).permit(:name, :user_id, :scout_date, :location)
+	  		params.require(:appointment).permit(:name, :user_id, :scout_date, :location, :notes)
 	     end
 end

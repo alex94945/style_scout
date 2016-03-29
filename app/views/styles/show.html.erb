@@ -2,6 +2,9 @@
 	<ul class="panel-heading breadcrumb">
 		<li><%= link_to @appointment.name, appointment_path(@appointment) %></li>
 		<li class="active"><%= style_name_helper(@style) %> - <%=@style.status.titleize%></li>
+		<span class="pull-right">
+			<li><%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: @style} %></li>
+		</span>
 	</ul>
 	<div class="panel-body">
 		<div class="row form-group">

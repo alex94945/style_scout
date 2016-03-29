@@ -13,6 +13,10 @@
 
 	<div class="panel-body">
 		<div class="strong">
+			Notes:
+			<%= @appointment.notes %>
+		</div>
+		<div class="strong">
 			Styles:
 			<%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "pull-right", remote: true %>
 		</div>
