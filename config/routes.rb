@@ -6,7 +6,9 @@ Rails.application.routes.draw do
   root 'appointments#index'
 
   resources :appointments do
-    resources :styles
+    resources :styles do
+      put :update_status
+    end
   end
   
   resources :categories

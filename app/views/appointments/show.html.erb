@@ -43,7 +43,7 @@
 				<li class='list-group-item' > 
 					<div class="row">
 						<div class="col-sm-3">
-							<%= link_to style.vendor_style_number, appointment_style_path(@appointment, style) %>
+							<%= link_to style.vendor_style_number, "#", "data-toggle" => "collapse", "data-target" => "#style-notes-metadata-#{style.id}"%>
 						</div>
 						<div class="col-sm-3">
 							<%= style.category_name.titleize %>
@@ -56,6 +56,13 @@
 						</div>
 						<div class="col-sm-1">
 							<%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style} %>
+						</div>
+					</div>
+					<div class="collapse" id="style-notes-metadata-<%= style.id %>" >
+						<div class="row">
+							<div class="col-sm-12">
+								<%= style.notes %>
+							</div>
 						</div>
 					</div>
 				</li>

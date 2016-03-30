@@ -38,7 +38,13 @@
 							<li class="list-group-item">
 								<div class="row">
 									<div class="col-xs-2">
-										<%= link_to appointment.name, "#", "data-toggle" => "collapse", "data-target" => "#appointment-metadata-#{appointment.id}" %>
+										<a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#appointment-metadata-<%= appointment.id %>">
+											
+											<%= appointment.name %>
+											<span class="pull-right">
+												<i class="fa fa-arrow-circle-down"> </i>
+											</span>
+										</a>
 									</div>
 									<div class="col-xs-1">
 										<%= appointment.styles.length %>
@@ -63,7 +69,9 @@
 										<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>
 									</div>
 								</div>
-								<%= render partial: "appointment_metadata", locals: {appointment: appointment} %>
+								<div id="appointment-metadata-<%= appointment.id %>" class="collapse">
+									<%= render partial: "appointment_metadata", locals: {appointment: appointment} %>
+								</div>
 							</li>
 						<% end %>
 					</ul>

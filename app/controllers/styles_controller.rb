@@ -41,9 +41,16 @@ class StylesController < ApplicationController
       	redirect_to appointment_path(@appointment)
       end
 
+      #remote true, looking for update_status.js.erb
+      def update_status
+        @style = Style.find(params[:style_id])
+        @appointment = Appointment.find(params[:appointment_id])
+        @style.update(style_params)
+      end
+
 	  private
 	  	def style_params
 	  		params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost, 
-                :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes)
+                :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status)
 	     end
 end

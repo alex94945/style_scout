@@ -1,12 +1,11 @@
 <div class="row form-group">
 	<div class="col-sm-6">
 		<label>Vendor Name</label>
-		<%= form.text_field :name, :placeholder => 'ex: Appointment Name', :class => 'form-control', :required => true%>
+		<%= form.text_field :name, :placeholder => 'ex: Appointment Name', :class => 'form-control', :required => true, :autofocus => "autofocus" %>
 	</div>
 	<div class="col-sm-6">
 		<label>Buyer</label>
-		<%= form.select :user_id, options_for_select( User.all.map{ |u| [u.name, u.id] }, current_user), { }, class: 'form-control' %>
-
+		<%= form.select :user_id, options_for_select( User.all.map{ |u| [u.name, u.id] }, current_user.id), { }, class: 'form-control' %>
 	</div>
 </div>
 <div class="row form-group"> 
