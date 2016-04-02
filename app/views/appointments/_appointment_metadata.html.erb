@@ -1,5 +1,5 @@
 <div class='well'>
-	<div class="row" style="margin-top: 15px">
+	<div class="row">
 		<%- appointment.styles.order('created_at').each do |style| %>
 			<div class="col-md-2">
 				<%= link_to appointment_style_path(appointment, style) do %>
