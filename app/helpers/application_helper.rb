@@ -1,6 +1,5 @@
 module ApplicationHelper
 
-
 	def style_name_helper(style)
 		# name = ""
 		# if style.name.present?
@@ -15,6 +14,5 @@ module ApplicationHelper
 		style.name.present? ? style.name : style.vendor_style_number
 
 	end
-
 
 end

@@ -1,0 +1,31 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header modal-header-primary">
+      <div class="half-wide">
+        Edit Appointment: <%= appointment.name %>
+      </div>
+      <div class="half-wide text-right">
+        <%= link_to appointment_path(@appointment), method: :delete, data: {confirm: 'Are You Sure?'}  do %>
+          <i class="fa fa-trash-o fa-lg" style="color: white"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="modal-body">
+      <%= form_for appointment, url: appointments_path, method: :put do |f| %>
+          <%= render partial: 'shared/appointments/form', locals: {form: f} %>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+
+<!-- <div class="panel-heading panel-heading-overflow">
+  <div class="half-wide">
+    Edit Appointment
+  </div>
+  <div class="half-wide text-right">
+    <%= link_to appointment_path(@appointment), method: :delete, data: {confirm: 'Are You Sure?'}  do %>
+      <i class="fa fa-trash-o fa-lg"></i>
+    <% end %>
+  </div>
+</div> -->

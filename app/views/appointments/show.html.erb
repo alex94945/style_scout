@@ -30,7 +30,7 @@
 						Category
 					</div>
 					<div class="col-sm-3">
-						Name
+						Delivery Date
 					</div>
 					<div class="col-sm-2">
 						IMU %
@@ -43,13 +43,18 @@
 				<li class='list-group-item' > 
 					<div class="row">
 						<div class="col-sm-3">
-							<%= link_to style.vendor_style_number, "#", "data-toggle" => "collapse", "data-target" => "#style-notes-metadata-#{style.id}"%>
+							<a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#style-notes-metadata-<%= style.id %>">
+								<%= style.vendor_style_number %>
+								<span class="pull-right">
+									<i class="fa fa-arrow-circle-down"> </i>
+								</span>
+							</a>
 						</div>
 						<div class="col-sm-3">
 							<%= style.category_name.titleize %>
 						</div>
 						<div class="col-sm-3">
-							<%= style.name %>
+							<%= style.delivery_date %>
 						</div>
 						<div class="col-sm-2">
 							<%= number_to_percentage(style.initial_mark_up, precision: 2) if style.initial_mark_up > 0 %>
@@ -61,7 +66,12 @@
 					<div class="collapse" id="style-notes-metadata-<%= style.id %>" >
 						<div class="row">
 							<div class="col-sm-12">
-								<%= style.notes %>
+								Notes: <%= style.notes.present? ? style.notes : "n/a" %>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-sm-12">
+								<%= link_to "View Style", appointment_style_path(@appointment, style) %>
 							</div>
 						</div>
 					</div>
