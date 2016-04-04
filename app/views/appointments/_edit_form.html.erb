@@ -11,7 +11,7 @@
       </div>
     </div>
     <div class="modal-body">
-      <%= form_for appointment, url: appointments_path, method: :put do |f| %>
+      <%= form_for appointment, url: appointment_path, method: :put do |f| %>
           <%= render partial: 'shared/appointments/form', locals: {form: f} %>
       <% end %>
     </div>
