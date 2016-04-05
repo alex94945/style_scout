@@ -62,7 +62,7 @@
 										<%= appointment.location %>
 									</div>
 									<div class="col-xs-2">
-										<%= number_to_percentage appointment.average_imu, precision: 2 %> 
+										<%= number_to_percentage appointment.weighted_average_imu, precision: 2 %> 
 									</div>
 									<div class="col-xs-2 text-right">
 										<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>

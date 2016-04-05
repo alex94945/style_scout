@@ -28,10 +28,24 @@ require 'capybara/rspec'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = true
+  config.use_transactional_fixtures = false
   config.include Warden::Test::Helpers
   config.before (:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
     Warden.test_mode!
+  end
+
+  config.around(:each) do| example |
+    example.run
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.append_after(:each) do
+    DatabaseCleaner.clean
   end
 
   config.after do 

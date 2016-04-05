@@ -2,8 +2,8 @@ class Appointment < ActiveRecord::Base
 	has_many :styles, dependent: :destroy
       belongs_to :user
 
-	def average_imu
-		return 0 unless styles.any?
-		styles.map(&:initial_mark_up).sum / styles.length
+	def weighted_average_imu
+	    styles.map{ |style| style.quantity.nil? ? 0 : (style.quantity * style.initial_mark_up) }.inject(:+)  / styles.sum(:quantity) 
 	end
+
 end
