@@ -4,7 +4,7 @@ Rails.application.configure do
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {
-      :bucket => "appointment-photos",
+      :bucket => ENV['AWS-BUCKET-NAME'],
       :access_key_id => ENV['AWS-KEY-ID'],
       :secret_access_key => ENV['AWS-SECRET-KEY']
     }
