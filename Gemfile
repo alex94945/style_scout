@@ -29,6 +29,9 @@ gem 'twitter-bootstrap-rails'
 gem 'devise'
 gem 'pg',       '0.17.1'
 gem 'faker'
+gem 'paperclip'
+gem 'aws-sdk', '< 2.0'
+
 
 
 group :development, :test do
@@ -39,12 +42,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'pry'
   gem 'database_cleaner'
-end
-
-group :development do
-  # Access an IRB console on exception pages or by using <%= console %> in views
-
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
+  gem 'dotenv-rails'
 end
 
 group :production do

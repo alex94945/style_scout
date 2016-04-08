@@ -2,6 +2,15 @@ class Style < ActiveRecord::Base
 	belongs_to :appointment
       enum status: [ :created, :approved, :order_placed, :received, :cancelled, :deleted ]
 
+      has_attached_file :photo, styles: {
+        thumb: '100x100>',
+        square: '200x200#',
+        medium: '300x300>'
+      }
+
+      validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+
+
 	def initial_mark_up
 		return 0 unless retail_price.present?
 		( ( (retail_price) - wholesale_or_negotiated_cost) / retail_price ) * 100
