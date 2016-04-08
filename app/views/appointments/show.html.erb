@@ -44,6 +44,7 @@
 					<div class="row">
 						<div class="col-sm-3">
 							<a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#style-notes-metadata-<%= style.id %>">
+								<%= image_tag style.default_photo('square'), style:'width:25px;' if style.default_photo %>
 								<%= style.vendor_style_number %>
 								<span class="pull-right">
 									<i class="fa fa-arrow-circle-down"> </i>
