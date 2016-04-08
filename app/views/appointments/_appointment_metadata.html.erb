@@ -9,8 +9,8 @@
 								<%= style.vendor_style_number %>
 							</div>
 							<div>
-								<%- if style.photo.present? %>
-									<%= image_tag style.photo.url(:original), style: "max-height: 80px;" %>
+								<%- if style.default_photo %>
+									<%= image_tag style.default_photo, style: "max-height: 80px;" %>
 								<%- else %>
 									<%= image_tag('https://www.placecage.com/100/100', style: "max-height: 80px;") %>
 								<%- end %>

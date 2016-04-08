@@ -2,13 +2,7 @@ class Style < ActiveRecord::Base
 	belongs_to :appointment
       enum status: [ :created, :approved, :order_placed, :received, :cancelled, :deleted ]
 
-      has_attached_file :photo, styles: {
-        thumb: '100x100>',
-        square: '200x200#',
-        medium: '300x300>'
-      }
-
-      validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
+      has_many :attachments
 
 
 	def initial_mark_up
@@ -41,6 +35,17 @@ class Style < ActiveRecord::Base
 
               end
           end
+      end
+
+      def default_photo
+        
+        return nil unless attachments.any?
+        if default_photo_id
+          attachments.find(default_photo_id).photo.url
+        else
+          attachments.first.photo.url
+        end
+
       end
 
 

@@ -53,5 +53,21 @@
 				<%= @style.notes %>
 			</div>
 		</div>
+		<div class='row'>
+			<%- @style.attachments.each do |attachment| %>
+				<div class='col-md-3'>
+					<%= image_tag attachment.photo.url, :style=>'max-height:180px;' %>
+				</div>
+			<% end %>
+		</div>
+		<div class="row">
+			<div class='col-md-12'>
+				<%= form_for :attachment, url: appointment_style_attachments_path(@appointment, @style), method: :post do |f| %>
+					<label>Photo</label>
+					<%= f.file_field :photo %>
+					<%= f.submit %>
+				<% end %>
+			</div>
+		</div>
 	</div>
 </div>

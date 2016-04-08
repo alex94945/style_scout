@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :appointments do
     get :export
     resources :styles do
+      resources :attachments
       put :update_status
     end
   end
