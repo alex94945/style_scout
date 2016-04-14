@@ -23,7 +23,7 @@ class AppointmentsController < ApplicationController
 	  end
 
       def show
-          @appointment = Appointment.find(params[:id])
+          @appointment = Appointment.includes(:styles).eager_load(styles: :attachments).find(params[:id])
       end
 
       def destroy

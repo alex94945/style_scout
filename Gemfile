@@ -31,6 +31,7 @@ gem 'pg',       '0.17.1'
 gem 'faker'
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
+gem 'jquery-datatables-rails', '~> 3.3.0'
 
 
 

@@ -12,6 +12,70 @@
 	</div>
 
 	<div class="panel-body">
+		<!-- Nav tabs -->
+		  <ul class="nav nav-tabs" role="tablist">
+		    <li role="presentation" class="active">
+		    	<a href="#style-cards" aria-controls="home" role="tab" data-toggle="tab">Style Cards</a>
+		    </li>
+		    <li role="presentation">
+		    	<a href="#style-data" aria-controls="profile" role="tab" data-toggle="tab">Style Data</a>
+		    </li>
+		  </ul>
+
+		  <!-- Tab panes -->
+		  <div class="tab-content">
+		    <div role="tabpanel" class="tab-pane active" id="style-cards">
+		      <%= render partial: "appointment_metadata", locals: {appointment: @appointment} %>
+		    </div>
+		    <div role="tabpanel" class="tab-pane" id="style-data">
+		    	<table id="appointment-styles" class="display">
+		    		<thead>
+		    			<th>
+		    				Vendor Style Number
+		    			</th>
+		    			 <th>
+		    			 	Category 
+		    			 </th>
+		    			 <th>
+		    			 	Delivery Date 
+		    			 </th>
+		    			 <th>
+		    			 	IMU %
+		    			 </th>
+		    			 <th>
+
+		    			 </th>
+		    		</thead>
+		    		<tbody>
+		    			<%- @appointment.styles.each do |style| %>
+		    				<tr>
+		    					<td>
+		    						<a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#style-notes-metadata-<%= style.id %>">
+									<%= image_tag style.default_photo('square'), style:'width:25px;' if style.default_photo %>
+									<%= style.vendor_style_number %>
+									<span class="pull-right">
+										<i class="fa fa-arrow-circle-down"> </i>
+									</span>
+								</a>
+		    					</td>
+		    					<td>
+		    						<%= style.category_name.titleize %>
+		    					</td>
+		    					<td>
+		    						<%= style.delivery_date %>
+		    					</td>
+		    					<td>
+		    						<%= number_to_percentage(style.initial_mark_up, precision: 2) if style.initial_mark_up > 0 %>
+		    					</td>
+		    					<td>
+		    						<%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style} %>
+		    					</td>
+		    				</tr>
+		    			<% end %>
+		    		</tbody>
+		    	</table>
+		    </div>
+		</div>
 		<div class="strong">
 			Notes:
 			<%= @appointment.notes %>
@@ -20,68 +84,12 @@
 			Styles:
 			<%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "pull-right", remote: true %>
 		</div>
-		<ul class='list-group'>
-			<li class="list-group-item table-header">
-				<div class="row">
-					<div class="col-sm-3">
-						Vendor Style Number
-					</div>
-					<div class="col-sm-3">
-						Category
-					</div>
-					<div class="col-sm-3">
-						Delivery Date
-					</div>
-					<div class="col-sm-2">
-						IMU %
-					</div>
-					<div class="col-sm-1">
-					</div>
-				</div>
-			</li>
-			<%- @appointment.styles.each do |style| %>
-				<li class='list-group-item' > 
-					<div class="row">
-						<div class="col-sm-3">
-							<a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#style-notes-metadata-<%= style.id %>">
-								<%= image_tag style.default_photo('square'), style:'width:25px;' if style.default_photo %>
-								<%= style.vendor_style_number %>
-								<span class="pull-right">
-									<i class="fa fa-arrow-circle-down"> </i>
-								</span>
-							</a>
-						</div>
-						<div class="col-sm-3">
-							<%= style.category_name.titleize %>
-						</div>
-						<div class="col-sm-3">
-							<%= style.delivery_date %>
-						</div>
-						<div class="col-sm-2">
-							<%= number_to_percentage(style.initial_mark_up, precision: 2) if style.initial_mark_up > 0 %>
-						</div>
-						<div class="col-sm-1">
-							<%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style} %>
-						</div>
-					</div>
-					<div class="collapse" id="style-notes-metadata-<%= style.id %>" >
-						<div class="row">
-							<div class="col-sm-12">
-								Notes: <%= style.notes.present? ? style.notes : "n/a" %>
-							</div>
-						</div>
-						<div class="row">
-							<div class="col-sm-12">
-								<%= link_to "View Style", appointment_style_path(@appointment, style) %>
-							</div>
-						</div>
-					</div>
-				</li>
-			<% end %>	
-		</ul>
 		<%= link_to 'Export As CSV', appointment_export_path(@appointment, format: "csv"), class: "btn btn-primary" %>
-		<div>
-			
-		</div>
 	</div>
 </div>
+
+<script> 
+	$('#appointment-styles').DataTable({
+	  responsive: true
+	});
+</script>
