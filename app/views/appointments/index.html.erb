@@ -25,7 +25,7 @@
 				        <%- @appointments.each do |appointment| %>
 				        	<tr>
 				        		<td>
-				        			<%= appointment.name %>
+				        			<%= link_to appointment.name, appointment_path(appointment) %>
 			        			</td>
 				        		<td>
 				        			<%= appointment.styles.length %>
