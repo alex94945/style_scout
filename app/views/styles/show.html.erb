@@ -7,54 +7,64 @@
 		</span>
 	</ul>
 	<div class="panel-body">
-		<div class="row form-group">
-			<div class="col-md-4">
-				Vendor Style Number:
-				<code>
-					<%= @style.vendor_style_number %>
-				</code>
-			</div>
-			<div class="col-md-4">
-				Style Order Status:
-				<%=@style.status.titleize%>
-			</div>
-			<div class="col-md-4">
-				Category:
-				<%= @style.category_name.titleize %>
-			</div>
+		<div class="col-md-3">
+			<%- if @style.default_photo %>
+				<%= image_tag style.default_photo, style: "max-height: 100%; max-width: 100%;" %>
+			<%- else %>
+				<%= image_tag('https://www.placecage.com/400/300', style: "height: 200px; max-width: 100%;") %>
+			<%- end %>
 		</div>
-		<div class="row form-group">
-			<div class="col-md-4">
-				Cost
-				<%= number_to_currency @style.wholesale_cost %>
+		<div class="col-md-9">
+			<h2 style="margin-top: 0px;">
+				<%= @style.vendor_style_number %>
+			</h2>
+			<div class="row form-group">
+				<div class="col-sm-3 col-md-3">
+					Order Status:
+					<%=@style.status.titleize%>
+				</div>
+				<div class="col-sm-3 col-md-3">
+					Category:
+					<%= @style.category_name.titleize %>
+				</div>
 			</div>
-			<div class="col-md-4">
-				Negotiated Cost
-				<%= number_to_currency @style.negotiated_cost %>
+			<div class="row form-group">
+				<div class="col-md-3">
+					Cost
+					<%= number_to_currency @style.wholesale_cost %>
+				</div>
+				<div class="col-md-3">
+					Negotiated Cost
+					<%= number_to_currency @style.negotiated_cost %>
+				</div>
+				<div class="col-md-3">
+					Retail Price
+					<%= number_to_currency @style.retail_price %>
+				</div>
+				<div class="col-md-3">
+					IMU
+					<%= number_to_percentage @style.initial_mark_up, precision: 2 %>
+				</div>
 			</div>
-			<div class="col-md-4">
-				Retail Price
-				<%= number_to_currency @style.retail_price %>
+			<div class="row form-group">
+				<div class="col-md-3">
+					Quantity:
+					<%= @style.quantity%>
+				</div>
+				<div class="col-md-3">
+					Delivery Date:
+					<%= @style.delivery_date %>
+				</div>
+				<div class="col-md-3">
+					Color:
+					<%= @style.color %>
+				</div>
 			</div>
-		</div>
-		<div class="row form-group">
-			<div class="col-md-4">
-				Quantity:
-				<%= @style.quantity%>
-			</div>
-			<div class="col-md-4">
-				Delivery Date:
-				<%= @style.delivery_date %>
-			</div>
-			<div class="col-md-4">
-				Color:
-				<%= @style.color %>
-			</div>
-		</div>
-		<div class="row form-group">
-			<div class="col-md-6">
-				Notes:
-				<%= @style.notes %>
+			<div class="row form-group">
+				<div class="col-md-6">
+					Notes:
+					<%= @style.notes %>
+				</div>
 			</div>
 		</div>
 		<div class='row'>
