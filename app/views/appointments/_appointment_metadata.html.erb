@@ -1,26 +1,29 @@
 <div class='well'>
 	<div class="row">
 		<%- appointment.styles.order('created_at').each do |style| %>
-			<div class="col-md-2">
-				<%= link_to appointment_style_path(appointment, style) do %>
-					<div class="panel panel-default highlight" style="margin-bottom:0px;">
-						<div class="panel-body text-center">
-							<div>
-								<%= style.vendor_style_number %>
-							</div>
-							<div>
-								<%- if style.default_photo %>
-									<%= image_tag style.default_photo, style: "max-height: 80px;" %>
-								<%- else %>
-									<%= image_tag('https://www.placecage.com/100/100', style: "max-height: 80px;") %>
-								<%- end %>
-							</div>
-							<div>
-								<%= style.status.titleize %>
-							</div>
-						</div>
-					</div>
-				<% end %>
+			<div class="col-sm-6 col-md-4">
+			    <div class="thumbnail", style="margin-bottom:0px;">
+			      <div class="text-center">
+					<%- if style.default_photo %>
+						<%= image_tag style.default_photo, style: "height: 200px; max-width: 100%;" %>
+					<%- else %>
+						<%= image_tag('https://www.placecage.com/400/300', style: "height: 200px; max-width: 100%;") %>
+					<%- end %>
+				</div>
+			      <div class="caption">
+			        <h4>
+			        	<%= link_to "#{ style.vendor_style_number }", appointment_style_path(appointment, style)%>
+			        </h4>
+			        <h4>
+					<span class="label label-info">
+						IMU: <%= number_to_percentage( style.initial_mark_up, precision: 2 )%>
+					</span>
+					<span class="label label-primary">
+						Status: <%= style.status.titleize %>
+					</span>
+				   </h4>
+			      </div>
+			    </div>
 				<%= form_for style, url: appointment_style_update_status_path(appointment, style), method: :put, remote: true do |f| %>
 					<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 					<%= f.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, style.status), { }, onchange: "$(this.form).submit();", class: 'form-control' %>
@@ -28,21 +31,16 @@
 				<% end %>
 			</div>
 		<% end %>
-		<div class="col-md-2">
+		<div class="col-sm-6 col-md-4">
 			<%= link_to new_appointment_style_path(appointment), remote: true do %>
-				<div class="panel panel-default highlight">
-					<div class="panel-body text-center">
+				<div class="thumbnail highlight">
+					<div class="text-center">
 						<div>
-							<i class="fa fa-plus-square fa-5x" style="margin: 34px 0"></i>
+							<i class="fa fa-plus-square fa-5x" style="margin: 109px 0"></i>
 						</div>
 					</div>
 				</div>
 			<% end %>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-11">
-			<%= link_to 'View Appointment', appointment_path(appointment) %>
 		</div>
 	</div>
 </div>

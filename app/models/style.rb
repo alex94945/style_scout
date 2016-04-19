@@ -11,26 +11,24 @@ class Style < ActiveRecord::Base
 	end
 
 	def self.to_csv
-          attributes = %w{id name vendor_style_number quantity color created_at updated_at notes negotiated_cost retail_price wholesale_cost category_name delivery_date status}
+          attributes = %w{Vendor_Style_Number Quantity Status Color Created 
+                              Negotiated_Cost Retail_Price Wholesale_Cost Category_Name Delivery_Date Notes}
 
           CSV.generate(headers: true) do |csv|
               csv << attributes
               all.each do |style|
                 csv << [ 
-                		style.id, 
-                		style.name, 
                 		style.vendor_style_number,
-                		style.quantity, 
+                		style.quantity,
+                      style.status,
                 		style.color,
                 		style.created_at.strftime("%Y-%m-%d"),
-                		style.updated_at,
-                		style.notes,
                 		style.negotiated_cost,
                 		style.retail_price,
                 		style.wholesale_cost,
                 		style.category_name,
                 		style.delivery_date,
-                		style.status
+                		style.notes
                 	]
 
               end

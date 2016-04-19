@@ -18,13 +18,6 @@ describe "visiting the appointments index", type: :feature, js: true do
     visit '/'
     expect(page.text).to include(" Showing 1 to #{@user.appointments.count} of #{@user.appointments.count} entries")
 
-
-    #fill in other fields
-
-    #click_button for the update button
-
-    #expect(Appointment.first.name).to eql "SnoopityDoggitty"
-
   end
 
 end

@@ -15,19 +15,23 @@
 		<!-- Nav tabs -->
 		  <ul class="nav nav-tabs" role="tablist">
 		    <li role="presentation" class="active">
-		    	<a href="#style-cards" aria-controls="home" role="tab" data-toggle="tab">Style Cards</a>
+		    	<a href="#style-grid-view" aria-controls="home" role="tab" data-toggle="tab">
+		    		<i class="fa fa-th"></i>
+		    	</a>
 		    </li>
 		    <li role="presentation">
-		    	<a href="#style-data" aria-controls="profile" role="tab" data-toggle="tab">Style Data</a>
+		    	<a href="#style-list-view" aria-controls="profile" role="tab" data-toggle="tab">
+		    		<i class="fa fa-list"></i>
+		    	</a>
 		    </li>
 		  </ul>
 
 		  <!-- Tab panes -->
 		  <div class="tab-content">
-		    <div role="tabpanel" class="tab-pane active" id="style-cards">
+		    <div role="tabpanel" class="tab-pane active" id="style-grid-view">
 		      <%= render partial: "appointment_metadata", locals: {appointment: @appointment} %>
 		    </div>
-		    <div role="tabpanel" class="tab-pane" id="style-data">
+		    <div role="tabpanel" class="tab-pane well" id="style-list-view">
 		    	<table id="appointment-styles" class="display">
 		    		<thead>
 		    			<th>
@@ -52,7 +56,7 @@
 		    					<td>
 		    						<a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#style-notes-metadata-<%= style.id %>">
 									<%= image_tag style.default_photo('square'), style:'width:25px;' if style.default_photo %>
-									<%= style.vendor_style_number %>
+									<%= link_to style.vendor_style_number, appointment_style_path(@appointment, style) %>
 									<span class="pull-right">
 										<i class="fa fa-arrow-circle-down"> </i>
 									</span>
@@ -81,7 +85,6 @@
 			<%= @appointment.notes %>
 		</div>
 		<div class="strong">
-			Styles:
 			<%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "pull-right", remote: true %>
 		</div>
 		<%= link_to 'Export As CSV', appointment_export_path(@appointment, format: "csv"), class: "btn btn-primary" %>

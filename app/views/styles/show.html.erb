@@ -1,7 +1,7 @@
 <div class="panel panel-default">
 	<ul class="panel-heading breadcrumb">
 		<li><%= link_to @appointment.name, appointment_path(@appointment) %></li>
-		<li class="active"><%= @style.vendor_style_number %> - <%=@style.status.titleize%></li>
+		<li class="active"><%= @style.vendor_style_number %></li>
 		<span class="pull-right">
 			<li><%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: @style} %></li>
 		</span>
@@ -15,8 +15,8 @@
 				</code>
 			</div>
 			<div class="col-md-4">
-				Color:
-				<%= @style.color %>
+				Style Order Status:
+				<%=@style.status.titleize%>
 			</div>
 			<div class="col-md-4">
 				Category:
@@ -45,6 +45,10 @@
 			<div class="col-md-4">
 				Delivery Date:
 				<%= @style.delivery_date %>
+			</div>
+			<div class="col-md-4">
+				Color:
+				<%= @style.color %>
 			</div>
 		</div>
 		<div class="row form-group">

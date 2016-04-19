@@ -2,18 +2,19 @@
 	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Appointments
+				All Appointments
 				<div class="pull-right">
 					<%= link_to 'Add New Appointment', new_appointment_path, remote: true %>
 				</div>
 			</div>
 
 			<!-- jquery datatable -->
+				<br>
 				<table id="appointments_table" class="display">
 				    <thead>
 				        <tr>
-				            <th>Name</th>
-				            <th>Styles</th>
+				            <th>Appointment Name</th>
+				            <th>Style Count</th>
 				            <th>Buyer</th>
 				            <th>Date</th>
 				            <th>Location</th>
@@ -53,8 +54,6 @@
 				        <%- end %>
 				    </tbody>
 				</table>
-
-
 			<!-- end -->
 
 
