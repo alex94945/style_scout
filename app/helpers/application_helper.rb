@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-	def style_name_helper(style)
+	# def style_name_helper(style) **DEPRECATED**
 		# name = ""
 		# if style.name.present?
 		# 	name = style.name
@@ -11,8 +11,8 @@ module ApplicationHelper
 		# end	
 		# return name
 
-		style.name.present? ? style.name : style.vendor_style_number
+		# style.name.present? ? style.name : style.vendor_style_number
 
-	end
+	# end
 
 end

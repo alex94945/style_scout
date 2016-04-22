@@ -15,11 +15,19 @@
 			        	<%= link_to "#{ style.vendor_style_number }", appointment_style_path(appointment, style)%>
 			        </h4>
 			        <h4>
-					<span class="label label-info">
-						IMU: <%= number_to_percentage( style.initial_mark_up, precision: 2 )%>
-					</span>
 					<span class="label label-primary">
 						Status: <%= style.status.titleize %>
+					</span>
+					<span class="label label-warning">
+						Delivery: <%= style.delivery_date %>
+					</span>
+				   </h4>
+				   <h4>
+				   	<span class="label label-info">
+						Retail: <%= number_to_currency( style.retail_price )%>
+					</span>
+				   	<span class="label label-success">
+						IMU: <%= number_to_percentage( style.initial_mark_up, precision: 2 )%>
 					</span>
 				   </h4>
 			      </div>
@@ -33,7 +41,7 @@
 		<% end %>
 		<div class="col-sm-6 col-md-4">
 			<%= link_to new_appointment_style_path(appointment), remote: true do %>
-				<div class="thumbnail highlight">
+				<div class="thumbnail">
 					<div class="text-center">
 						<div>
 							<i class="fa fa-plus-square fa-5x" style="margin: 109px 0"></i>

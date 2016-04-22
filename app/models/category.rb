@@ -8,5 +8,5 @@ class Category < ActiveRecord::Base
   private
     def downcase_name
         self.name = name.downcase
-      end
+    end
 end

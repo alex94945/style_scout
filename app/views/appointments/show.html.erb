@@ -1,15 +1,20 @@
 <div class="panel panel-default">
-	<div class="panel-heading">
-		<%= @appointment.name %> | 
-		<%- if @appointment.scout_date.present? %>
-			<%= @appointment.scout_date.strftime('%b %e, %Y') %>
-		<%- else %>
-			N/A
-		<% end %>
-		<div class="pull-right">
-			<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment} %>
-		</div>	
-	</div>
+	<ul class="panel-heading breadcrumb" style="margin-bottom: 0px">
+		<li><%= link_to "All Appointments", appointments_path %></li>
+		<li class="active">
+			<%= @appointment.name %> | 
+			<%- if @appointment.scout_date.present? %>
+				<%= @appointment.scout_date.strftime('%b %e, %Y') %>
+			<%- else %>
+				N/A
+			<% end %>
+		</li>
+		<span>
+			<div class="pull-right">
+				<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment} %>
+			</div>
+		</span>	
+	</ul>
 
 	<div class="panel-body">
 		<!-- Nav tabs -->
@@ -25,23 +30,27 @@
 		    	</a>
 		    </li>
 		  </ul>
-
 		  <!-- Tab panes -->
 		  <div class="tab-content">
+		    <!-- Grid View -->
 		    <div role="tabpanel" class="tab-pane active" id="style-grid-view">
 		      <%= render partial: "appointment_metadata", locals: {appointment: @appointment} %>
 		    </div>
+		    <!-- List View -->
 		    <div role="tabpanel" class="tab-pane well" id="style-list-view">
 		    	<table id="appointment-styles" class="display">
 		    		<thead>
 		    			<th>
 		    				Vendor Style Number
 		    			</th>
-		    			 <th>
-		    			 	Category 
-		    			 </th>
+		    			<th>
+		    				Status
+		    			</th>
 		    			 <th>
 		    			 	Delivery Date 
+		    			 </th>
+		    			 <th>
+		    			 	Retail
 		    			 </th>
 		    			 <th>
 		    			 	IMU %
@@ -63,10 +72,13 @@
 								</a>
 		    					</td>
 		    					<td>
-		    						<%= style.category_name.titleize %>
+		    						<%= style.status.titleize %>
 		    					</td>
 		    					<td>
-		    						<%= style.delivery_date %>
+		    						<%= style.delivery_date%>
+		    					</td>
+		    					<td>
+		    						<%= number_to_currency style.retail_price %>
 		    					</td>
 		    					<td>
 		    						<%= number_to_percentage(style.initial_mark_up, precision: 2) if style.initial_mark_up > 0 %>
@@ -80,6 +92,8 @@
 		    	</table>
 		    </div>
 		</div>
+
+		<!-- Below tab panes -->
 		<div class="strong">
 			Notes:
 			<%= @appointment.notes %>
