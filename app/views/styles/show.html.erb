@@ -30,19 +30,19 @@
 			</div>
 			<div class="row form-group">
 				<div class="col-md-3">
-					Cost
+					Cost:
 					<%= number_to_currency @style.wholesale_cost %>
 				</div>
 				<div class="col-md-3">
-					Negotiated Cost
+					Negotiated Cost:
 					<%= number_to_currency @style.negotiated_cost %>
 				</div>
 				<div class="col-md-3">
-					Retail Price
+					Retail Price:
 					<%= number_to_currency @style.retail_price %>
 				</div>
 				<div class="col-md-3">
-					IMU
+					IMU:
 					<%= number_to_percentage @style.initial_mark_up, precision: 2 %>
 				</div>
 			</div>
@@ -52,7 +52,7 @@
 					<%= @style.quantity%>
 				</div>
 				<div class="col-md-3">
-					Delivery Date:
+					Delivery:
 					<%= @style.delivery_date %>
 				</div>
 				<div class="col-md-3">

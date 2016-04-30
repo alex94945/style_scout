@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420044356) do
+ActiveRecord::Schema.define(version: 20160430044132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,6 +43,14 @@ ActiveRecord::Schema.define(version: 20160420044356) do
     t.string   "name",       default: "Category Name Needed", null: false
     t.datetime "created_at",                                  null: false
     t.datetime "updated_at",                                  null: false
+  end
+
+  create_table "profile_configs", force: :cascade do |t|
+    t.boolean  "default_home_my_appointments", default: false
+    t.string   "navbar_color"
+    t.integer  "user_id"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
   end
 
   create_table "styles", force: :cascade do |t|

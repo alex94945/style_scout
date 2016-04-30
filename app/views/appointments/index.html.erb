@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				All Appointments
+				<%= current_user.profile_config.default_home_my_appointments? ? "My" : "All" %> Appointments
 				<div class="pull-right">
 					<%= link_to 'Add New Appointment', new_appointment_path, remote: true %>
 				</div>
@@ -23,7 +23,6 @@
 				        </tr>
 				    </thead>
 				    <tbody>
-				    		<!-- <#%= raise current_user.present? %> -->
 				        <%- @appointments.each do |appointment| %>
 				        	<tr>
 				        		<td>
@@ -56,92 +55,6 @@
 				    </tbody>
 				</table>
 			<!-- end -->
-
-
-			<!--
-				<div class="hidden-xs">
-					<div class="panel-body">
-						<ul class="list-group">
-							<li class="list-group-item table-header">
-								<div class="row">
-									<div class="col-xs-2">
-										Name
-									</div>
-									<div class="col-xs-1">
-										Styles
-									</div>
-									<div class="col-xs-1">
-										Buyer
-									</div>
-									<div class="col-xs-2">
-										Date
-									</div>
-									<div class="col-xs-2">
-										Location
-									</div>
-									<div class="col-xs-2">
-										Avg IMU %
-									</div>
-									<div class="col-xs-2">
-									</div>
-								</div>
-							</li>
-							<%- @appointments.each do |appointment| %>
-								<li class="list-group-item">
-									<div class="row">
-										<div class="col-xs-2">
-											<a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#appointment-metadata-<%= appointment.id %>">
-												<%= appointment.name %>
-												<span class="pull-right">
-													<i class="fa fa-arrow-circle-down"> </i>
-												</span>
-											</a>
-										</div>
-										<div class="col-xs-1">
-											<%= appointment.styles.length %>
-										</div>
-										<div class="col-xs-1">
-											<%= appointment.user.name %>
-										</div>
-										<div class="col-xs-2">
-											<%- if appointment.scout_date.present? %>
-												<%= appointment.scout_date.strftime('%b %e, %Y') %>
-											<%- else %>
-												N/A
-											<% end %>
-										</div>
-										<div class="col-xs-2">
-											<%= appointment.location %>
-										</div>
-										<div class="col-xs-2">
-											<%= number_to_percentage appointment.weighted_average_imu, precision: 2 %> 
-										</div>
-										<div class="col-xs-2 text-right">
-											<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>
-										</div>
-									</div>
-									<div id="appointment-metadata-<%= appointment.id %>" class="collapse">
-										<%= render partial: "appointment_metadata", locals: {appointment: appointment} %>
-									</div>
-								</li>
-							<% end %>
-						</ul>
-					</div>
-				</div>
-				view for extra small devices
-				<div class='visible-xs'>
-					<div class="panel-body">
-						<%- @appointments.each do |a| %>
-							<div class="panel panel-default">
-								<div class="panel-body">
-									<%= a.name %>
-									<%= a.styles.count %>
-								</div>
-							</div>
-						<% end %>
-					</div>
-				</div>
-			-->
 		</div>
 	</div>
 </div>

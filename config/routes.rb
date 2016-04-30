@@ -16,8 +16,13 @@ Rails.application.routes.draw do
   resources :categories
   
   get '/settings' => 'settings#index'
+  get "/my_appointments" => "users/appointments#index", as: :my_appointments
+
 
   devise_for :users, controllers: { registrations: "users/registrations" }
+  namespace :users do
+    resources :profile_config, only: :update
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

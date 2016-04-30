@@ -1,47 +1,50 @@
 class AppointmentsController < ApplicationController
-	def index
-		@appointments= Appointment.all
-	end
 
-	 def create
-	  	@appointment = Appointment.create(appointment_params)
-	  	redirect_to appointment_path(@appointment)
-	 end
+#should abstract logic out into its own method (LATER)
+def index
+      @appointments = AppointmentCollector.new(current_user).perform
+ end
 
-	 def new
-	  	@appointment = Appointment.new
-	  end
+ def create
+  	@appointment = Appointment.create(appointment_params)
+  	redirect_to appointment_path(@appointment)
+ end
 
-	  def edit
-	      @appointment = Appointment.find(params[:id])
-	  end
+ def new
+  	@appointment = Appointment.new
+  end
 
-	  def update
-	      @appointment = Appointment.find(params[:id])
-	      @appointment.update(appointment_params)
-	      redirect_to appointment_path(@appointment)
-	  end
+  def edit
+      @appointment = Appointment.find(params[:id])
+  end
 
-      def show
-          @appointment = Appointment.includes(:styles).eager_load(styles: :attachments).find(params[:id])
-      end
+  def update
+      @appointment = Appointment.find(params[:id])
+      @appointment.update(appointment_params)
+      redirect_to appointment_path(@appointment)
+  end
 
-      def destroy
-      	@appointment = Appointment.find(params[:id])
-      	@appointment.destroy
-      	redirect_to root_url
-      end
+    def show
+        @appointment = Appointment.includes(:styles).eager_load(styles: :attachments).find(params[:id])
+    end
 
-      def export
-          @appointment = Appointment.find(params[:appointment_id])
-          @styles = @appointment.styles
-          respond_to do |format|
-            format.csv{ send_data @styles.to_csv, filename: "#{@appointment.name}.csv" }
-          end
-      end
+    def destroy
+    	@appointment = Appointment.find(params[:id])
+    	@appointment.destroy
+    	redirect_to root_url
+    end
 
-	  private
-	  	def appointment_params
-	  		params.require(:appointment).permit(:name, :user_id, :scout_date, :location, :notes)
-	     end
+    def export
+        @appointment = Appointment.find(params[:appointment_id])
+        @styles = @appointment.styles
+        respond_to do |format|
+          format.csv{ send_data @styles.to_csv, filename: "#{@appointment.name}.csv" }
+        end
+    end
+
+  private
+  	def appointment_params
+  		params.require(:appointment).permit(:name, :user_id, :scout_date, :location, :notes)
+     end
+
 end
