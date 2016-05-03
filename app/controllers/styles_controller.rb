@@ -53,4 +53,5 @@ class StylesController < ApplicationController
 	  		params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost, 
                 :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :photo)
 	     end
+
 end

@@ -1,6 +1,5 @@
 class AppointmentsController < ApplicationController
 
-#should abstract logic out into its own method (LATER)
 def index
       @appointments = AppointmentCollector.new(current_user).perform
  end
@@ -24,23 +23,23 @@ def index
       redirect_to appointment_path(@appointment)
   end
 
-    def show
-        @appointment = Appointment.includes(:styles).eager_load(styles: :attachments).find(params[:id])
-    end
+  def show
+      @appointment = Appointment.includes(:styles).eager_load(styles: :attachments).find(params[:id])
+  end
 
-    def destroy
-    	@appointment = Appointment.find(params[:id])
-    	@appointment.destroy
-    	redirect_to root_url
-    end
+  def destroy
+  	@appointment = Appointment.find(params[:id])
+  	@appointment.destroy
+  	redirect_to root_url
+  end
 
-    def export
-        @appointment = Appointment.find(params[:appointment_id])
-        @styles = @appointment.styles
-        respond_to do |format|
-          format.csv{ send_data @styles.to_csv, filename: "#{@appointment.name}.csv" }
-        end
-    end
+  def export
+      @appointment = Appointment.find(params[:appointment_id])
+      @styles = @appointment.styles
+      respond_to do |format|
+        format.csv{ send_data @styles.to_csv, filename: "#{@appointment.name}.csv" }
+      end
+  end
 
   private
   	def appointment_params
