@@ -20,7 +20,7 @@
 			</h2>
 			<div class="row form-group">
 				<div class="col-sm-3 col-md-3">
-					Order Status:
+					Status:
 					<%=@style.status.titleize%>
 				</div>
 				<div class="col-sm-3 col-md-3">
@@ -67,13 +67,13 @@
 				</div>
 			</div>
 		</div>
-		<div class='row'>
+		<!-- <div class='row'>
 			<%- @style.attachments.each do |attachment| %>
 				<div class='col-md-3'>
 					<%= image_tag attachment.photo.url, :style=>'max-height:180px;' %>
 				</div>
 			<% end %>
-		</div>
+		</div> -->
 		<div class="row">
 			<div class='col-md-12'>
 				<%= form_for :attachment, url: appointment_style_attachments_path(@appointment, @style), method: :post do |f| %>

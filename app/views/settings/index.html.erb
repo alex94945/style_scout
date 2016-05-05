@@ -2,7 +2,10 @@
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#style-categories" aria-controls="home" role="tab" data-toggle="tab">Style Categories</a></li>
+    <%- if current_user.administrator? %>
+      <li role="presentation" class="active"><a href="#style-categories" aria-controls="home" role="tab" data-toggle="tab">Style Categories</a></li>
+    <% end %>
+
     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
     <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
@@ -10,9 +13,12 @@
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="style-categories">
-      <%= render partial: "shared/categories/index" %>
-    </div>
+    <%- if current_user.administrator? %>
+      <div role="tabpanel" class="tab-pane active" id="style-categories">
+        <%= render partial: "shared/categories/index" %>
+      </div>
+    <% end %>
+
     <div role="tabpanel" class="tab-pane" id="profile">
       <%= render partial: "shared/users/profile_config" %>
     </div>

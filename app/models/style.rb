@@ -2,7 +2,10 @@ class Style < ActiveRecord::Base
 	belongs_to :appointment
       enum status: [ :created, :approved, :order_placed, :received, :cancelled, :deleted ]
 
-      has_many :attachments
+      has_many :attachments, dependent: :destroy
+      has_many :variations
+
+      validates :vendor_style_number, presence: true
 
 
 	def initial_mark_up

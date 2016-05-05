@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				<%= current_user.profile_config.default_home_my_appointments? ? "My" : "All" %> Appointments
+				<%= params[:controller] == "users/appointments" ? "My" : "All" %> Appointments
 				<div class="pull-right">
 					<%= link_to 'Add New Appointment', new_appointment_path, remote: true %>
 				</div>

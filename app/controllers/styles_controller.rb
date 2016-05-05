@@ -5,7 +5,13 @@ class StylesController < ApplicationController
 
 	 def create
 	  	@appointment = Appointment.find(params[:appointment_id])
-	  	@appointment.styles.create(style_params)
+
+
+           ActiveRecord::Base.transaction  do
+	  	     @style = @appointment.styles.create(style_params.except(:photo))
+                @style.attachments.create(photo: style_params[:photo]) if style_params[:photo].present?
+            end
+
 	  	redirect_to appointment_path(@appointment)
 	 end
 

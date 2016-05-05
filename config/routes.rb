@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'appointments#index'
+  root 'users/appointments#index'
 
   resources :appointments do
     get :export
@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   resources :categories
   
   get '/settings' => 'settings#index'
-  get "/my_appointments" => "users/appointments#index", as: :my_appointments
-
 
   devise_for :users, controllers: { registrations: "users/registrations" }
   namespace :users do

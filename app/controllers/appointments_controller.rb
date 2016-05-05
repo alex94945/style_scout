@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
 
 def index
-      @appointments = AppointmentCollector.new(current_user).perform
+      @appointments = Appointment.all
  end
 
  def create

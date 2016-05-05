@@ -15,12 +15,7 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li>
-        	<a href="#">
-            <%= current_user.profile_config.default_home_my_appointments? ? "All" : "My" %> Appointments
-           </a>
-        </li> 
-        <li>
-          <a href="#">Link</a>
+          <%= params[:controller] == "users/appointments" ? ( link_to "All Appointments", appointments_path ) : ( link_to "My Appointments", root_path) %>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">

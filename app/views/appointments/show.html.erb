@@ -20,24 +20,20 @@
 		<!-- Nav tabs -->
 		  <ul class="nav nav-tabs" role="tablist">
 		    <li role="presentation" class="active">
-		    	<a href="#style-grid-view" aria-controls="home" role="tab" data-toggle="tab">
-		    		<i class="fa fa-th"></i>
+		    	<a href="#style-list-view" aria-controls="profile" role="tab" data-toggle="tab">
+		    		<i class="fa fa-list"></i>
 		    	</a>
 		    </li>
 		    <li role="presentation">
-		    	<a href="#style-list-view" aria-controls="profile" role="tab" data-toggle="tab">
-		    		<i class="fa fa-list"></i>
+		    	<a href="#style-grid-view" aria-controls="home" role="tab" data-toggle="tab">
+		    		<i class="fa fa-th"></i>
 		    	</a>
 		    </li>
 		  </ul>
 		  <!-- Tab panes -->
 		  <div class="tab-content">
-		    <!-- Grid View -->
-		    <div role="tabpanel" class="tab-pane active" id="style-grid-view">
-		      <%= render partial: "appointment_metadata", locals: {appointment: @appointment} %>
-		    </div>
 		    <!-- List View -->
-		    <div role="tabpanel" class="tab-pane well" id="style-list-view">
+		    <div role="tabpanel" class="tab-pane well active" id="style-list-view">
 		    	<table id="appointment-styles" class="display">
 		    		<thead>
 		    			<th>
@@ -64,11 +60,11 @@
 		    				<tr>
 		    					<td>
 		    						<a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#style-notes-metadata-<%= style.id %>">
-									<%= image_tag style.default_photo('square'), style:'width:25px;' if style.default_photo %>
+									<%= image_tag style.default_photo('square'), class: 'pull-left', style:'width:25px;' if style.default_photo %>
 									<%= link_to style.vendor_style_number, appointment_style_path(@appointment, style) %>
-									<span class="pull-right">
+									<!-- <span class="pull-right">
 										<i class="fa fa-arrow-circle-down"> </i>
-									</span>
+									</span> -->
 								</a>
 		    					</td>
 		    					<td>
@@ -90,6 +86,10 @@
 		    			<% end %>
 		    		</tbody>
 		    	</table>
+		    </div>
+		    <!-- Grid View -->
+		    <div role="tabpanel" class="tab-pane" id="style-grid-view">
+		      <%= render partial: "appointment_metadata", locals: {appointment: @appointment} %>
 		    </div>
 		</div>
 
