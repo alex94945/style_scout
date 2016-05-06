@@ -29,6 +29,9 @@
 		    		<i class="fa fa-th"></i>
 		    	</a>
 		    </li>
+		    <li class="pull-right">
+		    	<%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary", remote: true %>
+		    </li>
 		  </ul>
 		  <!-- Tab panes -->
 		  <div class="tab-content">
@@ -97,9 +100,6 @@
 		<div class="strong">
 			Notes:
 			<%= @appointment.notes %>
-		</div>
-		<div class="strong">
-			<%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "pull-right", remote: true %>
 		</div>
 		<%= link_to 'Export As CSV', appointment_export_path(@appointment, format: "csv"), class: "btn btn-primary" %>
 	</div>
