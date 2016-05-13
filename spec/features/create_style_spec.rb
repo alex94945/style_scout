@@ -14,14 +14,15 @@ context "without a photo" do
     click_link('Add New Style')
 
     find("#modal", match: :first)
-    fill_in('style_vendor_style_number', with: "ABC123")
-    fill_in('style_quantity', with: "123")
+    fill_in('style_vendor_style_number', with: Random.rand(1..9).times.map { [*'0'..'9', *'a'..'z'].sample }.join)
+    fill_in('style_quantity', with: Faker::Number.number( Random.rand(1..4) ) )
     select 'Approved', from: 'style_status'
-    fill_in('style_wholesale_cost', with: "321")
+    fill_in('style_wholesale_cost', with: Faker::Number.decimal(2))
 
-    click_button("Update Style")
 
     binding.pry
+    click_button("Submit Style")
+
 
     expect(@appointment.styles.last.vendor_style_number).to eql "ABC123"
     expect(@appointment.styles.last.attachments).to match_array([])

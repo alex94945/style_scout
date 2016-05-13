@@ -54,7 +54,7 @@
 		    			 <th>
 		    			 	IMU %
 		    			 </th>
-		    			 <th class="no-sorting">
+		    			 <th>
 
 		    			 </th>
 		    		</thead>
@@ -82,7 +82,7 @@
 		    					<td>
 		    						<%= number_to_percentage(style.initial_mark_up, precision: 2) if style.initial_mark_up > 0 %>
 		    					</td>
-		    					<td class="center">
+		    					<td class="text-right">
 		    						<%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style} %>
 		    					</td>
 		    				</tr>
