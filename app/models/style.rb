@@ -7,6 +7,8 @@ class Style < ActiveRecord::Base
 
       validates :vendor_style_number, presence: true
 
+      scope :open, -> { where(status: [0,1,2,3]) }
+
 
 	def initial_mark_up
 		return 0 unless retail_price.present?
