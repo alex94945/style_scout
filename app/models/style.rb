@@ -17,7 +17,7 @@ class Style < ActiveRecord::Base
 
 	def self.to_csv
           attributes = %w{Vendor_Style_Number Quantity Status Color Created 
-                              Negotiated_Cost Retail_Price Wholesale_Cost Category_Name Delivery_Date Notes}
+                              Negotiated_Cost Retail_Price Wholesale_Cost Category_Name Delivery_Date Notes Attachments}
 
           CSV.generate(headers: true) do |csv|
               csv << attributes
@@ -33,8 +33,10 @@ class Style < ActiveRecord::Base
                 		style.wholesale_cost,
                 		style.category_name,
                 		style.delivery_date,
-                		style.notes
+                		style.notes,
+                      style.attachments.map{ |a| Rails.application.routes.url_helpers.api_v1_url(a) }.join(' ')
                 	]
+                
 
               end
           end

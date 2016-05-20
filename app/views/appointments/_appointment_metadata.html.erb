@@ -1,7 +1,7 @@
 <div class='well well-sm'>
 	<div class="row">
 		<%- appointment.styles.order('created_at').each do |style| %>
-			<div class="col-sm-6 col-md-4">
+			<div class="col-sm-6 col-md-4", id="style-id-<%= style.id %>">
 			    <div class="thumbnail", style="margin-bottom:0px;">
 			      <div class="text-center">
 					<%- if style.default_photo %>
@@ -16,7 +16,8 @@
 			        </h4>
 			        <h4>
 					<span class="label label-primary">
-						Status: <%= style.status.titleize %>
+						Status: 
+						<span class="status-label"><%= style.status.titleize %></span>
 					</span>
 					<span class="label label-warning">
 						Delivery: <%= style.delivery_date %>

@@ -21,3 +21,10 @@
 .panel-heading-overflow {
   overflow: hidden;
 }
+
+
+table.dataTable tfoot th, table.dataTable tfoot td{
+  padding: 8px 10px !important;
+  background-color: rgba(0,128,0,0.2);
+  font-weight: bold;
+}

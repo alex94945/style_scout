@@ -16,3 +16,16 @@ div.highlight:hover {
 span.label {
   font-weight: 200;
 }
+
+.update-style-success {
+  animation-name: background-color-change;
+  animation-duration: 0.8s;
+}
+
+
+@-webkit-keyframes background-color-change {
+    0% {background-color: transparent; }
+    20% {background-color: green ;}
+    100% {background-color: transparent ;}
+}
+

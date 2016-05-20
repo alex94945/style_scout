@@ -87,7 +87,20 @@
 		    					</td>
 		    				</tr>
 		    			<% end %>
+		    			
 		    		</tbody>
+		    		<tfoot>
+		    			<tr>
+		    				<td>Averages</td>
+		    				<td></td>
+		    				<td></td>
+		    				<td></td>
+		    				<td>
+		    					<%= number_to_percentage @appointment.weighted_average_imu, precision: 2 %>
+		    				</td>
+		    				<td></td>
+		    			</tr>
+		    		</tfoot>
 		    	</table>
 		    </div>
 		    <!-- Grid View -->

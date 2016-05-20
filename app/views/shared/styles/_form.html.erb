@@ -32,6 +32,14 @@
 		<%= form.number_field :retail_price, step: '.01', placeholder: '100.00', :class => 'form-control' %>
 	</div>
 </div>
+<div class="row form-group">
+	<div class="col-sm-12">
+		IMU:
+		<span id="imu-data-display">
+			N/A
+		</span>
+	</div>
+</div>
 <div class="row form-group"> 
 	<div class="col-sm-6">
 		<label>Color</label>
@@ -66,5 +74,9 @@ $(document).ready(function() {
     $( "#style_delivery_date" ).datepicker({
     	  dateFormat: "yy-mm-dd"
     });
+
+     bind_imu_calculator();
+
   });
+
 </script>

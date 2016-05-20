@@ -14,7 +14,13 @@ Rails.application.routes.draw do
   end
   
   resources :categories
-  
+
+  namespace :api do
+    namespace :v1 do
+      get '/attachments/:id' => 'attachments#show'
+    end
+  end
+
   get '/settings' => 'settings#index'
 
   devise_for :users, controllers: { registrations: "users/registrations" }
