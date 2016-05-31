@@ -113,7 +113,7 @@
 		<!-- Below tab panes -->
 		<div class="strong">
 			Notes:
-			<%= @appointment.notes %>
+			<%= simple_format(@appointment.notes) %>
 		</div>
 		<%= link_to 'Export As CSV', appointment_export_path(@appointment, format: "csv"), class: "btn btn-primary" %>
 	</div>
