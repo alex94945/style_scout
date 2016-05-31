@@ -123,7 +123,8 @@
 	$('#appointment-styles').dataTable({
 	  responsive: true,
 	  "columnDefs": [
-	    { "width": "5%", "targets": 0 }
+	    { "width": "5%", "targets": 0 },
+	    { "orderable": false, "targets": [0,6] }
 	  ],
 	  "aaSorting": [3,'desc']
 	});
