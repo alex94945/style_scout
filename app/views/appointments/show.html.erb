@@ -80,7 +80,7 @@
 		    						<%= number_to_currency style.retail_price %>
 		    					</td>
 		    					<td>
-		    						<%= number_to_percentage(style.initial_mark_up, precision: 2) if style.initial_mark_up > 0 %>
+		    						<%= number_to_percentage(style.initial_mark_up, precision: 2)%>
 		    					</td>
 		    					<td class="text-right">
 		    						<%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style} %>

@@ -50,7 +50,7 @@
 				        		</td>
 				        		<td>
 				        		</td>
-				        		<td>
+				        		<td class="text-right">
 				        			<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>
 				        		</td>
 				        	</tr>
@@ -64,7 +64,11 @@
 
 
 <script> 
-	$('#appointments_table').DataTable({
-	  responsive: true
+	$('#appointments_table').dataTable({
+	  responsive: true,
+	  "columnDefs": [
+	    { "orderable": false, "targets": [0,7] }
+	  ],
+	  "aaSorting": [3,'desc']
 	});
 </script>
