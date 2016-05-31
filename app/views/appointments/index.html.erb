@@ -19,6 +19,7 @@
 				            <th>Date</th>
 				            <th>Location</th>
 				            <th>Avg IMU %</th>
+				            <th>AIR</th>
 				            <th> </th>
 				        </tr>
 				    </thead>
@@ -46,6 +47,8 @@
 				        		</td>
 				        		<td>
 				        			<%= number_to_percentage appointment.weighted_average_imu, precision: 2 %> 
+				        		</td>
+				        		<td>
 				        		</td>
 				        		<td>
 				        			<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>

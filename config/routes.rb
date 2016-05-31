@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   get '/settings' => 'settings#index'
 
-  devise_for :users, controllers: { registrations: "users/registrations" }
+  devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords" }
   namespace :users do
     resources :profile_config, only: :update
   end
