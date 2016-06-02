@@ -1,0 +1,20 @@
+<%- if params[:action] == "new" %>
+
+<div class="row form-group">
+  <div class="col-sm-6 field">
+    <%= form.label :photo %>
+    <%= form.file_field :photo %>
+  </div>
+</div>
+
+<%- else %>
+ <div class="row form-group">
+    <div class="col-sm-12 field">
+      <%- @style.attachments.each do |attachment| %>
+          <%= link_to edit_appointment_style_attachment_path(@appointment, @style, attachment), remote: true do %>
+            <%= formatted_image_tag(attachment.photo.url('thumb'), class: "attachment-photo-#{attachment.id}", rotate_angle: attachment.photo_rotate_angle) %>
+          <% end %>
+      <% end %>
+    </div>
+</div>
+<% end %>

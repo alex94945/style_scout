@@ -1,0 +1,67 @@
+<div class="row">
+  <div class="col-md-6">
+  <%= image_tag attachment.photo.url('square'), style: "margin:auto;display:block;-webkit-transform: rotate(#{attachment.photo_rotate_angle}deg);" , class: "attachment-photo-#{attachment.id}" %>
+   <div class="row">
+        <div class="col-sm-6">
+            <div class="btn btn-success btn-block rotate-button" data-rotation="-90" data-id="<%= attachment.id %>">
+              <i class="fa fa-mail-reply"/> 90&deg; Left
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="btn btn-success btn-block rotate-button" data-rotation="90" data-id="<%= attachment.id %>">
+              <i class="fa fa-mail-forward"/> 90&deg; Right
+            </div>
+        </div>
+      </div>
+  </div>
+  <div class="col-md-6">
+
+    <div class="form-group">
+        <div class="btn btn-primary btn-block toggle-default-button">
+          <i class="fa fa-check"/> Make Default
+        </div>
+    </div>
+
+    <div class="form-group">
+         <div class="btn btn-default pull-left">
+          <i class="fa fa-ban"/> Cancel
+        </div>
+        <div class="btn btn-danger pull-right">
+          <i class="fa fa-trash"/> Delete
+        </div>
+    </div>
+  </div>
+</div>
+
+  <%= form_for @attachment, url: appointment_style_attachment_path(appointment, style, attachment), method: :put, remote: true do |f| %>
+
+    <%= f.text_field :photo_rotate_angle %>
+    <%= f.check_box_tag 'make_default_photo' ,1,  (@style.default_photo_id == attachment.id) ?  true : false %>
+    <%= f.submit 'save', class: 'btn btn-success pull-right' %>
+  <% end %>
+
+<script>
+  
+$(function(){
+
+  $('.rotate-button').click(function(){
+    
+    var id = $(this).data('id');
+    var rotatation_amount = $(this).data('rotation');
+    var new_value = parseInt( $('#attachment_photo_rotate_angle').val() ) + rotatation_amount
+    $('#attachment_photo_rotate_angle').val( new_value  )
+
+    //find the photo, do a css transformation to rate it by the amount called new_value
+    $('.attachment-photo-'+id).css('-webkit-transform', "rotate("+new_value +"deg)");
+  });
+
+  $('.toggle-default-button').click(function(){
+    $("#make_default_photo").attr("checked", !$("#make_default_photo").attr("checked"));
+
+  });
+
+});
+
+
+
+</script>

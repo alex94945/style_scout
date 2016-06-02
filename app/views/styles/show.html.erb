@@ -67,13 +67,15 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class='row'>
+		<div class='row'>
 			<%- @style.attachments.each do |attachment| %>
-				<div class='col-md-3'>
-					<%= image_tag attachment.photo.url, :style=>'max-height:180px;' %>
+				<div class='col-md-2'>
+					<div class="well">
+						<%= image_tag attachment.photo.url('square'), :style=>'display: block; margin: auto; max-width: 80%;' %>
+					</div>
 				</div>
 			<% end %>
-		</div> -->
+		</div>
 		<div class="row">
 			<div class='col-md-12'>
 				<%= form_for :attachment, url: appointment_style_attachments_path(@appointment, @style), method: :post do |f| %>

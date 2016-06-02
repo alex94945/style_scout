@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160504051158) do
+ActiveRecord::Schema.define(version: 20160602033749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,12 +29,13 @@ ActiveRecord::Schema.define(version: 20160504051158) do
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "style_id"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.integer  "photo_rotate_angle", default: 0
   end
 
   add_index "attachments", ["style_id"], name: "index_attachments_on_style_id", using: :btree

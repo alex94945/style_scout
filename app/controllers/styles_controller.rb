@@ -8,7 +8,7 @@ class StylesController < ApplicationController
 
 
            ActiveRecord::Base.transaction  do
-	  	     @style = @appointment.styles.create(style_params.except(:photo))
+	  	    @style = @appointment.styles.create(style_params.except(:photo))
                 @style.attachments.create(photo: style_params[:photo]) if style_params[:photo].present?
             end
 

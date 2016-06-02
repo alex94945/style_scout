@@ -1,0 +1,2 @@
+$('#edit-style-form').addClass('hidden');
+$('#edit-attachment-form').html("<%= j( render partial: 'attachments/edit', locals: {appointment: @appointment, style: @style, attachment: @attachment} ) %> ");
