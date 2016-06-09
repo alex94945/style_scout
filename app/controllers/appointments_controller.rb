@@ -24,7 +24,7 @@ def index
   end
 
   def show
-      @appointment = Appointment.includes(:styles).eager_load(styles: :attachments).find(params[:id])
+      @appointment = Appointment.find(params[:id])
   end
 
   def destroy
