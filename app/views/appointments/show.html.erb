@@ -19,12 +19,12 @@
 	<div class="panel-body">
 		<!-- Nav tabs -->
 		  <ul class="nav nav-tabs" role="tablist">
-		    <li role="presentation" class="active">
+		    <li role="presentation" >
 		    	<a href="#style-list-view" aria-controls="profile" role="tab" data-toggle="tab">
 		    		<i class="fa fa-list"></i>
 		    	</a>
 		    </li>
-		    <li role="presentation">
+		    <li role="presentation" class="active">
 		    	<a href="#style-grid-view" aria-controls="home" role="tab" data-toggle="tab">
 		    		<i class="fa fa-th"></i>
 		    	</a>
@@ -36,7 +36,7 @@
 		  <!-- Tab panes -->
 		  <div class="tab-content">
 		    <!-- List View -->
-		    <div role="tabpanel" class="tab-pane well active" id="style-list-view">
+		    <div role="tabpanel" class="tab-pane well" id="style-list-view">
 		    	<table id="appointment-styles" class="display">
 		    		<thead>
 		    			<th></th>
@@ -105,7 +105,7 @@
 		    	</table>
 		    </div>
 		    <!-- Grid View -->
-		    <div role="tabpanel" class="tab-pane" id="style-grid-view">
+		    <div role="tabpanel" class="tab-pane active" id="style-grid-view">
 		      <%= render partial: "appointment_metadata", locals: {appointment: @appointment} %>
 		    </div>
 		</div>

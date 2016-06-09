@@ -10,53 +10,67 @@
 
 			<!-- jquery datatable -->
 				<br>
-				<table id="appointments_table" class="display">
-				    <thead>
-				        <tr>
-				            <th>Appointment Name</th>
-				            <th>Style Count</th>
-				            <th>Buyer</th>
-				            <th>Date</th>
-				            <th>Location</th>
-				            <th>Avg IMU %</th>
-				            <th>AIR</th>
-				            <th> </th>
-				        </tr>
-				    </thead>
-				    <tbody>
-				        <%- @appointments.each do |appointment| %>
-				        	<tr>
-				        		<td>
-				        			<%= link_to appointment.name, appointment_path(appointment) %>
-			        			</td>
-				        		<td>
-				        			<%= appointment.styles.length %>
-			        			</td>
-				        		<td>
-				        			<%= appointment.user.name %>
-			        			</td>
-				        		<td>
-				        			<%- if appointment.scout_date.present? %>
-									<%= appointment.scout_date.strftime('%b %e, %Y') %>
-								<%- else %>
-									N/A
-								<% end %>
-				        		</td>
-				        		<td>
-				        			<%= appointment.location %>
-				        		</td>
-				        		<td>
-				        			<%= number_to_percentage appointment.weighted_average_imu, precision: 2 %> 
-				        		</td>
-				        		<td>
-				        		</td>
-				        		<td class="text-right">
-				        			<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>
-				        		</td>
-				        	</tr>
-				        <%- end %>
-				    </tbody>
-				</table>
+				<div class="hidden-xs">
+					<table id="appointments_table" class="display">
+					    <thead>
+					        <tr>
+					            <th>Appointment Name</th>
+					            <th>Style Count</th>
+					            <th>Buyer</th>
+					            <th>Date</th>
+					            <th>Location</th>
+					            <th>Avg IMU %</th>
+					            <th>AIR</th>
+					            <th> </th>
+					        </tr>
+					    </thead>
+					    <tbody>
+					        <%- @appointments.each do |appointment| %>
+					        	<tr>
+					        		<td>
+					        			<%= link_to appointment.name, appointment_path(appointment) %>
+				        			</td>
+					        		<td>
+					        			<%= appointment.styles.length %>
+				        			</td>
+					        		<td>
+					        			<%= appointment.user.name %>
+				        			</td>
+					        		<td>
+					        			<%- if appointment.scout_date.present? %>
+										<%= appointment.scout_date.strftime('%b %e, %Y') %>
+									<%- else %>
+										N/A
+									<% end %>
+					        		</td>
+					        		<td>
+					        			<%= appointment.location %>
+					        		</td>
+					        		<td>
+					        			<%= number_to_percentage appointment.weighted_average_imu, precision: 2 %> 
+					        		</td>
+					        		<td>
+					        		</td>
+					        		<td class="text-right">
+					        			<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>
+					        		</td>
+					        	</tr>
+					        <%- end %>
+					    </tbody>
+					</table>
+				</div>
+
+				<div class="visible-xs">
+					<%- @appointments.each do |appointment| %>
+						<%= link_to appointment_path(appointment) do %>
+							<div class="panel-body">
+								<div class="well">
+									<%= appointment.name %>
+								</div>
+							</div>
+						<% end %>
+					<% end %>
+				</div>
 			<!-- end -->
 		</div>
 	</div>

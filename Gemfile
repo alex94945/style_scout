@@ -30,6 +30,8 @@ gem 'devise'
 gem 'pg',       '0.17.1'
 gem 'faker'
 gem 'paperclip'
+#for image rotation
+gem 'mini_exiftool_vendored'
 gem 'aws-sdk', '< 2.0'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 

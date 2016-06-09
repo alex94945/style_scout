@@ -121,6 +121,9 @@ GEM
     method_source (0.8.2)
     mime-types (2.99.1)
     mimemagic (0.3.0)
+    mini_exiftool (2.7.3)
+    mini_exiftool_vendored (9.2.7.v1)
+      mini_exiftool (>= 1.6.0)
     mini_portile2 (2.0.0)
     minitest (5.8.4)
     multi_json (1.11.2)
@@ -251,6 +254,7 @@ DEPENDENCIES
   jquery-datatables-rails (~> 3.3.0)
   jquery-rails
   jquery-ui-rails
+  mini_exiftool_vendored
   paperclip
   pg (= 0.17.1)
   pry

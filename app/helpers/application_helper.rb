@@ -10,8 +10,8 @@ module ApplicationHelper
       end
 
       options[:width], options[:height] = extract_dimensions(options.delete(:size)) if options[:size]
-      options[:style] = '' unless options[:style]
-      options[:style] += (";-webkit-transform: rotate(#{options[:rotate_angle]}deg);")
+      options[:style] = ';' unless options[:style]
+      options[:style] += ("-webkit-transform: rotate(#{options[:rotate_angle]}deg);")
       options.delete(:rotate_angle)
 
       tag("img", options) 
