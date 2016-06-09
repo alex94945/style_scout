@@ -7,67 +7,70 @@
 		</span>
 	</ul>
 	<div class="panel-body">
-		<div class="col-md-3">
-			<%- if @style.default_photo %>
-				<%= image_tag @style.default_photo, style: "max-height: 100%; max-width: 100%;" %>
-			<%- else %>
-				<i class="fa fa-file-image-o fa-5x", style="padding: 65px;"></i>
-			<%- end %>
+		<div class="row">
+			<div class="col-md-3">
+				<%- if @style.default_photo %>
+					<%= image_tag @style.default_photo, style: "max-height: 100%; max-width: 100%;" %>
+				<%- else %>
+					<i class="fa fa-file-image-o fa-5x", style="padding: 65px;"></i>
+				<%- end %>
+			</div>
+			<div class="col-md-9">
+				<h2 style="margin-top: 0px;">
+					<%= @style.vendor_style_number %>
+				</h2>
+				<div class="row form-group">
+					<div class="col-sm-3 col-md-3">
+						Status:
+						<%=@style.status.titleize%>
+					</div>
+					<div class="col-sm-3 col-md-3">
+						Category:
+						<%= @style.category_name.titleize %>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-3">
+						Cost:
+						<%= number_to_currency @style.wholesale_cost %>
+					</div>
+					<div class="col-md-3">
+						Negotiated Cost:
+						<%= number_to_currency @style.negotiated_cost %>
+					</div>
+					<div class="col-md-3">
+						Retail Price:
+						<%= number_to_currency @style.retail_price %>
+					</div>
+					<div class="col-md-3">
+						IMU:
+						<%= number_to_percentage @style.initial_mark_up, precision: 2 %>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-3">
+						Quantity:
+						<%= @style.quantity%>
+					</div>
+					<div class="col-md-3">
+						Delivery:
+						<%= @style.delivery_date %>
+					</div>
+					<div class="col-md-3">
+						Color:
+						<%= @style.color %>
+					</div>
+				</div>
+				<div class="row form-group">
+					<div class="col-md-6">
+						Notes:
+						<%= simple_format(@style.notes) %>
+					</div>
+				</div>
+			</div>
 		</div>
-		<div class="col-md-9">
-			<h2 style="margin-top: 0px;">
-				<%= @style.vendor_style_number %>
-			</h2>
-			<div class="row form-group">
-				<div class="col-sm-3 col-md-3">
-					Status:
-					<%=@style.status.titleize%>
-				</div>
-				<div class="col-sm-3 col-md-3">
-					Category:
-					<%= @style.category_name.titleize %>
-				</div>
-			</div>
-			<div class="row form-group">
-				<div class="col-md-3">
-					Cost:
-					<%= number_to_currency @style.wholesale_cost %>
-				</div>
-				<div class="col-md-3">
-					Negotiated Cost:
-					<%= number_to_currency @style.negotiated_cost %>
-				</div>
-				<div class="col-md-3">
-					Retail Price:
-					<%= number_to_currency @style.retail_price %>
-				</div>
-				<div class="col-md-3">
-					IMU:
-					<%= number_to_percentage @style.initial_mark_up, precision: 2 %>
-				</div>
-			</div>
-			<div class="row form-group">
-				<div class="col-md-3">
-					Quantity:
-					<%= @style.quantity%>
-				</div>
-				<div class="col-md-3">
-					Delivery:
-					<%= @style.delivery_date %>
-				</div>
-				<div class="col-md-3">
-					Color:
-					<%= @style.color %>
-				</div>
-			</div>
-			<div class="row form-group">
-				<div class="col-md-6">
-					Notes:
-					<%= simple_format(@style.notes) %>
-				</div>
-			</div>
-		</div>
-		<div class='row'>
+		<hr>
+		<div class="row">
 			<%- @style.attachments.each do |attachment| %>
 				<div class='col-md-2'>
 					<div class="well">
@@ -75,14 +78,14 @@
 					</div>
 				</div>
 			<% end %>
-		</div>
-		<div class="row">
-			<div class='col-md-12'>
-				<%= form_for :attachment, url: appointment_style_attachments_path(@appointment, @style), method: :post do |f| %>
-					<label>Photo</label>
-					<%= f.file_field :photo %>
-					<%= f.submit %>
+			<div class="col-md-2">
+				<div class="well">
+					<%= form_for :attachment, url: appointment_style_attachments_path(@appointment, @style), method: :post do |f| %>
+						<label>Photo</label>
+						<%= f.file_field :photo %>
+						<%= f.submit %>
 				<% end %>
+				</div>
 			</div>
 		</div>
 	</div>

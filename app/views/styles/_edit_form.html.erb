@@ -4,13 +4,9 @@
       Edit Style: <%= @style.vendor_style_number %>
     </div>
     <div class="modal-body">
-      <div id="edit-style-form">
-        <%= form_for @style, url: appointment_style_path(@appointment, @style), method: :put do |f| %>
-          <%= render partial: 'shared/styles/form', locals: {form: f} %>
-        <% end %>
-      </div>
-      <div id="edit-attachment-form">
-      </div>
+      <%= form_for @style, url: appointment_style_path(@appointment, @style), method: :put do |f| %>
+        <%= render partial: 'shared/styles/form', locals: {form: f} %>
+      <% end %>
     </div>
   </div>
 </div>

@@ -56,7 +56,12 @@
 		<%= form.text_area :notes, :class => 'form-control' %>
 	</div>
 </div>
-<%= render partial: "shared/styles/photo_fields", locals: {form: form} %>
+<div class="row form-group">
+  <div class="col-sm-6 field">
+    <%= form.label :photo %>
+    <%= form.file_field :photo %>
+  </div>
+</div>
 <div class="half-wide">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
 </div>
