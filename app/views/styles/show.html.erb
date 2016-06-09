@@ -74,7 +74,9 @@
 			<%- @style.attachments.each do |attachment| %>
 				<div class='col-md-2'>
 					<div class="well">
-						<%= image_tag attachment.photo.url('square'), :style=>'display: block; margin: auto; max-width: 80%;' %>
+						<a href="#" data-featherlight="<%= attachment.photo.url('large') %>">
+							<%= image_tag attachment.photo.url('square'), :style=>'	: block; margin: auto;max-widht:100%;' %>
+						</a>
 					</div>
 				</div>
 			<% end %>
