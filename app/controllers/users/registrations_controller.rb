@@ -8,8 +8,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   def create
+    # if valid user, on sign up, set their role to buyer
     super do
+      if resource.valid?
         resource.buyer!
+      end
     end
   end
 
