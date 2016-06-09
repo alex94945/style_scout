@@ -61,10 +61,15 @@
 						<%= @style.color %>
 					</div>
 				</div>
-				<div class="row form-group">
-					<div class="col-sm-6">
+				<div class="row">
+					<div class="col-sm-12">
 						<strong>Notes:</strong>
-						<%= simple_format(@style.notes) %>
+						<%= form_for @style, url: appointment_style_path(@appointment, @style), method: :put do |f| %>
+							<div class="form-group">
+								<%= f.text_area :notes, class: 'form-control', rows: 6 %>
+							</div>
+							<%= f.submit 'Update Notes', class: 'btn btn-primary' %>
+						<% end %>
 					</div>
 				</div>
 			</div>
