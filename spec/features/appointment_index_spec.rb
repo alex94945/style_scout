@@ -7,9 +7,7 @@ describe "visiting the appointments index", type: :feature, js: true do
     6.times do 
       Appointment.create(name: "Example Appointment", user_id: @user.id)
     end
-
-
-
+    
     login_as(@user, scope: :user)
 
   end
