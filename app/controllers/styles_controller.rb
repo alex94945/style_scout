@@ -1,40 +1,39 @@
 class StylesController < ApplicationController
-	def index
-		@styles= Style.all
-	end
+     def index
+            @styles= Style.all
+     end
 
-	 def create
-	  	@appointment = Appointment.find(params[:appointment_id])
+     def create
+      	@appointment = Appointment.find(params[:appointment_id])
 
+                ActiveRecord::Base.transaction  do
+    	  	    @style = @appointment.styles.create(style_params.except(:photo))
+                    @style.attachments.create(photo: style_params[:photo]) if style_params[:photo].present?
+                end
 
-           ActiveRecord::Base.transaction  do
-	  	    @style = @appointment.styles.create(style_params.except(:photo))
-                @style.attachments.create(photo: style_params[:photo]) if style_params[:photo].present?
-            end
+      	redirect_to appointment_path(@appointment)
+     end
 
-	  	redirect_to appointment_path(@appointment)
-	 end
+     def new
+      	@style = Style.new
+      	@appointment = Appointment.find(params[:appointment_id])
+      	respond_to do |format|
+      		format.html {redirect_to appointment_path(@appointment)}
+      		format.js {render "new"}
+      	end
+      end
 
-	 def new
-	  	@style = Style.new
-	  	@appointment = Appointment.find(params[:appointment_id])
-	  	respond_to do |format|
-	  		format.html {redirect_to appointment_path(@appointment)}
-	  		format.js {render "new"}
-	  	end
-	  end
+      def edit
+      	@appointment = Appointment.find(params[:appointment_id])
+          @style = @appointment.styles.find(params[:id]) 
+      end
 
-	  def edit
-	  	@appointment = Appointment.find(params[:appointment_id])
-	      @style = @appointment.styles.find(params[:id]) 
-	  end
-
-	  def update
-	      @style = Style.find(params[:id])
-	      @appointment = Appointment.find(params[:appointment_id])
-	      @style.update(style_params)
-	      redirect_to appointment_path(@appointment)
-	  end
+      def update
+          @style = Style.find(params[:id])
+          @appointment = Appointment.find(params[:appointment_id])
+          @style.update(style_params)
+          redirect_to appointment_path(@appointment)
+      end
 
       def show
           @appointment = Appointment.find(params[:appointment_id])
@@ -54,10 +53,10 @@ class StylesController < ApplicationController
         @style.update(style_params)
       end
 
-	  private
-	  	def style_params
-	  		params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost, 
-                :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :photo, :exclusive)
-	     end
+      private
+      	def style_params
+      		params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost, 
+                        :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :photo, :exclusive)
+               end
 
 end
