@@ -60,6 +60,10 @@
 						<strong>Color:</strong>
 						<%= @style.color %>
 					</div>
+					<div class="col-sm-3">
+						<strong>Exclusive?</strong>
+						<%= @style.exclusive? ? "Yes" : "No" %>
+					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-12">
@@ -91,9 +95,56 @@
 						<label>Photo</label>
 						<%= f.file_field :photo %>
 						<%= f.submit %>
-				<% end %>
+
+						<div class="input-group">
+						        <label class="input-group-btn">
+						            <span class="btn btn-success">
+						                Find Photo 
+						                    <%= f.file_field :photo, type: 'file', style: "display: none" %>
+						            </span>
+						        </label>
+						        <input type="text" class="form-control" readonly>
+						    </div>
+					<% end %>
 				</div>
 			</div>
 		</div>
 	</div>
 </div>
+
+
+<script>
+$(document).ready(function() {
+    // Getting the filename to show up in the input field
+
+    $(function() {
+
+      // We can attach the `fileselect` event to all file inputs on the page
+      $(document).on('change', ':file', function() {
+        var input = $(this),
+            numFiles = input.get(0).files ? input.get(0).files.length : 1,
+            label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+        input.trigger('fileselect', [numFiles, label]);
+      });
+
+      // We can watch for our custom `fileselect` event like this
+      $(document).ready( function() {
+          $(':file').on('fileselect', function(event, numFiles, label) {
+
+              var input = $(this).parents('.input-group').find(':text'),
+                  log = numFiles > 1 ? numFiles + ' files selected' : label;
+
+              if( input.length ) {
+                  input.val(log);
+              } else {
+                  if( log ) alert(log);
+              }
+
+          });
+      });
+      
+    });
+
+  });
+
+</script>

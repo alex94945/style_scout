@@ -37,8 +37,8 @@ class StylesController < ApplicationController
 	  end
 
       def show
-      	@appointment = Appointment.find(params[:appointment_id])
-	     @style = @appointment.styles.find(params[:id]) 
+          @appointment = Appointment.find(params[:appointment_id])
+          @style = @appointment.styles.find(params[:id]) 
       end
 
       def destroy
@@ -57,7 +57,7 @@ class StylesController < ApplicationController
 	  private
 	  	def style_params
 	  		params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost, 
-                :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :photo)
+                :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :photo, :exclusive)
 	     end
 
 end
