@@ -1,89 +1,89 @@
 <div class="row">
-	<div class="col-md-12">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				<%= params[:controller] == "users/appointments" ? "My" : "All" %> Appointments
-				<div class="pull-right">
-					<%= link_to 'Add New Appointment', new_appointment_path, remote: true %>
-				</div>
-			</div>
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <%= params[:controller] == "users/appointments" ? "My" : "All" %> Appointments
+                <div class="pull-right">
+                    <%= link_to 'Add New Appointment', new_appointment_path, remote: true %>
+                </div>
+            </div>
 
-			<!-- jquery datatable -->
-				<br>
-				<div class="hidden-xs">
-					<table id="appointments_table" class="display">
-					    <thead>
-					        <tr>
-					            <th>Appointment Name</th>
-					            <th>Open Styles</th>
-					            <th>Buyer</th>
-					            <th>Date</th>
-					            <th>Location</th>
-					            <th>Avg IMU %</th>
-					            <th>AIR</th>
-					            <th> </th>
-					        </tr>
-					    </thead>
-					    <tbody>
-					        <%- @appointments.each do |appointment| %>
-					        	<tr>
-					        		<td>
-					        			<%= link_to appointment.name, appointment_path(appointment) %>
-				        			</td>
-					        		<td>
-					        			<%= appointment.styles.open.count %> of <%= appointment.styles.length %>
-				        			</td>
-					        		<td>
-					        			<%= appointment.user.name %>
-				        			</td>
-					        		<td>
-					        			<%- if appointment.scout_date.present? %>
-										<%= appointment.scout_date.strftime('%b %e, %Y') %>
-									<%- else %>
-										N/A
-								<% end %>
-					        		</td>
-					        		<td>
-					        			<%= appointment.location %>
-					        		</td>
-					        		<td>
-					        			<%= number_to_percentage appointment.weighted_average_imu, precision: 2 %> 
-					        		</td>
-					        		<td>
-					        			<%= number_to_percentage appointment.average_initial_retail, precision: 0 %>
-					        		</td>
-					        		<td class="text-right">
-					        			<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>
-					        		</td>
-					        	</tr>
-					        <%- end %>
-					    </tbody>
-					</table>
-				</div>
+            <!-- jquery datatable -->
+                <br>
+                <div class="hidden-xs">
+                    <table id="appointments_table" class="display">
+                        <thead>
+                            <tr>
+                                <th>Appointment Name</th>
+                                <th>Open Styles</th>
+                                <th>Buyer</th>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Avg IMU %</th>
+                                <th>AIR</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%- @appointments.each do |appointment| %>
+                                <tr>
+                                    <td>
+                                        <%= link_to appointment.name, appointment_path(appointment) %>
+                                    </td>
+                                    <td>
+                                        <%= appointment.styles.open.count %> of <%= appointment.styles.length %>
+                                    </td>
+                                    <td>
+                                        <%= appointment.user.name %>
+                                    </td>
+                                    <td>
+                                        <%- if appointment.scout_date.present? %>
+                                            <%= appointment.scout_date.strftime('%b %e, %Y') %>
+                                            <%- else %>
+                                                N/A
+                                         <% end %>
+                                    </td>
+                                    <td>
+                                        <%= appointment.location %>
+                                    </td>
+                                    <td>
+                                        <%= number_to_percentage appointment.weighted_average_imu, precision: 2 %> 
+                                    </td>
+                                    <td>
+                                        <%= number_to_percentage appointment.average_initial_retail, precision: 0 %>
+                                    </td>
+                                    <td class="text-right">
+                                        <%= render partial: "shared/appointments/edit_buttons", locals: {appointment: appointment} %>
+                                    </td>
+                                </tr>
+                            <%- end %>
+                        </tbody>
+                    </table>
+                </div>
 
-				<div class="visible-xs">
-					<%- @appointments.each do |appointment| %>
-						<%= link_to appointment_path(appointment) do %>
-							<div class="panel-body">
-								<div class="well">
-									<%= appointment.name %>
-								</div>
-							</div>
-						<% end %>
-					<% end %>
-				</div>
-			<!-- end -->
-		</div>
-	</div>
+                <div class="visible-xs">
+                    <%- @appointments.each do |appointment| %>
+                        <%= link_to appointment_path(appointment) do %>
+                            <div class="panel-body">
+                                <div class="well">
+                                    <%= appointment.name %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            <!-- end -->
+        </div>
+    </div>
 </div>
 
 
 <script> 
-	$('#appointments_table').dataTable({
-	  responsive: true,
-	  "columnDefs": [
-	    { "orderable": false, "targets": [0,7] }
-	  ],
-	  "aaSorting": [3,'desc']
-	});
+    $('#appointments_table').dataTable({
+      responsive: true,
+      "columnDefs": [
+        { "orderable": false, "targets": [0,7] }
+      ],
+      "aaSorting": [3,'desc']
+    });
 </script>
