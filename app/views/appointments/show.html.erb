@@ -1,136 +1,136 @@
 <div class="panel panel-default">
-	<ul class="panel-heading breadcrumb" style="margin-bottom: 0px">
-		<li><%= link_to "All Appointments", appointments_path %></li>
-		<li class="active">
-			<%= @appointment.name %> | 
-			<%- if @appointment.scout_date.present? %>
-				<%= @appointment.scout_date.strftime('%b %e, %Y') %>
-			<%- else %>
-				N/A
-			<% end %>
-		</li>
-		<span>
-			<div class="pull-right">
-				<%= render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment} %>
-			</div>
-		</span>	
-	</ul>
+  <ul class="panel-heading breadcrumb" style="margin-bottom: 0px">
+    <li><%= link_to "All Appointments", appointments_path %></li>
+    <li class="active">
+      <%= @appointment.name %> | 
+      <%- if @appointment.scout_date.present? %>
+        <%= @appointment.scout_date.strftime('%b %e, %Y') %>
+      <%- else %>
+        N/A
+      <% end %>
+    </li>
+    <span>
+      <div class="pull-right">
+        <%= render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment} %>
+      </div>
+    </span> 
+  </ul>
 
-	<div class="panel-body">
-		<!-- Nav tabs -->
-		  <ul class="nav nav-tabs" role="tablist">
-		    <li role="presentation" >
-		    	<a href="#style-list-view" aria-controls="profile" role="tab" data-toggle="tab">
-		    		<i class="fa fa-list"></i>
-		    	</a>
-		    </li>
-		    <li role="presentation" class="active">
-		    	<a href="#style-grid-view" aria-controls="home" role="tab" data-toggle="tab">
-		    		<i class="fa fa-th"></i>
-		    	</a>
-		    </li>
-		    <span class="pull-right">
-		    	<%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary", remote: true %>
-		    </span>
-		  </ul>
-		  <!-- Tab panes -->
-		  <div class="tab-content">
-		    <!-- List View -->
-		    <div role="tabpanel" class="tab-pane well" id="style-list-view">
-		    	<table id="appointment-styles" class="display">
-		    		<thead>
-		    			<th></th>
-		    			<th>
-		    				Vendor Style Number
-		    			</th>
-		    			<th>
-		    				Status
-		    			</th>
-		    			<th>
-		    			 	Delivery Date 
-		    			</th>
-		    			<th>
-		    			 	Retail
-		    			</th>
-		    			<th>
-		    			 	IMU %
-		    			</th>
-		    			<th>
+  <div class="panel-body">
+    <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" >
+          <a href="#style-list-view" aria-controls="profile" role="tab" data-toggle="tab">
+            <i class="fa fa-list"></i>
+          </a>
+        </li>
+        <li role="presentation" class="active">
+          <a href="#style-grid-view" aria-controls="home" role="tab" data-toggle="tab">
+            <i class="fa fa-th"></i>
+          </a>
+        </li>
+        <span class="pull-right">
+          <%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary", remote: true %>
+        </span>
+      </ul>
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <!-- List View -->
+        <div role="tabpanel" class="tab-pane well" id="style-list-view">
+          <table id="appointment-styles" class="display">
+            <thead>
+              <th></th>
+              <th>
+                Vendor Style Number
+              </th>
+              <th>
+                Status
+              </th>
+              <th>
+                Delivery Date 
+              </th>
+              <th>
+                Retail
+              </th>
+              <th>
+                IMU %
+              </th>
+              <th>
 
-		    			</th>
-		    		</thead>
-		    		<tbody>
-		    			<%- @appointment.styles.each do |style| %>
-		    				<tr>
-		    					<td>
-		    						<%= style.default_photo ? (image_tag style.default_photo('square'), style:'width:60px;') : "--" %>
-		    					</td>
-		    					<td>
-		    						<a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#style-notes-metadata-<%= style.id %>">
-									<%= link_to style.vendor_style_number, appointment_style_path(@appointment, style) %>
-								</a>
-		    					</td>
-		    					<td>
-		    						<%= form_for style, url: appointment_style_update_status_path(@appointment, style), method: :put, remote: true do |f| %>
-									<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-									<%= f.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, style.status), { }, onchange: "$(this.form).submit();", class: 'form-control' %>
-									<%= f.submit ' ', class: "hidden" %>
-								<% end %>
-		    					</td>
-		    					<td>
-		    						<%= style.delivery_date%>
-		    					</td>
-		    					<td>
-		    						<%= number_to_currency style.retail_price %>
-		    					</td>
-		    					<td>
-		    						<%= number_to_percentage(style.initial_mark_up, precision: 2)%>
-		    					</td>
-		    					<td class="text-right">
-		    						<%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style} %>
-		    					</td>
-		    				</tr>
-		    			<% end %>
-		    			
-		    		</tbody>
-		    		<tfoot>
-		    			<tr>
-		    				<td>Averages</td>
-		    				<td></td>
-		    				<td></td>
-		    				<td></td>
-		    				<td></td>
-		    				<td>
-		    					<%= number_to_percentage @appointment.weighted_average_imu, precision: 2 %>
-		    				</td>
-		    				<td></td>
-		    			</tr>
-		    		</tfoot>
-		    	</table>
-		    </div>
-		    <!-- Grid View -->
-		    <div role="tabpanel" class="tab-pane active" id="style-grid-view">
-		      <%= render partial: "appointment_metadata", locals: {appointment: @appointment} %>
-		    </div>
-		</div>
+              </th>
+            </thead>
+            <tbody>
+              <%- @appointment.styles.each do |style| %>
+                <tr>
+                  <td>
+                    <%= style.default_photo ? (image_tag style.default_photo('square'), style:'width:60px;') : "--" %>
+                  </td>
+                  <td>
+                    <a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#style-notes-metadata-<%= style.id %>">
+                  <%= link_to style.vendor_style_number, appointment_style_path(@appointment, style) %>
+                </a>
+                  </td>
+                  <td>
+                    <%= form_for style, url: appointment_style_update_status_path(@appointment, style), method: :put, remote: true do |f| %>
+                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                  <%= f.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, style.status), { }, onchange: "$(this.form).submit();", class: 'form-control' %>
+                  <%= f.submit ' ', class: "hidden" %>
+                <% end %>
+                  </td>
+                  <td>
+                    <%= style.delivery_date%>
+                  </td>
+                  <td>
+                    <%= number_to_currency style.retail_price %>
+                  </td>
+                  <td>
+                    <%= number_to_percentage(style.initial_mark_up, precision: 2)%>
+                  </td>
+                  <td class="text-right">
+                    <%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style} %>
+                  </td>
+                </tr>
+              <% end %>
+              
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>Averages</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                  <%= number_to_percentage @appointment.weighted_average_imu, precision: 2 %>
+                </td>
+                <td></td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <!-- Grid View -->
+        <div role="tabpanel" class="tab-pane active" id="style-grid-view">
+          <%= render partial: "appointment_metadata", locals: {appointment: @appointment} %>
+        </div>
+    </div>
 
-		<!-- Below tab panes -->
-		<div class="strong">
-			Notes:
-			<%= simple_format(@appointment.notes) %>
-		</div>
-		<%= link_to 'Export As CSV', appointment_export_path(@appointment, format: "csv"), class: "btn btn-primary" %>
-	</div>
+    <!-- Below tab panes -->
+    <div class="strong">
+      Notes:
+      <%= simple_format(@appointment.notes) %>
+    </div>
+    <%= link_to 'Export As CSV', appointment_export_path(@appointment, format: "csv"), class: "btn btn-primary" %>
+  </div>
 </div>
 
 <script> 
-	$('#appointment-styles').dataTable({
-	  responsive: true,
-	  "columnDefs": [
-	    { "width": "5%", "targets": 0 },
-	    { "width": "15%", "targets": 3 },
-	    { "orderable": false, "targets": [0,6] }
-	  ],
-	  "aaSorting": [3,'desc']
-	});
+  $('#appointment-styles').dataTable({
+    responsive: true,
+    "columnDefs": [
+      { "width": "5%", "targets": 0 },
+      { "width": "15%", "targets": 3 },
+      { "orderable": false, "targets": [0,6] }
+    ],
+    "aaSorting": [3,'desc']
+  });
 </script>
