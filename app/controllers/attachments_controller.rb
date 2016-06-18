@@ -7,4 +7,5 @@ class AttachmentsController < ApplicationController
 
       redirect_to appointment_style_path(@appointment, @style)
    end
+   
 end

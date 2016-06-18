@@ -12,7 +12,24 @@ describe "creating a style", type: :feature, js: true do
 
 context "without a photo" do
 
-  it "creates a style with no attachments" do 
+    it "creates a style with no attachments and only required fields" do 
+
+    @vendor_style_number = Random.rand(1..9).times.map { [*'0'..'9', *'a'..'z'].sample }.join
+
+    visit "/appointments/#{@appointment.id}"
+    click_link('Add New Style')
+
+    find("#modal", match: :first)
+    fill_in('style_vendor_style_number', with: @vendor_style_number)
+    
+    click_button("Submit Style")
+    
+    expect(@appointment.styles.last.vendor_style_number).to eql @vendor_style_number
+    expect(@appointment.styles.last.attachments).to match_array([])
+
+  end
+
+  it "creates a style with no attachments and full fields" do 
 
     @vendor_style_number = Random.rand(1..9).times.map { [*'0'..'9', *'a'..'z'].sample }.join
     @style_quantity = Faker::Number.number( Random.rand(1..4) ).to_i
@@ -44,13 +61,13 @@ context "without a photo" do
 
     expect(@appointment.styles.last.vendor_style_number).to eql @vendor_style_number
     expect(@appointment.styles.last.quantity).to eql @style_quantity
-    expect(@appointment.styles.last.status).to eql @status.downcase
+    expect(@appointment.styles.last.status).to eql @status.humanize.downcase
     expect(@appointment.styles.last.delivery_date).to eql Date.parse('2016-06-11')
     expect(@appointment.styles.last.wholesale_cost).to eql @wholesale_cost
     expect(@appointment.styles.last.negotiated_cost).to eql @negotiated_cost
     expect(@appointment.styles.last.retail_price).to eql @retail_price
     expect(@appointment.styles.last.color).to eql @color
-    expect(@appointment.styles.last.category_name).to eql @category.downcase
+    expect(@appointment.styles.last.category_name).to eql @category.humanize.downcase
     expect(@appointment.styles.last.notes).to eql @notes
 
     expect(@appointment.styles.last.attachments).to match_array([])

@@ -26,7 +26,7 @@
 					</div>
 					<div class="col-sm-3 col-md-3">
 						<strong>Category:</strong>
-						<%= @style.category_name.titleize %>
+						<%= @style.category_name.titleize if @style.category_name.present? %>
 					</div>
 				</div>
 				<div class="row form-group">
