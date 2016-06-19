@@ -63,22 +63,22 @@
               <%- @appointment.styles.each do |style| %>
                 <tr>
                   <td>
-                    <%= style.default_photo ? (image_tag style.default_photo('square'), style:'width:60px;') : "--" %>
+                    <%= style.default_photo ? ( image_tag style.default_photo('square'), style:'width:60px;' ) : "--" %>
                   </td>
                   <td>
                     <a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#style-notes-metadata-<%= style.id %>">
-                  <%= link_to style.vendor_style_number, appointment_style_path(@appointment, style) %>
-                </a>
+                      <%= link_to style.vendor_style_number, appointment_style_path(@appointment, style) %>
+                    </a>
                   </td>
                   <td>
                     <%= form_for style, url: appointment_style_update_status_path(@appointment, style), method: :put, remote: true do |f| %>
-                  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-                  <%= f.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, style.status), { }, onchange: "$(this.form).submit();", class: 'form-control' %>
-                  <%= f.submit ' ', class: "hidden" %>
-                <% end %>
+                      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                      <%= f.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, style.status), { }, onchange: "$(this.form).submit();", class: 'form-control' %>
+                      <%= f.submit ' ', class: "hidden" %>
+                    <% end %>
                   </td>
                   <td>
-                    <%= style.delivery_date%>
+                    <%= style.delivery_date.strftime('%b %e, %Y')%>
                   </td>
                   <td>
                     <%= number_to_currency style.retail_price %>
@@ -99,7 +99,9 @@
                 <td></td>
                 <td></td>
                 <td></td>
-                <td></td>
+                <td>
+                  <%= number_to_currency @appointment.average_initial_retail, precision: 2 %>
+                </td>
                 <td>
                   <%= number_to_percentage @appointment.weighted_average_imu, precision: 2 %>
                 </td>
