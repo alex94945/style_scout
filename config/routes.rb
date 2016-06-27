@@ -12,7 +12,9 @@ Rails.application.routes.draw do
       put :update_status
     end
   end
-  
+
+  get 'styles/all'  => 'styles#index' 
+
   resources :categories
 
   namespace :api do

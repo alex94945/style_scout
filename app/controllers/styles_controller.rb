@@ -1,6 +1,7 @@
 class StylesController < ApplicationController
      def index
-            @styles= Style.all
+
+            @styles = Style.all
      end
 
      def create

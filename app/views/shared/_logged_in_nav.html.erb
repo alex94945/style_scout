@@ -17,6 +17,7 @@
         <li>
           <%= params[:controller] == "users/appointments" ? ( link_to "All Appointments", appointments_path ) : ( link_to "My Appointments", root_path) %>
         </li>
+        <li><%= link_to "All Styles", styles_all_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li>

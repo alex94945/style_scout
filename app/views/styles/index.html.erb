@@ -1,1 +1,93 @@
-SUP
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+              All Styles
+            </div>
+            <!-- <div class="panel-body">
+              <ul>
+                    <%- @styles.each do |style| %>
+                        <div class="row"><%= link_to style.vendor_style_number %></div>
+                    <% end %>
+                </ul>
+            </div> -->
+
+<!-- jquery datatable -->
+                <br>
+                <div class="hidden-xs">
+                    <table id="styles_table" class="display">
+                        <thead>
+                            <tr>
+                                <th>Style Name</th>
+                                <th>Appointment</th>
+                                <th>Status</th>
+                                <th>Buyer</th>
+                                <th>Date</th>
+                                <th>IMU %</th>
+                                <th>Retail</th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <%- @styles.each do |style| %>
+                                <tr>
+                                    <td>
+                                        <%= link_to style.vendor_style_number, appointment_style_path(style.appointment, style) %>
+                                    </td>
+                                    <td>
+                                        <%= style.appointment.name %>
+                                    </td>
+                                    <td>
+                                        <%= style.status.humanize %>
+                                    </td>
+                                    <td>
+                                        <%= style.appointment.user.name %>
+                                    </td>
+                                    <td>
+                                        <%- if style.appointment.scout_date.present? %>
+                                            <%= style.appointment.scout_date.strftime('%b %e, %Y') %>
+                                            <%- else %>
+                                                N/A
+                                         <% end %>
+                                    </td>
+                                    <td>
+                                        <%= number_to_percentage style.initial_mark_up, precision: 2 %> 
+                                    </td>
+                                    <td>
+                                        <%= number_to_currency style.retail_price, precision: 2 %>
+                                    </td>
+                                    <td class="text-right">
+                                        <%= render partial: "shared/styles/edit_buttons", locals: {appointment: style.appointment, style: style} %>
+                                    </td>
+                                </tr>
+                            <%- end %>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="visible-xs">
+                    <%- @styles.each do |style| %>
+                        <%= link_to appointment_style_path(style.appointment, style) do %>
+                            <div class="panel-body">
+                                <div class="well">
+                                    <%= style.vendor_style_number %>
+                                </div>
+                            </div>
+                        <% end %>
+                    <% end %>
+                </div>
+            <!-- end -->
+        </div>
+    </div>
+</div>
+
+
+<script> 
+    $('#styles_table').dataTable({
+      responsive: true,
+      "columnDefs": [
+        { "orderable": false, "targets": [7] }
+      ],
+      "aaSorting": [3,'desc']
+    });
+</script>
