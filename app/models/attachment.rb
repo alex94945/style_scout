@@ -10,5 +10,6 @@ class Attachment < ActiveRecord::Base
 
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
+
   process_in_background :photo
 end
