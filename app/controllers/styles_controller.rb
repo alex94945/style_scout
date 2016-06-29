@@ -8,9 +8,7 @@ class StylesController < ApplicationController
       @appointment = Appointment.find(params[:appointment_id])
       ActiveRecord::Base.transaction  do
         @style = @appointment.styles.create(style_params.except(:photos))
-        params[:style][:photos].each do |photo|
-          @style.attachments.create(photo: photo) if photo.present?
-        end
+        @style.upload_attachments(params[:style][:photos])
       end
 
       redirect_to appointment_path(@appointment)
@@ -61,7 +59,7 @@ class StylesController < ApplicationController
     private
       def style_params
         params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost, 
-                      :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :photos, :exclusive)
+                      :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :exclusive, :photos => [])
              end
 
 end
