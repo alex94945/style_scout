@@ -1,15 +1,12 @@
 class StylesController < ApplicationController
      def index
-
-            @styles = Style.all
+        @styles = Style.all
      end
 
      def create
       @appointment = Appointment.find(params[:appointment_id])
-      ActiveRecord::Base.transaction  do
-        @style = @appointment.styles.create(style_params.except(:photos))
-        @style.upload_attachments(params[:style][:photos])
-      end
+      @style = @appointment.styles.create(style_params.except(:photos))
+      @style.upload_attachments(params[:style][:photos])
 
       redirect_to appointment_path(@appointment)
      end
