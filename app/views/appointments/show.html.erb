@@ -78,7 +78,7 @@
                     <% end %>
                   </td>
                   <td>
-                    <%= style.delivery_date.strftime('%b %e, %Y')%>
+                    <%= style.delivery_date.strftime('%b %e, %Y') if style.delivery_date%>
                   </td>
                   <td>
                     <%= number_to_currency style.retail_price %>

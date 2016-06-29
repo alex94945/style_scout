@@ -5,14 +5,15 @@ class StylesController < ApplicationController
      end
 
      def create
-        @appointment = Appointment.find(params[:appointment_id])
+      @appointment = Appointment.find(params[:appointment_id])
+      ActiveRecord::Base.transaction  do
+        @style = @appointment.styles.create(style_params.except(:photos))
+        params[:style][:photos].each do |photo|
+          @style.attachments.create(photo: photo) if photo.present?
+        end
+      end
 
-                ActiveRecord::Base.transaction  do
-                    @style = @appointment.styles.create(style_params.except(:photo))
-                    @style.attachments.create(photo: style_params[:photo]) if style_params[:photo].present?
-                end
-
-        redirect_to appointment_path(@appointment)
+      redirect_to appointment_path(@appointment)
      end
 
      def new
@@ -34,11 +35,6 @@ class StylesController < ApplicationController
     def update
         @style = Style.find(params[:id])
         @appointment = Appointment.find(params[:appointment_id])
-
-              # ActiveRecord::Base.transaction  do
-              #     @style = @appointment.styles.update(@style, style_params.except(:photo))
-              #     @style.attachments.update(@style, photo: style_params[:photo]) if style_params[:photo].present?
-              # end
 
         @style.update(style_params)
         redirect_to appointment_style_path(@appointment, @style)
@@ -65,7 +61,7 @@ class StylesController < ApplicationController
     private
       def style_params
         params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost, 
-                      :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :photo, :exclusive)
+                      :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :photos, :exclusive)
              end
 
 end

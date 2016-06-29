@@ -1,17 +1,14 @@
 class Style < ActiveRecord::Base
 	belongs_to :appointment
-      enum status: [ :created, :approved, :order_placed, :received, :cancelled, :deleted ]
+  enum status: [ :created, :approved, :order_placed, :received, :cancelled, :deleted ]
+  has_many :attachments, dependent: :destroy
+  validates :vendor_style_number, presence: true
 
-      has_many :attachments, dependent: :destroy
-
-
-      validates :vendor_style_number, presence: true
-
-      scope :open, -> { where(status: [0,1,2,3]) }
+  scope :open, -> { where(status: [0,1,2,3]) }
 
 
 	def initial_mark_up
-		return 0 unless retail_price.present?
+		return 0 if retail_price.blank? || wholesale_or_negotiated_cost.nil?
 		( ( (retail_price) - wholesale_or_negotiated_cost) / retail_price ) * 100
 	end
 
@@ -57,6 +54,6 @@ class Style < ActiveRecord::Base
 
 	private 
 		def wholesale_or_negotiated_cost
-			negotiated_cost.present? ? negotiated_cost : wholesale_cost || 0
+			negotiated_cost.present? ? negotiated_cost : wholesale_cost
 		end
 end
