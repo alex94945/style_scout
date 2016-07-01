@@ -48,10 +48,12 @@ class Style < ActiveRecord::Base
 
   end
 
-    #called from Delayed Job
+  #called from Delayed Job
   def upload_attachments(photos)
-    photos.each do |photo|
-      attachments.create(photo: photo) if photo.present?
+    if photos.present?
+      photos.each do |photo|
+        attachments.create(photo: photo)
+      end
     end
   end
 
