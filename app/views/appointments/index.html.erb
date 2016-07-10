@@ -81,9 +81,10 @@
 <script> 
     $('#appointments_table').dataTable({
       responsive: true,
-      "columnDefs": [
-        { "orderable": false, "targets": [0,7] }
-      ],
-      "aaSorting": [3,'desc']
+          "columnDefs": [
+            { "orderable": false, "targets": [7] }
+          ],
+      "aaSorting": [3,'desc'],
+      "iDisplayLength": 50
     });
 </script>

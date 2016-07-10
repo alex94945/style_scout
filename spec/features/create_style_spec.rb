@@ -61,7 +61,7 @@ context "without a photo" do
 
     expect(@appointment.styles.last.vendor_style_number).to eql @vendor_style_number
     expect(@appointment.styles.last.quantity).to eql @style_quantity
-    expect(@appointment.styles.last.status).to eql @status.humanize.downcase
+    expect(@appointment.styles.last.status).to eql @status.downcase
     expect(@appointment.styles.last.delivery_date).to eql Date.parse('2016-06-11')
     expect(@appointment.styles.last.wholesale_cost).to eql @wholesale_cost
     expect(@appointment.styles.last.negotiated_cost).to eql @negotiated_cost
