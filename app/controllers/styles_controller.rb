@@ -48,8 +48,8 @@ class StylesController < ApplicationController
 
     #remote true, looking for update_status.js.erb
     def update_status
-      @style = Style.find(params[:style_id])
       @appointment = Appointment.find(params[:appointment_id])
+      @style = @appointment.styles.find(params[:style_id])
       @style.update(style_params)
     end
 

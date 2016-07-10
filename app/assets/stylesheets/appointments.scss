@@ -19,7 +19,11 @@ span.label {
 
 .update-style-success {
   animation-name: background-color-change;
-  animation-duration: 0.8s;
+  animation-duration: 1.8s;
+}
+
+.update-style-success.created{
+  animation-name: background-color-change-created;
 }
 
 
@@ -29,3 +33,8 @@ span.label {
     100% {background-color: transparent ;}
 }
 
+@-webkit-keyframes background-color-change-created {
+    0% {background-color: transparent; }
+    20% {background-color: green ;}
+    100% {background-color: transparent ;}
+}
