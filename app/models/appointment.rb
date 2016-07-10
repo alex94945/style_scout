@@ -8,12 +8,16 @@ class Appointment < ActiveRecord::Base
   end
 
   def average_initial_retail
-    return 0 if styles.empty?
-    total_price = 0
-    styles.open.each do |style|
-      total_price += (style.quantity * style.retail_price) unless style.quantity.nil? || style.retail_price.nil?
-    end
-    return total_price / styles.open.sum(:quantity)
+    #TODO FIXME
+    return 0 #if styles.empty?
+    
+    # total_price = 0
+
+    # styles.open.each do |style|
+    #   total_price += (style.quantity * style.retail_price) unless style.quantity.nil? || style.retail_price.nil?
+    # end
+
+    # return total_price / styles.open.sum(:quantity)
   end
 
 end
