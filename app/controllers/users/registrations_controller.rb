@@ -12,6 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super do
       if resource.valid?
         resource.buyer!
+        session[:user_id] = resource.id
       end
     end
   end

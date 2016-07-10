@@ -17,7 +17,5 @@ class Appointment < ActiveRecord::Base
     def calculated_markup(styles, field)
       return 0 if styles.empty?
       styles.map{ |style| (style.quantity * style.send(field)) }.inject(:+)  / styles.sum(:quantity) 
-
     end
-
 end
