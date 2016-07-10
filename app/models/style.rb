@@ -5,7 +5,10 @@ class Style < ActiveRecord::Base
   validates :vendor_style_number, presence: true
 
   scope :open, -> { where(status: [0,1,2,3]) }
-
+  scope :with_value, -> { where(
+                      "quantity > ? AND
+                      (wholesale_cost > ? OR negotiated_cost > ?) AND
+                      retail_price > ?", 0, 0, 0, 0) }
 
   def initial_mark_up
       return 0 if retail_price.blank? || wholesale_or_negotiated_cost.nil?
