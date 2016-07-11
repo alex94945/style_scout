@@ -3,6 +3,7 @@ $(function(){
   $(".photo-upload-fields").on('change', 'input', function(){
     readURL(this, $(this).parents('.btn-file').siblings('img'));
     hideChooseButton($(this).parents('.btn-file'));
+    showUploadButton();
   });
 
 })
@@ -19,6 +20,10 @@ function duplicateUploadField(){
 
 function hideChooseButton(element){
   element.addClass('hidden')
+}
+
+function showUploadButton(){
+  $('.photo-upload-well .submit').removeClass('hidden');
 }
 
 

@@ -90,12 +90,27 @@
 				</div>
 			<% end %>
 			<%= form_for :attachment, url: appointment_style_attachments_path(@appointment, @style), method: :post do |f| %>
-				<div class="col-md-3">
-					<div class="well">
-						<label>Photo</label>
-						<div class="file-staging-area"></div>
-						<%= f.file_field :photo %>
-						<%= f.submit 'Upload', class: 'hidden file-upload-submit btn btn-primary' %>
+			  <%= f.file_field :photo, type: 'file', class: 'hidden'%>
+
+				<div class="col-md-4">
+					<div class="well photo-upload-well">
+						<div class="ghost-photo-input-group hidden">
+						  <label class="btn btn-success btn-file">
+						    Browse <input type="file" name="style[photos][]" style="display: none;">
+						  </label>
+						  <img src="#" style=/>
+						</div>
+						<div class="row">
+							<div class="col-sm-12 photo-upload-fields">
+							  <div class="photo-input-group">
+							    <label class="btn btn-success btn-file">
+							      Browse <input type="file" name="style[photos][]" style="display: none;">
+							    </label>
+							    <img src="#" style=/>
+							  </div>
+							</div>
+						</div>
+						<%= f.submit 'Upload', class: 'hidden submit' %>
 					</div>
 				</div>
 			<% end %>
@@ -104,4 +119,4 @@
 </div>
 
 
-<%= javascript_include_tag "file_uploader" %>
+<%= javascript_include_tag "file-uploader" %>
