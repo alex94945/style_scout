@@ -14,7 +14,7 @@
                                     <div class="col-md-6">
                                         <label>Appointment Name</label>
                                         <%= select_tag '[filters][appointment_name]',
-                                            options_for_select(Appointment.all.map{ |a| ["#{a.name} #{a.styles.count}", a.name]}.insert(0, ['---', nil]).uniq,
+                                            options_for_select(Appointment.all.map(&:name).insert(0, ['---', nil]).uniq,
                                              params[:filters].try(:[], :appointment_name)
                                             ), class: 'form-control' %>
                                     </div>
@@ -30,10 +30,10 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <%= submit_tag 'Filter', class: 'btn btn-primary btn-small' %>
+                                        <%= link_to 'Reset Filters', styles_path, class: 'btn btn-default' %>
                                     </div>
                                     <div class="col-md-6">
-                                        <%= link_to 'Reset Filters, maybe I dunno', styles_path, class: 'btn btn-default pull-right' %>
+                                        <%= submit_tag 'Filter', class: 'btn btn-primary pull-right' %>
                                     </div>
                                 </div>
                             <% end %>
