@@ -13,7 +13,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'styles/all'  => 'styles#index' 
+  resources :styles, only: [:index]
 
   resources :categories
 
@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions", passwords: "users/passwords" }
   namespace :users do
     resources :profile_config, only: :update
+  end
+
+  namespace :settings do
+    resources :users
   end
 
   # Example of regular route:

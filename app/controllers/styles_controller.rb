@@ -1,6 +1,7 @@
 class StylesController < ApplicationController
+     
      def index
-        @styles = Style.all
+        @styles = StyleFinderService.new(params, current_company).perform
      end
 
      def create

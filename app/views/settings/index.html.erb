@@ -7,7 +7,7 @@
     <% end %>
 
     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-    <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+    <li role="presentation"><a href="#users" aria-controls="users" role="tab" data-toggle="tab">Users</a></li>
     <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
   </ul>
 
@@ -22,8 +22,30 @@
     <div role="tabpanel" class="tab-pane" id="profile">
       <%= render partial: "shared/users/profile_config" %>
     </div>
-    <div role="tabpanel" class="tab-pane" id="messages">
-      sup sup sup
+    <div role="tabpanel" class="tab-pane" id="users">
+      <div class="row">
+        <div class="col-sm-6">
+          <ul class="list-group">
+          <%- current_company.users.each do |user| %>
+           <%- next if user == current_user %>
+            <li class="list-group-item">
+              <div class="row">
+                <div class="col-md-6">
+                    <%= link_to user.name, edit_settings_user_path(user), remote:true%>
+                </div>
+                <div class="col-md-6">
+                  <%= user.administrator? ? "Admin" : "Not Admin" %>
+                </div>
+              </div>
+            </li>
+          <%- end %>
+          </ul>
+        </div>
+        <div class="col-sm-6">
+          <div id="user-form-container">
+          </div>
+        </div>
+      </div>
     </div>
     <div role="tabpanel" class="tab-pane" id="settings">
       sup2222 sup sup
