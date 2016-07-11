@@ -65,13 +65,17 @@
   <div class="row form-group">
     <%= form.file_field :photo, type: 'file', class: 'hidden'%>
     <div class="ghost-photo-input-group hidden">
-      <input type='file' name="style[photos][]">
-      <img src="#" style="max-width:80px;margin-left:20px;"/>
+      <label class="btn btn-success btn-file">
+        Browse <input type="file" name="style[photos][]" style="display: none;">
+      </label>
+      <img src="#" style=/>
     </div>
-    <div class="col-sm-6 photo-upload-fields">
+    <div class="col-sm-12 photo-upload-fields">
       <div class="photo-input-group">
-        <input type='file' name="style[photos][]">
-        <img src="#" style="max-width:80px;margin-left:20px;"/>
+        <label class="btn btn-success btn-file">
+          Browse <input type="file" name="style[photos][]" style="display: none;">
+        </label>
+        <img src="#" style=/>
       </div>
     </div>
   </div>
@@ -92,74 +96,6 @@
 
     bind_imu_calculator();
 
-    $(".photo-upload-fields").on('change', 'input', function(){
-      readURL(this, $(this).siblings('img'));
-    });
-
   }); //end document ready
-
-
-  function readURL(input, render_element) {
-    console.log(input)
-    if (input.files && input.files[0]) {
-      var reader = new FileReader();
-
-      // TODO FIXME
-      // getOrientation(input.files[0], function(orientation) {
-      //   rotatePhoto(orientation);
-      // });
-
-      reader.onload = function (e) {
-        render_element.attr('src', e.target.result);
-        duplicateUploadField();
-
-      }
-
-      reader.readAsDataURL(input.files[0]);
-
-    }
-  }
-
-  // function rotatePhoto(orientation){
-  //   alert('yo dawg' + orientation)
-  // }
-
-  function duplicateUploadField(){
-    var htmlCloneString = $('.ghost-photo-input-group').clone()
-                              .removeClass('hidden')
-                              .removeClass('ghost-photo-input-group')
-                              .addClass('photo-input-group');
-
-    $('.photo-upload-fields').prepend(htmlCloneString)
-  }
-
-  function getOrientation(file, callback) {
-    var reader = new FileReader();
-    reader.onload = function(e) {
-
-      var view = new DataView(e.target.result);
-      if (view.getUint16(0, false) != 0xFFD8) return callback(-2);
-      var length = view.byteLength, offset = 2;
-      while (offset < length) {
-        var marker = view.getUint16(offset, false);
-        offset += 2;
-        if (marker == 0xFFE1) {
-          if (view.getUint32(offset += 2, false) != 0x45786966) return callback(-1);
-          var little = view.getUint16(offset += 6, false) == 0x4949;
-          offset += view.getUint32(offset + 4, little);
-          var tags = view.getUint16(offset, little);
-          offset += 2;
-          for (var i = 0; i < tags; i++)
-            if (view.getUint16(offset + (i * 12), little) == 0x0112)
-              return callback(view.getUint16(offset + (i * 12) + 8, little));
-        }
-        else if ((marker & 0xFF00) != 0xFF00) break;
-        else offset += view.getUint16(offset, false);
-      }
-      return callback(-1);
-    };
-    reader.readAsArrayBuffer(file.slice(0, 64 * 1024));
-  }
-
 </script>
-
+<%= javascript_include_tag "file_uploader" %>

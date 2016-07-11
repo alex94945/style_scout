@@ -1,6 +1,7 @@
 class AttachmentsController < ApplicationController
 
    def create
+    raise 'here'
       @appointment = Appointment.find(params[:appointment_id])
       @style = @appointment.styles.find(params[:style_id])
       @style.attachments.create(photo: params[:attachment][:photo])

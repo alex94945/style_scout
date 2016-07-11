@@ -28,3 +28,16 @@ table.dataTable tfoot th, table.dataTable tfoot td{
   background-color: rgba(0,128,0,0.2);
   font-weight: bold;
 }
+
+.photo-input-group:not(:first-child){
+  width: 20%;
+  float: left;
+  margin: 10px;
+}
+
+.photo-input-group:first-child img{
+  display: none;
+}
+.photo-input-group img{
+  max-width: 90%;
+}
