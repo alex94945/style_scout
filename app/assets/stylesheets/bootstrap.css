@@ -22,12 +22,31 @@
   overflow: hidden;
 }
 
+#appointment-header {
+  font-size: x-large;
+}
+
+#style-index-line {
+  margin-top: -10px;
+}
+
+/* Datatables */
 
 table.dataTable tfoot th, table.dataTable tfoot td{
   padding: 8px 10px !important;
   background-color: rgba(0,128,0,0.2);
   font-weight: bold;
 }
+
+.dataTables_length {
+  padding-left: 15px;
+}
+
+.dataTables_filter {
+  padding-right: 15px;
+}
+
+/* Photos */
 
 .photo-input-group:not(:first-child){
   width: 20%;

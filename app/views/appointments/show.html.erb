@@ -2,7 +2,7 @@
   <ul class="panel-heading breadcrumb" style="margin-bottom: 0px">
     <li><%= link_to "All Appointments", appointments_path %></li>
     <li class="active">
-      <%= @appointment.name %> | 
+      <%= @appointment.name.titleize %> | 
       <%- if @appointment.scout_date.present? %>
         <%= @appointment.scout_date.strftime('%b %e, %Y') %>
       <%- else %>
@@ -18,21 +18,17 @@
 
   <div class="panel-body">
     <!-- Nav tabs -->
-      <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active">
-          <a href="#style-list-view" aria-controls="profile" role="tab" data-toggle="tab">
-            <i class="fa fa-list"></i>
-          </a>
-        </li>
-        <li role="presentation">
-          <a href="#style-grid-view" aria-controls="home" role="tab" data-toggle="tab">
-            <i class="fa fa-th"></i>
-          </a>
-        </li>
-        <span class="pull-right">
-          <%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary", remote: true %>
-        </span>
-      </ul>
+      <div class="row">
+        <div class="col-md-6" id="appointment-header">
+            <%= @appointment.name.titleize %>
+        </div>
+          <div class="col-md-6">
+            <span class="pull-right">
+              <%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary", remote: true %>
+            </span>
+          </div>
+        </div>
+      </div>
       <!-- Tab panes -->
       <div class="tab-content">
         <!-- List View -->
@@ -109,10 +105,6 @@
               </tr>
             </tfoot>
           </table>
-        </div>
-        <!-- Grid View -->
-        <div role="tabpanel" class="tab-pane" id="style-grid-view">
-          <%= render partial: "appointment_metadata", locals: {appointment: @appointment} %>
         </div>
     </div>
 
