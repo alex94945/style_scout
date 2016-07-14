@@ -71,7 +71,11 @@
                                     <%= style.appointment.name %>
                                 </td>
                                 <td>
-                                    <%= style.status.humanize %>
+                                  <%= form_for style, url: appointment_style_update_status_path(style.appointment_id, style), method: :put, remote: true do |f| %>
+                                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                                    <%= f.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, style.status), { }, onchange: "$(this.form).submit();", class: 'form-control' %>
+                                    <%= f.submit ' ', class: "hidden" %>
+                                  <% end %>
                                 </td>
                                 <td>
                                     <%= style.appointment.user.name %>
@@ -121,6 +125,7 @@
       "columnDefs": [
         { "orderable": false, "targets": [7] }
       ],
-      "aaSorting": [3,'desc']
+      "aaSorting": [5,'desc']
+      "iDisplayLength": 50
     });
 </script>
