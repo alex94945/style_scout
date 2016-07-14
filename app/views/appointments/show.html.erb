@@ -17,7 +17,7 @@
   </ul>
 
   <div class="panel-body">
-    <!-- Nav tabs -->
+    <!-- Panel body, upper -->
       <div class="row">
         <div class="col-md-6" id="appointment-header">
             <%= @appointment.name.titleize %>
@@ -29,10 +29,8 @@
           </div>
         </div>
       </div>
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <!-- List View -->
-        <div role="tabpanel" class="tab-pane well active" id="style-list-view">
+        <!-- Panel body, table -->
+        <div class="well">
           <table id="appointment-styles" class="display">
             <thead>
               <th></th>
@@ -52,7 +50,6 @@
                 IMU %
               </th>
               <th>
-
               </th>
             </thead>
             <tbody>
@@ -80,7 +77,7 @@
                     <%= number_to_currency style.retail_price %>
                   </td>
                   <td>
-                    <%= number_to_percentage(style.initial_mark_up, precision: 2)%>
+                    <%= number_to_percentage(style.initial_mark_up, precision: 2) unless style.initial_mark_up == 0 %>
                   </td>
                   <td class="text-right">
                     <%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style} %>
@@ -106,9 +103,8 @@
             </tfoot>
           </table>
         </div>
-    </div>
 
-    <!-- Below tab panes -->
+    <!-- Below panel -->
     <div class="strong">
       Notes:
       <%= simple_format(@appointment.notes) %>

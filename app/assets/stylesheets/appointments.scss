@@ -17,24 +17,42 @@ span.label {
   font-weight: 200;
 }
 
+/* Updating style styles */
+
 .update-style-success {
   animation-name: background-color-change;
-  animation-duration: 1.8s;
+  animation-duration: 2.0s;
 }
 
-.update-style-success.created{
+.update-style-success.created {
   animation-name: background-color-change-created;
 }
 
+.update-style-success.deleted,
+.update-style-success.cancelled {
+  animation-name: background-color-change-deleted
+}
 
 @-webkit-keyframes background-color-change {
     0% {background-color: transparent; }
-    20% {background-color: green ;}
+    10% {background-color: #dff0d8 ;}
     100% {background-color: transparent ;}
 }
 
 @-webkit-keyframes background-color-change-created {
     0% {background-color: transparent; }
-    20% {background-color: green ;}
+    10% {background-color: #dff0d8 ;}
+    100% {background-color: transparent ;}
+}
+
+@-webkit-keyframes background-color-change-deleted {
+    0% {background-color: transparent; }
+    10% {background-color: #f2dede;}
+    100% {background-color: transparent ;}
+}
+
+@-webkit-keyframes background-color-change-cancelled {
+    0% {background-color: transparent; }
+    10% {background-color: #f2dede;}
     100% {background-color: transparent ;}
 }
