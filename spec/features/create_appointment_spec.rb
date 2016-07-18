@@ -15,7 +15,7 @@ describe "creating an appointment", type: :feature, js: true do
     fill_in('appointment_name', with: "SnoopityDoggitty")
     page.execute_script('$("#appointment_scout_date").val("2016-06-11") ' )
 
-    #fill in other fields
+    #TODO FIXME / HOMEWORK fill in other fields
 
     click_button("Submit Appointment")
 

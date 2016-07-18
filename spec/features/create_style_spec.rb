@@ -58,7 +58,6 @@ context "without a photo" do
     
     click_button("Submit Style")
 
-
     expect(@appointment.styles.last.vendor_style_number).to eql @vendor_style_number
     expect(@appointment.styles.last.quantity).to eql @style_quantity
     expect(@appointment.styles.last.status).to eql @status.downcase
@@ -69,7 +68,6 @@ context "without a photo" do
     expect(@appointment.styles.last.color).to eql @color
     expect(@appointment.styles.last.category_name).to eql @category.humanize.downcase
     expect(@appointment.styles.last.notes).to eql @notes
-
     expect(@appointment.styles.last.attachments).to match_array([])
 
   end
