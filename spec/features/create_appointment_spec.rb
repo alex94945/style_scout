@@ -13,12 +13,10 @@ describe "creating an appointment", type: :feature, js: true do
     click_link('Add New Appointment')
     modal = page.find('#modal')
 
-    fill_in('appointment_name', with: Faker::Hipster.word
+    fill_in('appointment_name', with: Faker::Company.name)
     page.execute_script('$("#appointment_scout_date").val("2016-06-11") ' )
-    fill_in('appointment_location', with: Faker::Hipster.word)
+    fill_in('appointment_location', with: Faker::Address.city)
     fill_in('appointment_notes', with: Faker::Hipster.paragraph)
-
-    #TODO FIXME / HOMEWORK fill in other fields
 
     click_button("Submit Appointment")
 
