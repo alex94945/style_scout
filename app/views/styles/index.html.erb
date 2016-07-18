@@ -60,7 +60,7 @@
                     </thead>
                     <tbody>
                         <%- @styles.each do |style| %>
-                            <tr>
+                            <tr id="style-id-<%= style.id %>" >
                                 <td>
                                     <%= style.default_photo ? ( image_tag style.default_photo('square'), style:'width:60px;' ) : "--" %>
                                 </td>
