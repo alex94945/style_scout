@@ -6,7 +6,7 @@ class StylesController < ApplicationController
 
      def create
       @appointment = Appointment.find(params[:appointment_id])
-      @style = @appointment.styles.create(style_params.except(:photos))
+      @style = @appointment.styles.create(style_params.except(:photos) )
       @style.upload_attachments(params[:style][:photos])
 
       redirect_to appointment_path(@appointment)

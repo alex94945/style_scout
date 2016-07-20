@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
     end
 
     def current_company
-      @current_company ||= User.find(session[:user_id]).company if session[:user_id]
+      @current_company ||=  current_user.company
     end
 end
 

@@ -56,7 +56,7 @@
               <%- @appointment.styles.each do |style| %>
                 <tr id="style-id-<%= style.id %>">
                   <td>
-                    <%= style.default_photo ? ( image_tag style.default_photo('square'), style:'width:60px;' ) : "--" %>
+                      <%= style.default_photo ? ( image_tag style.default_photo('square'), style:'width:60px;' ) : "--" %>
                   </td>
                   <td>
                     <a class='btn-block appointment-container-toggle' data-toggle="collapse" data-target="#style-notes-metadata-<%= style.id %>">

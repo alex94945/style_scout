@@ -3,9 +3,10 @@ require "rails_helper"
 describe "visiting the appointments index", type: :feature, js: true do
 
   before do
-    @user = User.create(email: "test@test.com", password: "123456789", password_confirmation: '123456789', name: 'Alex Young')
+
+    @user = create(:user, company: create(:company))
     6.times do 
-      Appointment.create(name: "Example Appointment", user_id: @user.id)
+      create(:appointment, user: @user)
     end
     
     login_as(@user, scope: :user)
