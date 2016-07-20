@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160710233300) do
+ActiveRecord::Schema.define(version: 20160720035540) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,19 +79,19 @@ ActiveRecord::Schema.define(version: 20160710233300) do
   create_table "styles", force: :cascade do |t|
     t.string   "vendor_style_number"
     t.integer  "appointment_id"
-    t.datetime "created_at",                                                   null: false
-    t.datetime "updated_at",                                                   null: false
+    t.datetime "created_at",                                                     null: false
+    t.datetime "updated_at",                                                     null: false
     t.text     "notes"
-    t.decimal  "negotiated_cost",     precision: 10, scale: 2
-    t.decimal  "retail_price",        precision: 10, scale: 2
-    t.decimal  "wholesale_cost",      precision: 10, scale: 2
+    t.decimal  "negotiated_cost",       precision: 10, scale: 2
+    t.decimal  "retail_price",          precision: 10, scale: 2
+    t.decimal  "wholesale_cost",        precision: 10, scale: 2
     t.string   "category_name"
     t.date     "delivery_date"
-    t.integer  "quantity",                                     default: 0,     null: false
-    t.integer  "status",                                       default: 0
+    t.integer  "quantity",                                       default: 0,     null: false
+    t.integer  "status",                                         default: 0
     t.string   "color"
-    t.integer  "default_photo_id"
-    t.boolean  "exclusive",                                    default: false
+    t.integer  "default_attachment_id"
+    t.boolean  "exclusive",                                      default: false
   end
 
   create_table "users", force: :cascade do |t|

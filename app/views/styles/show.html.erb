@@ -84,8 +84,14 @@
 				<div class='col-md-2'>
 					<div class="well">
 						<a href="#" data-featherlight="<%= attachment.photo.url('large') %>">
-							<%= image_tag attachment.photo.url('square'), :style=>'	: block; margin: auto;max-width:100%;' %>
+							<%= image_tag attachment.photo.url('square'), :style=>'display: block; margin: auto; max-width:100%;' %>
 						</a>
+						<%= link_to 'Delete', appointment_style_attachment_path(@appointment, @style, attachment), 
+							data: {confirm: 'Are You Sure?'}, method: :delete %>
+						|
+						<%= link_to 'Make Default', 
+							appointment_style_path(@appointment, @style, style: {default_attachment_id: attachment.id}),
+							method: :put %>
 					</div>
 				</div>
 			<% end %>
@@ -117,6 +123,3 @@
 		</div>
 	</div>
 </div>
-
-
-<%= javascript_include_tag "file-uploader" %>

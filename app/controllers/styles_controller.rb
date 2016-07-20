@@ -31,7 +31,6 @@ class StylesController < ApplicationController
     def update
         @style = Style.find(params[:id])
         @appointment = Appointment.find(params[:appointment_id])
-
         @style.update(style_params)
         redirect_to appointment_style_path(@appointment, @style)
     end
@@ -57,7 +56,7 @@ class StylesController < ApplicationController
     private
       def style_params
         params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost, 
-                      :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :exclusive, :photos => [])
+                      :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :exclusive, :default_attachment_id, :photos => [])
              end
 
 end
