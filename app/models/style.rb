@@ -57,8 +57,6 @@ class Style < ActiveRecord::Base
       photos.each do |photo|
         attachments.create(photo: photo)
       end
-      # finished uploading images
-      update(currently_processing_photos: false)
     end
   end
 
