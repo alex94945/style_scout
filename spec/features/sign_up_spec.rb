@@ -10,13 +10,14 @@ describe "signing up a new user", type: :feature, js: true do
       fill_in('user_password', with: "itsalljoosey1")
       fill_in('user_password_confirmation', with: "itsalljoosey1")
       click_button('Sign up')
+      # TODO FIXME need to add functionality to set company on signup
       expect(User.count).to eq 1
     end
   end
 
   context 'with validation errors' do 
     before do
-      User.create(email:'alex@already.com', name: 'Alex User', password: '1234567890', password_confirmation: '1234567890')
+      create(:user, company: create(:company))
     end
 
     it 'shows me validation errors' do

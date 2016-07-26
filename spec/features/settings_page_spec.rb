@@ -4,7 +4,7 @@ describe "visiting the settings page", type: :feature, js: true do
 
   context "as an administrative user " do
      before do
-        @user = User.create(email: "test@test.com", password: "123456789", password_confirmation: '123456789', name: 'Alex Young', administrator: true)
+      @user = create(:user, company: create(:company), administrator: true)
         login_as(@user, scope: :user)
       end
 
@@ -16,7 +16,7 @@ describe "visiting the settings page", type: :feature, js: true do
 
   context "as a non-administrative user" do
       before do
-        @user = User.create(email: "test@test.com", password: "123456789", password_confirmation: '123456789', name: 'Alex Young', administrator: false)
+        @user = @user = create(:user, company: create(:company))
         login_as(@user, scope: :user)
       end
 
