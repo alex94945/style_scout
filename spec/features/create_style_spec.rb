@@ -1,5 +1,7 @@
 require "rails_helper"
 
+#TODO FIXME : test intermitently fails the 2nd context (full fields)
+
 describe "creating a style", type: :feature, js: true do
 
   before do
@@ -56,7 +58,7 @@ context "without a photo" do
     fill_in('style_color', with: @color)
     select @category, from: 'style_category_name'
     fill_in('style_notes', with: @notes)
-    
+
     click_button("Submit Style")
 
     expect(@appointment.styles.last.vendor_style_number).to eql @vendor_style_number

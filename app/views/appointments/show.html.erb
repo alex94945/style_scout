@@ -50,6 +50,9 @@
                 IMU %
               </th>
               <th>
+                Exclusive?
+              </th>
+              <th>
               </th>
             </thead>
             <tbody>
@@ -78,6 +81,9 @@
                   </td>
                   <td>
                     <%= number_to_percentage(style.initial_mark_up, precision: 2) unless style.initial_mark_up == 0 %>
+                  </td>
+                  <td>
+                    <%= style.exclusive? ? "Yes" : "No" %>
                   </td>
                   <td class="text-right">
                     <%= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style} %>
@@ -119,7 +125,7 @@
     "columnDefs": [
       { "width": "5%", "targets": 0 },
       { "width": "15%", "targets": 3 },
-      { "orderable": false, "targets": [0,6] }
+      { "orderable": false, "targets": [0,7] }
     ],
     "aaSorting": [3,'desc'],
     "iDisplayLength": 50
