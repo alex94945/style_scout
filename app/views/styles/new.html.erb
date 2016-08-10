@@ -1,1 +1,16 @@
-<%= render partial: 'new_form' %>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-default">
+      <div class="">
+        <div class="modal-header modal-header-primary">
+          New style for appointment: <%= @appointment.name %>
+        </div>
+        <div class="panel-body">
+          <%= form_for @style, url: appointment_styles_path(@appointment), multipart: true, method: :post, html: { class: 'ui-form' } do |f| %>
+            <%= render partial: 'shared/styles/form', locals: {form: f} %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
