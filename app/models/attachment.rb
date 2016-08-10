@@ -3,13 +3,11 @@ class Attachment < ActiveRecord::Base
 
   has_attached_file :photo, styles: {
     thumb: '100x100>',
-    square: '200x200#',
-    medium: '300x300>',
     large: '800x800>'
   }
 
   validates_attachment_content_type :photo, :content_type => /\Aimage\/.*\Z/
 
 
-  process_in_background :photo, only_process: [:thumb, :square, :medium, :large]
+  process_in_background :photo
 end

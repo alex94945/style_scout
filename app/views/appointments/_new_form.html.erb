@@ -4,7 +4,7 @@
       New Appointment
     </div>
     <div class="modal-body">
-      <%= form_for @appointment, url: appointments_path, method: :post do |f| %>
+      <%= form_for @appointment, url: appointments_path , method: :post do |f| %>
         <%= render partial: 'shared/appointments/form', locals: {form: f} %>
       <% end %>
     </div>
