@@ -20,7 +20,6 @@
 
 
 $(function(){
-  alert('start')
   $(document).on('submit', '.ui-form', function(){
     $(this).find('.btn-submit').addClass('disabled').attr('value', 'working...');
   })

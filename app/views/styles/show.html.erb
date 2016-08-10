@@ -83,9 +83,9 @@
 			<%- @style.attachments.each do |attachment| %>
 				<div class='col-md-2'>
 					<div class="well">
-						<a href="#" data-featherlight="<%= attachment.photo.url('large') %>">
+						<%= link_to appointment_style_attachment_path(@appointment, @style, attachment), remote: true do %>
 							<%= image_tag attachment.photo.url('square'), :style=>'display: block; margin: auto; max-width:100%;' %>
-						</a>
+						<% end %>
 						<%= link_to 'Delete', appointment_style_attachment_path(@appointment, @style, attachment), 
 							data: {confirm: 'Are You Sure?'}, method: :delete %>
 						|

@@ -2,7 +2,7 @@ class Attachment < ActiveRecord::Base
   belongs_to :style
 
   has_attached_file :photo, styles: {
-    thumb: '100x100>',
+    square: '200x200#',
     large: '800x800>'
   }
 
