@@ -40,7 +40,7 @@ class Style < ActiveRecord::Base
       end
     end
 
-  def default_photo(size='large')
+  def default_photo(size = 'large')
     
     return nil unless attachments.any?
     if default_attachment_id
