@@ -15,10 +15,7 @@ class StylesController < ApplicationController
      def new
       @style = Style.new
       @appointment = Appointment.find(params[:appointment_id])
-      respond_to do |format|
-        format.html {redirect_to appointment_path(@appointment)}
-        format.js
-      end
+     
     end
 
     def edit
