@@ -22,7 +22,6 @@ context "without a photo" do
     visit "/appointments/#{@appointment.id}"
     click_link('Add New Style')
 
-    find("#modal", match: :first)
     fill_in('style_vendor_style_number', with: @vendor_style_number)
     
     click_button("Submit Style")
@@ -47,7 +46,6 @@ context "without a photo" do
     visit "/appointments/#{@appointment.id}"
     click_link('Add New Style')
 
-    find("#modal", match: :first)
     fill_in('style_vendor_style_number', with: @vendor_style_number)
     fill_in('style_quantity', with: @style_quantity )
     select @status, from: 'style_status'

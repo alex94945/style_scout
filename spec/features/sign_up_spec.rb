@@ -3,7 +3,7 @@ require "rails_helper"
 describe "signing up a new user", type: :feature, js: true do
 
   context 'with a valid user' do
-    it "allows me to sign up" do 
+    it "allows user to sign up" do 
       visit new_user_registration_path
       fill_in('user_name', with: "JOOSE")
       fill_in('user_email', with: "he@knowshernow.com")
@@ -16,10 +16,6 @@ describe "signing up a new user", type: :feature, js: true do
   end
 
   context 'with validation errors' do 
-    before do
-      create(:user, company: create(:company))
-    end
-
     it 'shows me validation errors' do
       visit new_user_registration_path
       fill_in('user_name', with: "Alex Again")

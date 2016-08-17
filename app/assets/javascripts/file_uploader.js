@@ -2,12 +2,10 @@ $(function(){
 
   $(".photo-upload-fields").on('change', 'input', function(){
     readURL(this, $(this).parents('.btn-file').siblings('img'));
-    hideChooseButton($(this).parents('.btn-file'));
-    showUploadButton();
+    hideBrowseButton($(this).parents('.btn-file'));
   });
 
 })
-
 
 function duplicateUploadField(){
   var htmlCloneString = $('.ghost-photo-input-group').clone()
@@ -18,15 +16,9 @@ function duplicateUploadField(){
   $('.photo-upload-fields').prepend(htmlCloneString)
 }
 
-function hideChooseButton(element){
+function hideBrowseButton(element){
   element.addClass('hidden')
 }
-
-function showUploadButton(){
-  $('.photo-upload-well .submit').removeClass('hidden');
-}
-
-
 
 function readURL(input, render_element) {
   console.log(input)
@@ -36,9 +28,7 @@ function readURL(input, render_element) {
     reader.onload = function (e) {
       render_element.attr('src', e.target.result);
       duplicateUploadField();
-
     }
-
     reader.readAsDataURL(input.files[0]);
 
   }
