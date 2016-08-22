@@ -30,20 +30,11 @@
   margin-top: -10px;
 }
 
-/* Datatables */
+/* Mobile Appointments show page */
 
-table.dataTable tfoot th, table.dataTable tfoot td{
-  padding: 8px 10px !important;
-  background-color: rgba(0,128,0,0.2);
-  font-weight: bold;
-}
-
-.dataTables_length {
-  padding-left: 15px;
-}
-
-.dataTables_filter {
-  padding-right: 15px;
+a.mobile-add-style-button {
+  margin-bottom: -15px; 
+  margin-top: 15px;
 }
 
 /* Photos */

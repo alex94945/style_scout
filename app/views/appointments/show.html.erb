@@ -1,5 +1,5 @@
 <div class="panel panel-default">
-  <ul class="panel-heading breadcrumb" style="margin-bottom: 0px">
+  <ul class="panel-heading breadcrumb hidden-xs" style="margin-bottom: 0px">
     <li><%= link_to "All Appointments", appointments_path %></li>
     <li class="active">
       <%= @appointment.name.titleize %> | 
@@ -16,7 +16,7 @@
     </span> 
   </ul>
 
-  <div class="panel-body">
+  <div class="panel-body hidden-xs">
     <!-- Panel body, upper -->
       <div class="row">
         <div class="col-md-6" id="appointment-header">
@@ -111,42 +111,54 @@
           </table>
         </div>
       </div>
+  </div>
 
-      <div class="visible-xs">
-        <%- @appointment.styles.each do |style| %>
-          <%= link_to appointment_style_path(@appointment, style) do %>
-            <div class='well'>
-              <div class="row">
-                <div class="col-xs-6">
-                  <%= image_tag style.default_photo('square'), style:'max-width:100%;' %>
-                </div>
-                <div class="col-xs-6">
-                  <%= style.vendor_style_number %>
-                </div>
-              </div>
-            </div>
-          <% end %>
-        <% end %>
+  <!-- Mobile view -->
+  <ul class="panel-heading breadcrumb visible-xs" style="margin-bottom: 0px">
+    <li><%= link_to "All Appointments", appointments_path %></li>
+    <li class="active">
+      <%= @appointment.name.titleize %> | 
+      <%- if @appointment.scout_date.present? %>
+        <%= @appointment.scout_date.strftime('%b %e, %Y') %>
+      <%- else %>
+        N/A
+      <% end %>
+    </li>
+    <span>
+      <div class="pull-right">
+        <%= render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment} %>
       </div>
-
-    <!-- Below panel -->
-    <div class="strong">
-      Notes:
-      <%= simple_format(@appointment.notes) %>
-    </div>
-    <%= link_to 'Export As CSV', appointment_export_path(@appointment, format: "csv"), class: "btn btn-primary" %>
+    </span> 
+  </ul>
+  <div class="panel-body visible-xs">
+    <!-- Panel body, upper -->
+      <div class="row">
+        <div class="col-md-12" id="appointment-header">
+          <%= @appointment.name.titleize %>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <%= link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary mobile-add-style-button" %>
+        </div>
+      </div>
+  </div>
+  <br>
+  <!-- Panel body -->
+  <div class="visible-xs">
+    <%- @appointment.styles.each do |style| %>
+      <%= link_to appointment_style_path(@appointment, style) do %>
+        <div class='well'>
+          <div class="row">
+            <div class="col-xs-6">
+              <%= image_tag style.default_photo('square'), style:'max-width:100%;' %>
+            </div>
+            <div class="col-xs-6">
+              <%= style.vendor_style_number %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
   </div>
 </div>
-
-<script> 
-  $('#appointment-styles').dataTable({
-    responsive: true,
-    "columnDefs": [
-      { "width": "5%", "targets": 0 },
-      { "width": "15%", "targets": 3 },
-      { "orderable": false, "targets": [0,7] }
-    ],
-    "aaSorting": [3,'desc'],
-    "iDisplayLength": 50
-  });
-</script>

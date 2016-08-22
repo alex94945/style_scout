@@ -42,9 +42,8 @@
                 </div>
             </div>
             <hr id="style-index-line">
-            <!-- jquery datatable -->
             <div class="hidden-xs">
-                <table id="styles_table" class="display">
+                <table class="table">
                     <thead>
                         <tr>
                             <th></th>
@@ -117,15 +116,3 @@
         </div>
     </div>
 </div>
-
-
-<script> 
-    $('#styles_table').dataTable({
-      responsive: true,
-      "columnDefs": [
-        { "orderable": false, "targets": [7] }
-      ],
-      "aaSorting": [5,'desc'],
-      "iDisplayLength": 50
-    });
-</script>
