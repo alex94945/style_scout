@@ -1,5 +1,4 @@
 $(function(){
-
   $(".photo-upload-fields").on('change', 'input', function(){
     readURL(this, $(this).parents('.btn-file').siblings('img'));
     hideBrowseButton($(this).parents('.btn-file'));
@@ -12,7 +11,6 @@ function duplicateUploadField(){
                             .removeClass('hidden')
                             .removeClass('ghost-photo-input-group')
                             .addClass('photo-input-group');
-
   $('.photo-upload-fields').prepend(htmlCloneString)
 }
 
@@ -21,7 +19,6 @@ function hideBrowseButton(element){
 }
 
 function readURL(input, render_element) {
-  console.log(input)
   if (input.files && input.files[0]) {
     var reader = new FileReader();
 
