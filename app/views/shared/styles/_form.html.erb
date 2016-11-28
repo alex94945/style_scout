@@ -8,7 +8,7 @@
         <%= form.number_field :quantity, step: '1', placeholder: '150', :class => 'form-control' %>
     </div>
 </div>
-<div class="row form-group"> 
+<div class="row form-group">
     <div class="col-sm-6">
         <label>Status</label>
         <%= form.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, @style.status), { }, class: 'form-control' %>
@@ -18,7 +18,7 @@
         <%= form.text_field :delivery_date, :class => 'form-control' %>
     </div>
 </div>
-<div class="row form-group"> 
+<div class="row form-group">
     <div class="col-sm-4">
         <label>Wholesale Cost</label>
         <%= form.number_field :wholesale_cost, step: '.01', placeholder: '26.99', :class => 'form-control' %>
@@ -44,7 +44,7 @@
         <%= form.check_box :exclusive %>
     </div>
 </div>
-<div class="row form-group"> 
+<div class="row form-group">
     <div class="col-sm-6">
         <label>Color</label>
         <%= form.text_field :color, :class => 'form-control' %>
@@ -54,7 +54,7 @@
         <%= form.select :category_name, options_for_select( Category.all.map{ |c| [c.display_name, c.name ] }, @style.category_name), { }, class: 'form-control' %>
     </div>
 </div>
-<div class="row form-group"> 
+<div class="row form-group">
     <div class="col-sm-12">
         <label>Notes</label>
         <%= form.text_area :notes, :class => 'form-control' %>
@@ -83,12 +83,12 @@
 
 
 <div class="row">
-    <div class="form-group col-md-3">
-        <%= form.submit 'Submit Style', class: 'btn btn-primary btn-submit btn-block'%>
+    <div class='col-md-3'>
+        <%= link_to "Cancel", appointment_path(@appointment), class: "btn btn-default" %>
     </div>
 
-    <div class='col-md-3 col-md-offset-6'>
-        <button type="button" class="btn btn-default btn-block" data-dismiss="modal">Cancel</button>
+    <div class="form-group col-md-3 col-md-offset-6">
+        <%= form.submit 'Submit Style', class: 'btn btn-primary btn-submit btn-block'%>
     </div>
 </div>
 
