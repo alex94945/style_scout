@@ -14,12 +14,6 @@ class ApplicationController < ActionController::Base
       devise_parameter_sanitizer.permit(:account_update, keys: [:name])
     end
 
-    # def configure_permitted_parameters
-    #   devise_parameter_sanitizer.permit(:sign_in) do |user_params|
-    #     user_params.permit(:name)
-    #   end
-    # end
-
     def current_company
       @current_company ||=  current_user.company
     end
