@@ -1,10 +1,15 @@
 class Style < ActiveRecord::Base
   belongs_to :appointment
-  enum status: [ :created, :approved, :order_placed, :received, :cancelled, :deleted ]
+  enum status: [ :created, :pending, :order_placed, :received, :cancelled, :deleted ]
+  INCOMPLETE_STATUSES = [ :created, :pending, :received, :cancelled, :deleted ]
+
   has_many :attachments, dependent: :destroy
   validates :vendor_style_number, presence: true
 
-  scope :open, -> { where(status: [0,1,2,3]) }
+  scope :open, -> { where(status: [0,1,2,3]) } #ignores cancelled and deleted
+
+  scope :incomplete, -> { where(status: [0,1,3]) }
+
   scope :with_value, -> { where(
                       "quantity > ? AND
                       (wholesale_cost > ? OR negotiated_cost > ?) AND

@@ -1,1 +1,53 @@
-<div
+.row
+  .col-md-3
+    - unless params[:start_date].present? && params[:end_date].present?
+      Since
+      = Date.current.beginning_of_month
+
+  .col-md-12
+    = form_tag root_path, method: :get do
+      %label Start Date
+      = text_field_tag 'start_date', params[:start_date], class: 'datepicker'
+
+      %label End Date
+      = text_field_tag 'end_date', params[:end_date], class: 'datepicker'
+      = submit_tag
+
+
+
+
+.row.card-row
+  .col-md-4
+    .card
+      suo
+  .col-md-4
+    .card
+      hey
+  .col-md-4
+    .card
+      Appointment Count:
+      = @dashboard_stats[:appointments].count
+
+.row.card-row
+  .col-md-6
+    .card
+      %ul.list-group
+      Appointments:
+      - @dashboard_stats[:appointments].each do |appointment|
+        .list-group-item
+          = link_to appointment.name, appointment_path(appointment)
+
+          %i.fa{class: (appointment.contains_incomplete_styles? ? 'fa-exclamation': 'fa-check')}
+  .col-md-6
+    .card
+      Incomplete Styles:
+
+
+
+:javascript
+  $(document).ready(function() {
+    $( ".datepicker" ).datepicker({
+      dateFormat: "yy-mm-dd"
+    });
+
+  }); //end document ready
