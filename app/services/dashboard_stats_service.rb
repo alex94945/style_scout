@@ -11,18 +11,18 @@ class DashboardStatsService
     {
       appointments: appointments,
       current_date_range_budget: 1200,
-      styles: styles
+      incomplete_styles: styles
     }
   end
 
   private
 
     def appointments
-      @appointments ||= @user.appointments.where(scout_date: @start_date..@end_date )
+      @appointments ||= @user.appointments.includes(:styles).where(scout_date: @start_date..@end_date )
     end
 
     def styles
-      Style.where(id: @appointments.pluck(:id))
+      Style.where(id: @appointments.pluck(:id)).incomplete
     end
 
     def format_date(date, default)

@@ -19,7 +19,7 @@
 .row.card-row
   .col-md-4
     .card
-      suo
+      useful number
   .col-md-4
     .card
       hey
@@ -40,7 +40,13 @@
           %i.fa{class: (appointment.contains_incomplete_styles? ? 'fa-exclamation': 'fa-check')}
   .col-md-6
     .card
+      %ul.list-group
       Incomplete Styles:
+      - @dashboard_stats[:incomplete_styles].each do |appointment|
+        .list-group-item
+          = link_to appointment.name, appointment_path(appointment)
+
+          %i.fa{class: (appointment.contains_incomplete_styles? ? 'fa-exclamation': 'fa-check')}
 
 
 
