@@ -1,14 +1,14 @@
 class Style < ActiveRecord::Base
   belongs_to :appointment
   enum status: [ :created, :pending, :order_placed, :received, :cancelled, :deleted ]
-  INCOMPLETE_STATUSES = [ :created, :pending, :received, :cancelled, :deleted ]
+  INCOMPLETE_STATUSES = [0,1,3]
 
   has_many :attachments, dependent: :destroy
   validates :vendor_style_number, presence: true
 
   scope :open, -> { where(status: [0,1,2,3]) } #ignores cancelled and deleted
 
-  scope :incomplete, -> { where(status: [0,1,3]) }
+  scope :incomplete, -> { where(status: Style::INCOMPLETE_STATUSES) }
 
   scope :with_value, -> { where(
                       "quantity > ? AND
@@ -21,13 +21,13 @@ class Style < ActiveRecord::Base
   end
 
   def self.to_csv
-    attributes = %w{Vendor_Style_Number Quantity Status Color Created 
+    attributes = %w{Vendor_Style_Number Quantity Status Color Created
                         Negotiated_Cost Retail_Price Wholesale_Cost Category_Name Delivery_Date Notes Attachments}
 
     CSV.generate(headers: true) do |csv|
         csv << attributes
         all.each do |style|
-          csv << [ 
+          csv << [
               style.vendor_style_number,
               style.quantity,
               style.status,
@@ -46,7 +46,7 @@ class Style < ActiveRecord::Base
   end
 
   def default_photo(size = 'large')
-    
+
     return nil unless attachments.any?
     if default_attachment_id
       attachments.find(default_attachment_id).photo.url(size)
@@ -66,7 +66,7 @@ class Style < ActiveRecord::Base
   end
 
 
-  private 
+  private
     def wholesale_or_negotiated_cost
       negotiated_cost.present? ? negotiated_cost : wholesale_cost
     end

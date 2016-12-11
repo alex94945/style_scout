@@ -27,7 +27,7 @@ class DashboardStatsService
     end
 
     def incomplete_appointments
-      appointments.joins(:styles).where(styles: {status: [0,1,3]})
+      appointments.joins(:styles).where(styles: {status: Style::INCOMPLETE_STYLES})
     end
 
     def styles
