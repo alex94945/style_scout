@@ -6,8 +6,16 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-dates = [Date.today, 1.month.ago, 4.days.ago, 5.days.ago, 30.days.ago, 2.weeks.from_now]
+dates = [3.months.ago, Date.tomorrow, Date.yesterday, Date.today, 1.month.ago, 4.days.ago, 5.days.ago, 30.days.ago, 2.weeks.from_now]
 
 50.times do
-  Appointment.create(user: User.first, scout_date: dates.sample, name: Faker::Company.name )
+  a = Appointment.create(user: User.first, scout_date: dates.sample, name: Faker::Company.name)
+  10.times do
+    a.styles.create(
+      vendor_style_number: Faker::Number.number(10),
+      negotiated_cost: Faker::Commerce.price,
+      retail_price:Faker::Commerce.price,
+      wholesale_cost:Faker::Commerce.price
+    )
+  end
 end

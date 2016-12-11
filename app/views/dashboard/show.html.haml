@@ -19,20 +19,20 @@
 .row.card-row
   .col-md-4
     .card
-      .h4
+      %h4
         Open Budget
       $100,000.00
-      .h6
+      %h6
         Pending
       $20,000.00
   .col-md-4
     .card
-      .h4
+      %h4
         Placed Budget
       $50,000.00
   .col-md-4
     .card
-      .h4
+      %h4
         Total Budget
       $150,000.00
 
@@ -42,20 +42,25 @@
       %ul.list-group
       .h4
         Appointments:
-      - @dashboard_stats[:appointments].each do |appointment|
+      - @dashboard_stats[:incomplete_appointments].each do |appointment|
         .list-group-item
           = link_to appointment.name, appointment_path(appointment)
+          %i.fa.fa-exclamation.text-danger
 
-          %i.fa{class: (appointment.contains_incomplete_styles? ? 'fa-exclamation': 'fa-check')}
+      - @dashboard_stats[:complete_appointments].each do |appointment|
+        .list-group-item
+          = link_to appointment.name, appointment_path(appointment)
+          %i.fa.fa-check.text-success
+
   .col-md-6
     .card
       %ul.list-group
       Incomplete Styles:
-      - @dashboard_stats[:incomplete_styles].each do |appointment|
+      - @dashboard_stats[:incomplete_styles].each do |style|
         .list-group-item
-          = link_to appointment.name, appointment_path(appointment)
-
-          %i.fa{class: (appointment.contains_incomplete_styles? ? 'fa-exclamation': 'fa-check')}
+          = link_to style.vendor_style_number, appointment_style_path(style.appointment.id, style)
+          %small
+            = style.status
 
 
 

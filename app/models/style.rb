@@ -21,29 +21,29 @@ class Style < ActiveRecord::Base
   end
 
   def self.to_csv
-      attributes = %w{Vendor_Style_Number Quantity Status Color Created 
-                          Negotiated_Cost Retail_Price Wholesale_Cost Category_Name Delivery_Date Notes Attachments}
+    attributes = %w{Vendor_Style_Number Quantity Status Color Created 
+                        Negotiated_Cost Retail_Price Wholesale_Cost Category_Name Delivery_Date Notes Attachments}
 
-      CSV.generate(headers: true) do |csv|
-          csv << attributes
-          all.each do |style|
-            csv << [ 
-                style.vendor_style_number,
-                style.quantity,
-                style.status,
-                style.color,
-                style.created_at.strftime("%Y-%m-%d"),
-                style.negotiated_cost,
-                style.retail_price,
-                style.wholesale_cost,
-                style.category_name,
-                style.delivery_date,
-                style.notes,
-                style.attachments.map{ |a| Rails.application.routes.url_helpers.api_v1_url(a) }.join(' ')
-              ]
-          end
-      end
+    CSV.generate(headers: true) do |csv|
+        csv << attributes
+        all.each do |style|
+          csv << [ 
+              style.vendor_style_number,
+              style.quantity,
+              style.status,
+              style.color,
+              style.created_at.strftime("%Y-%m-%d"),
+              style.negotiated_cost,
+              style.retail_price,
+              style.wholesale_cost,
+              style.category_name,
+              style.delivery_date,
+              style.notes,
+              style.attachments.map{ |a| Rails.application.routes.url_helpers.api_v1_url(a) }.join(' ')
+            ]
+        end
     end
+  end
 
   def default_photo(size = 'large')
     
