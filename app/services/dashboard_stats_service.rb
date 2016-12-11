@@ -1,11 +1,4 @@
-class DashboardStatsService
-
-  def initialize(params, current_user)
-    @user = current_user
-    @start_date = format_date(params[:start_date], Date.today.beginning_of_month)
-    @end_date = format_date(params[:end_date], Date.today)
-  end
-
+class DashboardStatsService < DashboardBaseService
 
   def perform
     {
@@ -27,16 +20,11 @@ class DashboardStatsService
     end
 
     def incomplete_appointments
-      appointments.joins(:styles).where(styles: {status: Style::INCOMPLETE_STYLES})
+      appointments.joins(:styles).where(styles: {status: Style::INCOMPLETE_STATUSES})
     end
 
     def incomplete_styles
       Style.includes(:appointment).where(appointment_id: @appointments.pluck(:id).uniq).incomplete
-    end
-
-    def format_date(date, default)
-      return default unless date.present?
-      Date.parse(date)
     end
 
 end

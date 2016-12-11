@@ -1,7 +1,4 @@
-class BudgetService
-
-  def initialize(params, current_user)
-  end
+class BudgetService < DashboardBaseService
 
   def perform
     {
@@ -12,22 +9,30 @@ class BudgetService
     }
   end
 
-  def total
-    150000
-  end
+  
+    def total
+      150000
+    end
 
-  def pending
-    #styles that are  quantity * wholesale_or_negotiated_cost
-    7500
-  end
+    def pending
+      styles.incomplete.map(&:wholesale_or_negotiated_cost).sum()
+    end
 
-  def placed
-    55000
-  end
+    def placed
+      styles.order_placed.map(&:wholesale_or_negotiated_cost).sum()
+    end
 
-  def open
-    #total - (pending + placed)
+    def open
+      total - (pending + placed)
+    end
 
-    25000
-  end
+    def styles
+      @styles ||=
+        @user
+          .styles
+          .includes(:appointment)
+          .where(appointments: {scout_date: @start_date..@end_date})
+    end
+
+
 end

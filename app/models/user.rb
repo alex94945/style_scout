@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   has_many :appointments
+  has_many :styles, through: :appointments
+  
   has_one :profile_config
   enum role: [ :buyer, :vendor ]
   
