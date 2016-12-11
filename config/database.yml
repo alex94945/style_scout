@@ -1,23 +1,23 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: merchandise_development
+  database: style_scout_development
   pool: 5
-  username: 
+  username:
   password:
 
 test: &TEST
   adapter: postgresql
   encoding: utf8
-  database: merchandise_test
+  database: style_scout_test
   pool: 5
-  username: 
+  username:
   password:
 
 production:
   adapter: postgresql
   encoding: utf8
-  database: merchandise_production
-  
+  database: style_scout_production
+
 cucumber:
   <<: *TEST
