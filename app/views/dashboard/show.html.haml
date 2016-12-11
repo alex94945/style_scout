@@ -1,7 +1,7 @@
 .row
   .col-md-3
     - unless params[:start_date].present? && params[:end_date].present?
-      Since
+      From:
       = Date.current.beginning_of_month
 
   .col-md-12
@@ -19,20 +19,29 @@
 .row.card-row
   .col-md-4
     .card
-      useful number
+      .h4
+        Open Budget
+      $100,000.00
+      .h6
+        Pending
+      $20,000.00
   .col-md-4
     .card
-      hey
+      .h4
+        Placed Budget
+      $50,000.00
   .col-md-4
     .card
-      Appointment Count:
-      = @dashboard_stats[:appointments].count
+      .h4
+        Total Budget
+      $150,000.00
 
 .row.card-row
   .col-md-6
     .card
       %ul.list-group
-      Appointments:
+      .h4
+        Appointments:
       - @dashboard_stats[:appointments].each do |appointment|
         .list-group-item
           = link_to appointment.name, appointment_path(appointment)
