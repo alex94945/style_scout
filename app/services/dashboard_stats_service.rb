@@ -12,7 +12,7 @@ class DashboardStatsService
       complete_appointments: complete_appointents,
       incomplete_appointments: incomplete_appointments,
       current_date_range_budget: 1200,
-      incomplete_styles: styles
+      incomplete_styles: incomplete_styles
     }
   end
 
@@ -30,7 +30,7 @@ class DashboardStatsService
       appointments.joins(:styles).where(styles: {status: Style::INCOMPLETE_STYLES})
     end
 
-    def styles
+    def incomplete_styles
       Style.includes(:appointment).where(appointment_id: @appointments.pluck(:id).uniq).incomplete
     end
 

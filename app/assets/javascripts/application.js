@@ -16,6 +16,7 @@
 //= require dataTables/extras/dataTables.responsive
 //= require jquery-ui
 //= require twitter/bootstrap
+//= require chartist.min
 //= require_tree .
 
 

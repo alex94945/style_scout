@@ -45,6 +45,10 @@ class Style < ActiveRecord::Base
     end
   end
 
+  def wholesale_or_negotiated_cost
+    negotiated_cost.present? ? negotiated_cost : wholesale_cost
+  end
+
   def default_photo(size = 'large')
 
     return nil unless attachments.any?
@@ -65,9 +69,4 @@ class Style < ActiveRecord::Base
     end
   end
 
-
-  private
-    def wholesale_or_negotiated_cost
-      negotiated_cost.present? ? negotiated_cost : wholesale_cost
-    end
 end

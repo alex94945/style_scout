@@ -24,7 +24,7 @@ def update
 end
 
 def show
-  @appointment = current_company.appointments.find(params[:id])
+  @appointment = current_company.appointments.includes(styles: :attachments).find(params[:id])
 end
 
 def destroy

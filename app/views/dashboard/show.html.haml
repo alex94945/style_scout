@@ -1,66 +1,76 @@
-.row
-  .col-md-3
-    - unless params[:start_date].present? && params[:end_date].present?
-      From:
-      = Date.current.beginning_of_month
-
-  .col-md-12
-    = form_tag root_path, method: :get do
-      %label Start Date
-      = text_field_tag 'start_date', params[:start_date], class: 'datepicker'
-
-      %label End Date
-      = text_field_tag 'end_date', params[:end_date], class: 'datepicker'
-      = submit_tag
-
-
-
-
 .row.card-row
   .col-md-4
     .card
-      %h4
-        Open Budget
-      $100,000.00
-      %h6
-        Pending
-      $20,000.00
+      = form_tag root_path, method: :get do
+        .form-group
+          %label Start Date
+          = text_field_tag 'start_date', params[:start_date], class: 'datepicker form-control'
+          %br
+          %label End Date
+          = text_field_tag 'end_date', params[:end_date], class: 'datepicker form-control'
+        .row
+          .col-md-3
+            = submit_tag 'Change', class: 'btn btn-primary btn-sm'
+          .col-md-9.text-right
+            - if params[:start_date].present? && params[:end_date].present?
+              = link_to 'reset', root_path
+            - else
+              From:
+              = Date.current.beginning_of_month.strftime('%b %d, %Y')
+        
   .col-md-4
     .card
-      %h4
-        Placed Budget
-      $50,000.00
+      .row
+        .col-md-12
+          .ct-chart.ct-perfect-fourth
+      .row
+        .col-md-4
+          %small.text-muted
+            Open
+            %br
+          = number_to_currency(@budget[:open])
+        .col-md-4
+          %small.text-muted
+            Pending
+            %br
+          = number_to_currency(@budget[:pending])
+        .col-md-4
+          %small.text-muted
+            Placed
+            %br
+          = number_to_currency(@budget[:placed])
   .col-md-4
     .card
-      %h4
+      %small.text-muted
         Total Budget
-      $150,000.00
+      .total-budget
+        = number_to_currency(@budget[:total])
 
+%hr
 .row.card-row
   .col-md-6
-    .card
-      %ul.list-group
-      .h4
-        Appointments:
-      - @dashboard_stats[:incomplete_appointments].each do |appointment|
-        .list-group-item
-          = link_to appointment.name, appointment_path(appointment)
-          %i.fa.fa-exclamation.text-danger
+    %ul.list-group
+    %small.text-muted
+      Appointments:
+    - @dashboard_stats[:incomplete_appointments].each do |appointment|
+      .list-group-item
+        = link_to appointment.name, appointment_path(appointment)
+        %i.fa.fa-exclamation.text-danger
 
-      - @dashboard_stats[:complete_appointments].each do |appointment|
-        .list-group-item
-          = link_to appointment.name, appointment_path(appointment)
-          %i.fa.fa-check.text-success
+    - @dashboard_stats[:complete_appointments].each do |appointment|
+      .list-group-item
+        = link_to appointment.name, appointment_path(appointment)
+        %i.fa.fa-check.text-success
 
   .col-md-6
-    .card
-      %ul.list-group
+    %ul.list-group
+    %small.text-muted
       Incomplete Styles:
-      - @dashboard_stats[:incomplete_styles].each do |style|
-        .list-group-item
-          = link_to style.vendor_style_number, appointment_style_path(style.appointment.id, style)
-          %small
-            = style.status
+    - @dashboard_stats[:incomplete_styles].each do |style|
+      .list-group-item
+        = link_to style.vendor_style_number, appointment_style_path(style.appointment.id, style)
+        %small
+          = style.status
 
 
 
@@ -70,4 +80,37 @@
       dateFormat: "yy-mm-dd"
     });
 
+    var data = {
+      labels: ['Open', 'Pending', 'Placed'],
+      series: [
+        #{@budget[:open]},
+        #{@budget[:pending]},
+        #{@budget[:placed]}
+      ]
+    };
+
+    var options = {
+      labelInterpolationFnc: function(value) {
+        return value[0]
+      }
+    };
+    
+    var responsiveOptions = [
+      ['screen and (min-width: 640px)', {
+        chartPadding: 30,
+        labelOffset: 100,
+        labelDirection: 'explode',
+        labelInterpolationFnc: function(value) {
+          return value;
+        }
+      }],
+      ['screen and (min-width: 1024px)', {
+        labelOffset: 80,
+        chartPadding: 10
+      }]
+    ];
+
+
+
+    new Chartist.Pie('.ct-chart', data, options,responsiveOptions)
   }); //end document ready
