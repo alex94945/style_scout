@@ -5,10 +5,11 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :appointments
   has_many :styles, through: :appointments
-  
+  has_many :budgets
+
   has_one :profile_config
   enum role: [ :buyer, :vendor ]
-  
+
   belongs_to :company
 
   after_create :make_profile_config

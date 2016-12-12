@@ -9,9 +9,9 @@ class BudgetService < DashboardBaseService
     }
   end
 
-  
+
     def total
-      150000
+      @user.budgets.for_current_period(@params).try(:value) || 0
     end
 
     def pending
@@ -33,6 +33,5 @@ class BudgetService < DashboardBaseService
           .includes(:appointment)
           .where(appointments: {scout_date: @start_date..@end_date})
     end
-
 
 end

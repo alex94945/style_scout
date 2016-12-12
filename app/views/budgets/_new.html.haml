@@ -1,0 +1,13 @@
+= form_for budget, url: budgets_path, method: :post do |f|
+  %h3 New Budget
+  %hr.style4{:style => "margin: 5px 0 5px 0"}/
+  .form-group
+  %label Year
+  = f.text_field :year, class: 'form-control', value: Date.current.year
+  %label Month
+  %select.form-control{name: '[budget][merch_month]'}
+    = options_for_merch_date_picker(params)
+  %label Value
+  = f.text_field :value, class: 'form-control'
+  .form-group
+    = f.submit "Create", class: "btn btn-primary"

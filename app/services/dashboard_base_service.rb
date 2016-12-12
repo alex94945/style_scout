@@ -4,10 +4,11 @@ class DashboardBaseService
     @user = current_user
     @start_date = format_date(params[:merch_month], :start, MerchCalendar::MerchWeek.from_date(Date.current).start_of_month)
     @end_date = format_date(params[:merch_month], :end, Date.today)
+    @params = params
   end
 
   protected
-  
+
     def format_date(value, period, default)
       return default unless value.present?
 
