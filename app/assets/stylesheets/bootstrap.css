@@ -51,3 +51,7 @@ a.mobile-add-style-button {
 .photo-input-group img{
   max-width: 90%;
 }
+
+.no-margin{
+  margin:0 !important;
+}

@@ -1,15 +1,24 @@
 .row.card-row
-  .col-md-4
+  .col-sm-4
     .card
-      = form_tag root_path, method: :get do
-        %select.form-control{name: 'merch_month', onchange: "this.form.submit()"}
-          = options_for_merch_date_picker(params)
+      .form-group
+        %small.text-muted
+          Merchant Month Period
+      .form-group
+        = form_tag root_path, method: :get do
+          %select.form-control{name: 'merch_month', onchange: "this.form.submit()"}
+            = options_for_merch_date_picker(params)
+    .card.card-row
+      %small.text-muted
+        Budget Trends
+      %div
+        %canvas#budget-trends-chart{style:'width: 200px;height:100px;'}
 
-  .col-md-4
+  .col-sm-4
     .card
       .row
         .col-md-12
-          %canvas#chart{style:'width: 200px;height:150px;'}
+          %canvas#pie-chart{style:'width: 200px;height:150px;'}
       .row
         .col-md-4
           %small.text-muted
@@ -26,46 +35,56 @@
             Placed
             %br
           = number_to_currency(@budget[:placed])
-  .col-md-4
+  .col-sm-4
     .card
       %small.text-muted
         Total Budget
       .total-budget
         = number_to_currency(@budget[:total])
     .card.card-row
-      %small.text-muted
-        Open Appointments
-        34
+      %table{style: 'width:100%'}
+        %tr
+          %td
+            %small.text-muted
+              Incomplete Appointments:
+          %td
+            %h3.no-margin.text-right
+              =@dashboard_stats[:incomplete_appointments].count
     .card.card-row
-      %small.text-muted
-        Open Styles
-        34
+      %table{style: 'width:100%'}
+        %tr
+          %td
+            %small.text-muted
+              Incomplete Styles
+          %td
+            %h3.no-margin.text-right
+              = @dashboard_stats[:incomplete_styles].count
 
 %hr
-.row.card-row
+.row.card-row.no-margin
   .col-md-6
-    %ul.list-group
-    %small.text-muted
+    %h3.text-muted
       Appointments:
-    - @dashboard_stats[:incomplete_appointments].each do |appointment|
-      .list-group-item
-        = link_to appointment.name, appointment_path(appointment)
-        %i.fa.fa-exclamation.text-danger
+    .max-height-500
+      - @dashboard_stats[:incomplete_appointments].each_with_index do |appointment|
+        .list-group-item
+          = link_to appointment.name, appointment_path(appointment)
+          %i.fa.fa-exclamation.text-danger
 
-    - @dashboard_stats[:complete_appointments].each do |appointment|
-      .list-group-item
-        = link_to appointment.name, appointment_path(appointment)
-        %i.fa.fa-check.text-success
+      - @dashboard_stats[:complete_appointments].each do |appointment|
+        .list-group-item
+          = link_to appointment.name, appointment_path(appointment)
+          %i.fa.fa-check.text-success
 
   .col-md-6
-    %ul.list-group
-    %small.text-muted
-      Incomplete Styles:
-    - @dashboard_stats[:incomplete_styles].each do |style|
-      .list-group-item
-        = link_to style.vendor_style_number, appointment_style_path(style.appointment.id, style)
-        %small
-          = style.status
+    %h3.text-muted
+      Styles:
+    .max-height-500
+      - @dashboard_stats[:incomplete_styles].each do |style|
+        .list-group-item
+          = link_to style.vendor_style_number, appointment_style_path(style.appointment.id, style)
+          %small
+            = style.status
 
 
 
@@ -75,7 +94,7 @@
       dateFormat: "yy-mm-dd"
     });
 
-    var data = {
+    var pie_data = {
         labels: [
             "Open",
             "Pending",
@@ -97,12 +116,36 @@
             }]
     };
 
-    var ctx = document.getElementById("chart");
-    var myPieChart = new Chart(ctx,{
+    var pie_ctx = document.getElementById("pie-chart");
+    var myPieChart = new Chart(pie_ctx,{
         type: 'pie',
-        data: data,
+        data: pie_data,
         options: {}
     });
 
+    var bar_data = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
+        {
+          label: "Monthly Budget Allocation",
+          backgroundColor: [
+            'rgba(255, 99, 132, 0.2)',
+            'rgba(54, 162, 235, 0.2)',
+            'rgba(255, 206, 86, 0.2)',
+            'rgba(75, 192, 192, 0.2)',
+            'rgba(153, 102, 255, 0.2)',
+            'rgba(255, 159, 64, 0.2)'
+          ],
+          data: [65, 59, 80, 81, 56, 55, 40],
+        }
+      ]
+    };
+
+    var bar_ctx = document.getElementById("budget-trends-chart");
+    var myBarChart = new Chart(bar_ctx, {
+        type: 'bar',
+        data: bar_data,
+        options: {}
+    });
 
   }); //end document ready
