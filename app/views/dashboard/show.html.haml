@@ -2,22 +2,9 @@
   .col-md-4
     .card
       = form_tag root_path, method: :get do
-        .form-group
-          %label Start Date
-          = text_field_tag 'start_date', params[:start_date], class: 'datepicker form-control'
-          %br
-          %label End Date
-          = text_field_tag 'end_date', params[:end_date], class: 'datepicker form-control'
-        .row
-          .col-md-3
-            = submit_tag 'Change', class: 'btn btn-primary btn-sm'
-          .col-md-9.text-right
-            - if params[:start_date].present? && params[:end_date].present?
-              = link_to 'reset', root_path
-            - else
-              From:
-              = Date.current.beginning_of_month.strftime('%b %d, %Y')
-        
+        %select.form-control{name: 'merch_month', onchange: "this.form.submit()"}
+          = options_for_merch_date_picker(params)
+
   .col-md-4
     .card
       .row
