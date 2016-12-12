@@ -1,0 +1,14 @@
+= form_for budget, url: budget_path(budget), method: :put do |f|
+  %h3 Edit Budget
+  %hr.style4{:style => "margin: 5px 0 5px 0"}/
+  .form-group
+    %label Year
+    = f.text_field :year, class: 'form-control', value: Date.current.year
+    %label Month
+    %select.form-control{name: '[budget][merch_month]'}
+      = options_for_merch_date_picker(params)
+    %label Value
+    = f.text_field :value, class: 'form-control'
+  .form-group
+    = link_to "Delete", budget_path(budget), class: "btn btn-default", method: :delete
+    = f.submit "Update", class: "btn btn-primary pull-right"

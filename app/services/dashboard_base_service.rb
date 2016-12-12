@@ -11,7 +11,6 @@ class DashboardBaseService
 
     def format_date(value, period, default)
       return default unless value.present?
-
       MerchCalendar.send("#{period}_of_month", 2016, merch_month: value.to_i)
     end
 

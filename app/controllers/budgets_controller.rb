@@ -14,15 +14,18 @@ class BudgetsController < ApplicationController
   end
 
   def edit
-
+    @budget = current_user.budgets.find(params[:id])
   end
 
   def update
+    @budget = current_user.budgets.find(params[:id])
+    @budget.update(budget_params)
+    redirect_to budgets_path
 
   end
 
   def destroy
-
+    raise 'sup'
   end
 
   private
