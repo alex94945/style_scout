@@ -9,7 +9,7 @@
     .card
       .row
         .col-md-12
-          .ct-chart.ct-perfect-fourth
+          %canvas#chart{style:'width: 200px;height:150px;'}
       .row
         .col-md-4
           %small.text-muted
@@ -32,6 +32,14 @@
         Total Budget
       .total-budget
         = number_to_currency(@budget[:total])
+    .card.card-row
+      %small.text-muted
+        Open Appointments
+        34
+    .card.card-row
+      %small.text-muted
+        Open Styles
+        34
 
 %hr
 .row.card-row
@@ -68,36 +76,33 @@
     });
 
     var data = {
-      labels: ['Open', 'Pending', 'Placed'],
-      series: [
-        #{@budget[:open]},
-        #{@budget[:pending]},
-        #{@budget[:placed]}
-      ]
+        labels: [
+            "Open",
+            "Pending",
+            "Placed"
+        ],
+        datasets: [
+            {
+                data: [#{@budget[:open]}, #{@budget[:pending]}, #{@budget[:placed]}],
+                backgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ],
+                hoverBackgroundColor: [
+                    "#FF6384",
+                    "#36A2EB",
+                    "#FFCE56"
+                ]
+            }]
     };
 
-    var options = {
-      labelInterpolationFnc: function(value) {
-        return value[0]
-      }
-    };
-
-    var responsiveOptions = [
-      ['screen and (min-width: 640px)', {
-        chartPadding: 30,
-        labelOffset: 100,
-        labelDirection: 'explode',
-        labelInterpolationFnc: function(value) {
-          return value;
-        }
-      }],
-      ['screen and (min-width: 1024px)', {
-        labelOffset: 80,
-        chartPadding: 10
-      }]
-    ];
+    var ctx = document.getElementById("chart");
+    var myPieChart = new Chart(ctx,{
+        type: 'pie',
+        data: data,
+        options: {}
+    });
 
 
-
-    new Chartist.Pie('.ct-chart', data, options,responsiveOptions)
   }); //end document ready
