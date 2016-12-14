@@ -9,7 +9,13 @@ class BudgetsController < ApplicationController
   end
 
   def create
-    current_user.budgets.create(budget_params)
+    @budget = current_user.budgets.create(budget_params)
+
+    if @budget.valid?
+      flash[:success] = "New Budget Created"
+    else
+      flash[:error] = @budget.errors.full_messages
+    end
     redirect_to budgets_path
   end
 
@@ -25,7 +31,9 @@ class BudgetsController < ApplicationController
   end
 
   def destroy
-    raise 'sup'
+    @budget = current_user.budgets.find(params[:id])
+    @budget.destroy
+    redirect_to budgets_path
   end
 
   private

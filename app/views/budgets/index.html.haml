@@ -1,13 +1,14 @@
 .row
-  .col-sm-6
-    %ul.list-group
-      - @budgets.each do |b|
-        %li.list-group-item
-          = link_to b.merch_month_date_range, edit_budget_path(b), remote: true
-          .pull-right
-            =number_to_currency b.value
-    %div
-      = link_to "Add New Budget", new_budget_path, class: 'btn btn-default', remote: true
-  .col-sm-6
-    #form-container
-      / this container gets stuff dynamically from javascript like edit and new
+	= flash_messages
+.row
+	.col-sm-6
+		%ul.list-group
+			- @budgets.each do |b|
+				%li.list-group-item
+					= link_to b.merch_month_date_range, edit_budget_path(b), remote: true
+					.pull-right
+						=number_to_currency b.value
+		%div
+			= link_to "Add New Budget", new_budget_path, class: 'btn btn-default', remote: true
+	.col-sm-6
+		#form-container
