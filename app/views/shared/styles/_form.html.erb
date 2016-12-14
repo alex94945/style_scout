@@ -1,3 +1,25 @@
+<%- if params[:action] == "new" %>
+  <div class="row form-group">
+    <%= form.file_field :photo, type: 'file', class: 'hidden'%>
+    <div class="ghost-photo-input-group hidden">
+      <label class="btn btn-success btn-file btn-block text-center">
+        <i class="fa fa-plus" style="font-size: 30px;"></i><br>
+        Add Photo <input type="file" name="style[photos][]" style="display: none;">
+      </label>
+      <img src="" style=''/>
+    </div>
+    <div class="col-sm-12 photo-upload-fields">
+      <div class="photo-input-group">
+        <label class="btn btn-success btn-file btn-block text-center">
+          <i class="fa fa-plus" style="font-size: 30px;"></i><br>
+          Add Photo <input type="file" name="style[photos][]" style="display: none;">
+        </label>
+        <img src="" style=''/>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class="row form-group">
     <div class="col-sm-6">
         <label>Vendor Style Number</label>
@@ -66,29 +88,9 @@
     </div>
 </div><!-- collapse container -->
 
-<%- if params[:action] == "new" %>
-  <div class="row form-group">
-    <%= form.file_field :photo, type: 'file', class: 'hidden'%>
-    <div class="ghost-photo-input-group hidden">
-      <label class="btn btn-success btn-file btn-block">
-        Add Photo <input type="file" name="style[photos][]" style="display: none;">
-      </label>
-      <img src="" style=''/>
-    </div>
-    <div class="col-sm-12 photo-upload-fields">
-      <div class="photo-input-group">
-        <label class="btn btn-success btn-file btn-block">
-          Add Photo <input type="file" name="style[photos][]" style="display: none;">
-        </label>
-        <img src="" style=''/>
-      </div>
-    </div>
-  </div>
-<% end %>
-
 
 <div class="row">
-    <div class="form-group col-md-3 col-md-offset-6">
+    <div class="form-group col-md-12">
         <%= form.submit 'Submit Style', class: 'btn btn-primary btn-submit btn-block'%>
     </div>
     <div class="col-md-12">
