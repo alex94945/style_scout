@@ -5,13 +5,11 @@ class Appointment < ActiveRecord::Base
   validates :name, presence: :true
 
   def weighted_average_imu
-    value = 0
-    value = calculated_markup(styles.open.with_value, :initial_mark_up)
+    calculated_markup(styles.open.with_value, :initial_mark_up)
   end
 
   def average_initial_retail
-    value = 0
-    value = calculated_markup(styles.open.with_value, :retail_price)
+    calculated_markup(styles.open.with_value, :retail_price)
   end
 
   def contains_incomplete_styles?

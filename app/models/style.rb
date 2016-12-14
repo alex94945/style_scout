@@ -1,7 +1,7 @@
 class Style < ActiveRecord::Base
   belongs_to :appointment
   enum status: [ :created, :pending, :order_placed, :received, :cancelled, :deleted ]
-  INCOMPLETE_STATUSES = [0,1,3]
+  INCOMPLETE_STATUSES = [0,1]
 
   has_many :attachments, dependent: :destroy
   validates :vendor_style_number, presence: true
@@ -46,6 +46,7 @@ class Style < ActiveRecord::Base
   end
 
   def wholesale_or_negotiated_cost
+    return 0 unless negotiated_cost || wholesale_cost
     negotiated_cost.present? ? negotiated_cost : wholesale_cost
   end
 
