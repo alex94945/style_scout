@@ -5,9 +5,9 @@ module DashboardHelper
     12.times do |i|
       month = i+1
       html += content_tag(:option, value: month, selected: current_or_active_merch_month(params, month)) do
-        "#{start_of_period(month)}
+        "#{MerchCalendar.start_of_month(Date.current.year, merch_month: month).strftime("%B %d, %Y")}
         .......
-        #{end_of_period(month)}"
+        #{MerchCalendar.end_of_month(Date.current.year, merch_month: month).strftime("%B %d, %Y")}"
       end
     end
     return html.html_safe
@@ -22,11 +22,21 @@ module DashboardHelper
   end
 
 
-  def start_of_period(month)
-    MerchCalendar.start_of_month(Date.current.year, merch_month: month).strftime("%B %d, %Y")
+  def start_of_period(params = {})
+    if params[:merch_month].present?
+      MerchCalendar.start_of_month(Date.current.year, merch_month: params[:merch_month].to_i).strftime("%B %d, %Y")
+    else
+      month = MerchCalendar::MerchWeek.from_date(Date.current).merch_month
+      MerchCalendar.start_of_month(Date.current.year, merch_month: month).strftime("%B %d, %Y")
+    end
   end
 
-  def end_of_period(month)
-    MerchCalendar.end_of_month(Date.current.year, merch_month: month).strftime("%B %d, %Y")
+  def end_of_period(params = {})
+    if params[:merch_month].present?
+      MerchCalendar.end_of_month(Date.current.year, merch_month: params[:merch_month].to_i).strftime("%B %d, %Y")
+    else
+      month = MerchCalendar::MerchWeek.from_date(Date.current).merch_month
+      MerchCalendar.end_of_month(Date.current.year, merch_month: month).strftime("%B %d, %Y")
+    end
   end
 end

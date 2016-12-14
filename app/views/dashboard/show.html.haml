@@ -1,64 +1,13 @@
 .row.card-row
   .col-sm-4
-    .card
-      .form-group
-        %small.text-muted
-          Merchant Month Period
-      .form-group
-        = form_tag root_path, method: :get do
-          %select.form-control{name: 'merch_month', onchange: "this.form.submit()"}
-            = options_for_merch_date_picker(params)
-    .card.card-row
-      %small.text-muted
-        Budget Trends
-      %div
-        %canvas#budget-trends-chart{style:'width: 200px;height:100px;'}
-
+    = render 'dashboard/cards/month_picker'
+    = render 'dashboard/cards/budget_calendar'
   .col-sm-4
-    .card
-      .row
-        .col-md-12
-          %canvas#pie-chart{style:'width: 200px;height:150px;'}
-      .row
-        .col-md-4
-          %small.text-muted
-            Open
-            %br
-          = number_to_currency(@budget[:open])
-        .col-md-4
-          %small.text-muted
-            Pending
-            %br
-          = number_to_currency(@budget[:pending])
-        .col-md-4
-          %small.text-muted
-            Placed
-            %br
-          = number_to_currency(@budget[:placed])
+    = render 'dashboard/cards/budget_breakdown'
   .col-sm-4
-    .card
-      %small.text-muted
-        Total Budget
-      .total-budget
-        = number_to_currency(@budget[:total])
-    .card.card-row
-      %table{style: 'width:100%'}
-        %tr
-          %td
-            %small.text-muted
-              Incomplete Appointments:
-          %td
-            %h3.no-margin.text-right
-              =@dashboard_stats[:incomplete_appointments].count
-    .card.card-row
-      %table{style: 'width:100%'}
-        %tr
-          %td
-            %small.text-muted
-              Incomplete Styles
-          %td
-            %h3.no-margin.text-right
-              = @dashboard_stats[:incomplete_styles].count
+    = render 'dashboard/cards/total_budget'
+    = render 'dashboard/cards/incomplete_appointments'
+    = render 'dashboard/cards/incomplete_styles'
 
 %hr
 .row.card-row.no-margin
@@ -85,65 +34,3 @@
           = style.status
 
 
-
-:javascript
-  $(document).ready(function() {
-    $( ".datepicker" ).datepicker({
-      dateFormat: "yy-mm-dd"
-    });
-
-    var pie_data = {
-        labels: [
-            "Open",
-            "Pending",
-            "Placed"
-        ],
-        datasets: [
-            {
-                data: [#{@budget[:open]}, #{@budget[:pending]}, #{@budget[:placed]}],
-                backgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
-                ],
-                hoverBackgroundColor: [
-                    "#FF6384",
-                    "#36A2EB",
-                    "#FFCE56"
-                ]
-            }]
-    };
-
-    var pie_ctx = document.getElementById("pie-chart");
-    var myPieChart = new Chart(pie_ctx,{
-        type: 'pie',
-        data: pie_data,
-        options: {}
-    });
-
-    var bar_data = {
-    labels: ["January", "February", "March", "April", "May", "June", "July"],
-    datasets: [
-        {
-          label: "Monthly Budget Allocation",
-          backgroundColor: [
-            'rgba(255, 99, 132, 0.2)',
-            'rgba(54, 162, 235, 0.2)',
-            'rgba(255, 206, 86, 0.2)',
-            'rgba(75, 192, 192, 0.2)',
-            'rgba(153, 102, 255, 0.2)',
-            'rgba(255, 159, 64, 0.2)'
-          ],
-          data: [65, 59, 80, 81, 56, 55, 40],
-        }
-      ]
-    };
-
-    var bar_ctx = document.getElementById("budget-trends-chart");
-    var myBarChart = new Chart(bar_ctx, {
-        type: 'bar',
-        data: bar_data,
-        options: {}
-    });
-
-  }); //end document ready

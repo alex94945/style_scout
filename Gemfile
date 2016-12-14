@@ -33,11 +33,7 @@ gem 'factory_girl_rails'
 gem 'paperclip', '< 5.0'
 gem 'aws-sdk', '< 2.0'
 gem 'jquery-datatables-rails', '~> 3.3.0'
-gem 'delayed_job_active_record'
-gem 'delayed_paperclip'
 gem "merch_calendar"
-
-
 
 
 group :development, :test do
