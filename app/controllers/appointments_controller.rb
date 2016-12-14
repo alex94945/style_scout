@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
 
 def index
-  @appointments = current_company.appointments.all
+  @appointments = current_company.appointments.includes(:styles, :user)
 end
 
 def create
