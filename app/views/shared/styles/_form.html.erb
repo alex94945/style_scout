@@ -25,29 +25,40 @@
         <label>Vendor Style Number</label>
         <%= form.text_field :vendor_style_number, class: 'form-control', :required => true %>
     </div>
-</div>
-<div class="row form-group">
-    <div class="col-sm-4">
+    <div class="col-sm-6">
         <label>Wholesale Cost</label>
         <%= form.number_field :wholesale_cost, step: '.01', placeholder: '26.99', :class => 'form-control' %>
     </div>
-    <div class="col-sm-4">
-        <label>Negotiated Cost</label>
-        <%= form.number_field :negotiated_cost, step: '.01', placeholder: '25.01', :class => 'form-control' %>
-    </div>
-    <div class="col-sm-4">
-        <label>Retail Price</label>
-        <%= form.number_field :retail_price, step: '.01', placeholder: '100.00', :class => 'form-control' %>
-    </div>
 </div>
+
 <div class='form-group'>
     <a href="#demo" data-toggle="collapse">Advanced Fields</a>
 </div>
 <div id='demo', class="collapse">
     <div class="row form-group">
+        <div class="col-sm-2">
+            <label>Quantity</label>
+            <%= form.number_field :quantity, step: '1', placeholder: '150', :class => 'form-control' %>
+        </div>
+        <div class="col-sm-4">
+            <label>Negotiated Cost</label>
+            <%= form.number_field :negotiated_cost, step: '.01', placeholder: '25.01', :class => 'form-control' %>
+        </div>
+        <div class="col-sm-4">
+            <label>Retail Price</label>
+            <%= form.number_field :retail_price, step: '.01', placeholder: '100.00', :class => 'form-control' %>
+        </div>
+        <div class="col-sm-2">
+            <label>IMU:</label>
+            <div id="imu-data-display">
+                N/A
+            </div>
+        </div>
+    </div>
+    <div class="row form-group">
         <div class="col-sm-6">
             <label>Status</label>
-            <%= form.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, @style.status), { }, class: 'form-control' %>
+            <%= form.select :status, options_for_select(Style.statuses.map{ |k,v| [k.humanize, k] }, @style.status), { }, class: 'form-control' %>
         </div>
         <div class="col-sm-6">
             <label>Delivery Date</label>
@@ -55,18 +66,7 @@
         </div>
     </div>
     <div class="row form-group">
-        <div class="col-sm-6">
-            <label>Quantity</label>
-            <%= form.number_field :quantity, step: '1', placeholder: '150', :class => 'form-control' %>
-        </div>
-    </div>
-    <div class="row form-group">
-        <div class="col-sm-4">
-            <label>IMU:</label>
-            <span id="imu-data-display">
-                N/A
-            </span>
-        </div>
+
         <div class="col-sm-4">
             <label>Exclusive?</label>
             <%= form.check_box :exclusive %>
