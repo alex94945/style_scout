@@ -17,7 +17,7 @@ class Style < ActiveRecord::Base
 
   def initial_mark_up
       return 0 if retail_price.blank? || wholesale_or_negotiated_cost.nil?
-      ( ( (retail_price) - wholesale_or_negotiated_cost) / retail_price ) * 100
+      ((retail_price - wholesale_or_negotiated_cost) / retail_price) * 100
   end
 
   def self.to_csv
