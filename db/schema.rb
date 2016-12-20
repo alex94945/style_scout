@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161212010553) do
+ActiveRecord::Schema.define(version: 20161220044115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -87,6 +87,16 @@ ActiveRecord::Schema.define(version: 20161212010553) do
     t.datetime "updated_at",                                   null: false
   end
 
+  create_table "reminders", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "reminders", ["user_id", "created_at"], name: "index_reminders_on_user_id_and_created_at", using: :btree
+  add_index "reminders", ["user_id"], name: "index_reminders_on_user_id", using: :btree
+
   create_table "styles", force: :cascade do |t|
     t.string   "vendor_style_number"
     t.integer  "appointment_id"
@@ -132,4 +142,5 @@ ActiveRecord::Schema.define(version: 20161212010553) do
   end
 
   add_foreign_key "attachments", "styles"
+  add_foreign_key "reminders", "users"
 end

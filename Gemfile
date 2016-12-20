@@ -34,6 +34,7 @@ gem 'paperclip', '< 5.0'
 gem 'aws-sdk', '< 2.0'
 gem 'jquery-datatables-rails', '~> 3.3.0'
 gem "merch_calendar"
+gem 'will_paginate', '~> 3.1.0'
 
 
 group :development, :test do

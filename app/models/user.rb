@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   has_many :appointments
   has_many :styles, through: :appointments
   has_many :budgets
+  has_many :reminders, dependent: :destroy
 
   has_one :profile_config
   enum role: [ :buyer, :vendor ]
