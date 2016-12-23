@@ -1,5 +1,8 @@
 .card.card-row
   %table{style: 'width:100%'}
-    %ol
-      %li{id: "reminder-#{reminder.id}"}
-        %span.content= reminder.content
+    %ol.reminders
+      - @reminders.each do |r|
+        %li{id: "reminder-#{r.id}"}
+          %span.content.small= r.content
+          %span.timestamp.small.text-muted Created #{time_ago_in_words(r.created_at)} ago.
+      = will_paginate @reminders

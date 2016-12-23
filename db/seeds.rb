@@ -18,4 +18,10 @@ dates = [3.months.ago, Date.tomorrow, Date.yesterday, Date.today, 1.month.ago, 4
       wholesale_cost:Faker::Commerce.price
     )
   end
+
+50.times do
+  content = Faker::Lorem.sentence(5)
+  user.reminders.create!(content: content)
+end
+
 end
