@@ -55,8 +55,8 @@ module DashboardHelper
   end
 
   def start_of_period(params = {})
-    if params[:merch_month].present?
-      MerchCalendar.start_of_month(Date.current.year, merch_month: params[:merch_month].to_i).strftime("%B %d, %Y")
+    if params[:merch_month].present? && params[:merch_year].present?
+      MerchCalendar.start_of_month(params[:merch_year].to_i, merch_month: params[:merch_month].to_i).strftime("%B %d, %Y")
     else
       month = MerchCalendar::MerchWeek.from_date(Date.current).merch_month
       MerchCalendar.start_of_month(Date.current.year, merch_month: month).strftime("%B %d, %Y")
@@ -64,8 +64,8 @@ module DashboardHelper
   end
 
   def end_of_period(params = {})
-    if params[:merch_month].present?
-      MerchCalendar.end_of_month(Date.current.year, merch_month: params[:merch_month].to_i).strftime("%B %d, %Y")
+    if params[:merch_month].present? && params[:merch_year].present?
+      MerchCalendar.end_of_month(params[:merch_year].to_i, merch_month: params[:merch_month].to_i).strftime("%B %d, %Y")
     else
       month = MerchCalendar::MerchWeek.from_date(Date.current).merch_month
       MerchCalendar.end_of_month(Date.current.year, merch_month: month).strftime("%B %d, %Y")

@@ -10,13 +10,15 @@ class Budget < ActiveRecord::Base
   end
 
   def self.for_current_period(params)
-    if params[:merch_month].present?
+    if params[:merch_month].present? && params[:merch_year].present?
       current_period_month = params[:merch_month]
+      current_period_year = params[:merch_year]
     else
       current_period_month = MerchCalendar::MerchWeek.from_date(Date.current).merch_month
+      current_period_year = MerchCalendar::MerchWeek.from_date(Date.current).year
     end
 
-    where(merch_month: current_period_month, year: Date.current.year).last
+    where(merch_month: current_period_month, year: current_period_year).last
   end
 
 end
