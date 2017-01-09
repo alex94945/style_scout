@@ -2,10 +2,19 @@
   .form-group
     %small.text-muted
       Merch Month Period
-  .form-group
-    = form_tag root_path, method: :get do
-      %select.form-control{name: 'merch_month', onchange: "this.form.submit()"}
-        = options_for_merch_date_picker(params)
+  = form_tag root_path, method: :get do
+    .row.form-group
+      .col-md-4
+        %label Year
+        %select.form-control{name: 'merch_year'}
+          = options_for_merch_year_picker(params)
+      .merch_month_picker.col-md-5
+        %label Merch Month
+        %select.form-control{name: 'merch_month'}
+          = options_for_merch_month_picker(params)
+      .col-md-3
+        %label &nbsp
+        %button.btn.btn-default.form-control{type: "submit"} >
 
   %h5 Period Start:
   .mark

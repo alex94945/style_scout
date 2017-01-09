@@ -6,7 +6,7 @@
     = f.text_field :year, class: 'form-control', value: Date.current.year
     %label Month
     %select.form-control{name: '[budget][merch_month]'}
-      = options_for_merch_date_picker(params)
+      = options_for_merch_month_picker(params)
     %label Value
     = f.text_field :value, class: 'form-control'
   .form-group
