@@ -8,7 +8,8 @@
   .col-sm-4
     = render 'dashboard/cards/incomplete_appointments'
     = render 'dashboard/cards/incomplete_styles'
-    = render 'dashboard/cards/reminders'
+    #reminders-container
+      = render 'dashboard/cards/fetch_reminders'
 
 %hr
 .row.card-row.no-margin

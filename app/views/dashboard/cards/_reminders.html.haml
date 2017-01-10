@@ -1,8 +1,24 @@
 .card.card-row
-  %table{style: 'width:100%'}
-    %ol.reminders
-      - @reminders.each do |r|
-        %li{id: "reminder-#{r.id}"}
-          %span.content.small= r.content
-          %span.timestamp.small.text-muted Created #{time_ago_in_words(r.created_at)} ago.
-      = will_paginate @reminders
+  .form-group
+    = form_tag reminders_path, method: :post, remote: true do
+      = text_field_tag 'reminder[content]'
+      = submit_tag
+  %ol.reminders
+    - @reminders.each do |r|
+
+      %li{id: "reminder-#{r.id}", class: ('disabled' if r.completed?) }
+        %span.content.small
+          = form_tag reminder_path(r), method: :put, style: "display: inline;", remote: true do
+            = hidden_field_tag 'reminder[completed]', false
+            = check_box_tag 'reminder[completed]', true, r.completed, onclick: "$(this).parents('form').submit()"
+          = r.content
+        %span.timestamp.small.text-muted
+          Created #{time_ago_in_words(r.created_at)} ago.
+          = link_to edit_reminder_path(r), remote: true do
+            %i.fa.fa-pencil
+          = link_to reminder_path(r), method: :delete, remote: true do
+            %i.fa.fa-trash
+    = js_will_paginate @reminders
+    
+    -if @reminders.blank?
+      you need some
