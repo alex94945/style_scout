@@ -1,8 +1,11 @@
 .card.card-row
   .form-group
     = form_tag reminders_path, method: :post, remote: true do
-      = text_field_tag 'reminder[content]'
-      = submit_tag
+      .row
+        .col-md-10.reminder-input
+          = text_field_tag 'reminder[content]', '', class: 'form-control'
+        .col-md-2.reminder-submit
+          = submit_tag '+', class: 'btn btn-primary'
   %ol.reminders
     - @reminders.each do |r|
 
@@ -19,6 +22,6 @@
           = link_to reminder_path(r), method: :delete, remote: true do
             %i.fa.fa-trash
     = js_will_paginate @reminders
-    
+
     -if @reminders.blank?
-      you need some
+      No reminders yet.

@@ -32,7 +32,7 @@ class RemindersController < ApplicationController
     end
 
     def fetch_reminders
-      @reminders = current_user.reminders.paginate(page: params[:page], per_page: 8)
+      @reminders = current_user.reminders.paginate(page: params[:page], per_page: 5)
     end
 
 end
