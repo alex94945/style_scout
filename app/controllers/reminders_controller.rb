@@ -6,7 +6,7 @@ class RemindersController < ApplicationController
 
   def create
     @reminder = Reminder.create(reminder_params.merge(user_id: current_user.id))
-    @reminders = current_user.reminders.paginate(page: params[:page], per_page: 8)
+    @reminders = current_user.reminders.paginate(page: params[:page], per_page: 5)
     render :index
   end
 
@@ -17,7 +17,7 @@ class RemindersController < ApplicationController
   def update
     @reminder = current_user.reminders.find(params[:id])
     @reminder.update(reminder_params)
-    @reminders = current_user.reminders.paginate(page: params[:page], per_page: 8)
+    @reminders = current_user.reminders.paginate(page: params[:page], per_page: 5)
     render :index
   end
 
