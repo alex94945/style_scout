@@ -3,3 +3,5 @@
     =link_to 'Total Budget', budgets_path
   .total-budget
     = number_to_currency(@budget[:total])
+  %small.text-muted
+    =link_to 'Add New', budgets_path, method: :post
