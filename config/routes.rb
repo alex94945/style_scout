@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'dashboard#show'
 
+  namespace :dashboard do
+    resources :budgets, only: [:new, :create]
+  end
+
   resources :appointments do
     get :export
     resources :styles do

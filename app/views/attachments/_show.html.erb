@@ -5,7 +5,7 @@
         <ol class="carousel-indicators">
           <%- @style.attachments.length.times do |i| %>
             <li data-target="#attachment-carousel" data-slide-to="<%=i%>" class="<%= 'active' if i == 0 %>"></li>
-          <% end %> 
+          <% end %>
         </ol>
         <div class="carousel-inner" role="listbox">
           <%- @style.attachments.each_with_index do |attachment, i| %>

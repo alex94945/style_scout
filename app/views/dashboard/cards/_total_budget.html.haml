@@ -4,4 +4,5 @@
   .total-budget
     = number_to_currency(@budget[:total])
   %small.text-muted
-    =link_to 'Add New', budgets_path, method: :post
+    - if @budget[:total].zero?
+      = link_to 'Add New', new_dashboard_budget_path(params), remote: :true
