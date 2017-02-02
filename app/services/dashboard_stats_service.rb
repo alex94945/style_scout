@@ -24,7 +24,7 @@ class DashboardStatsService < DashboardBaseService
     end
 
     def incomplete_styles
-      Style.includes(:appointment).where(appointment_id: @appointments.pluck(:id).uniq).incomplete
+      Style.includes(:appointment).where(appointment_id: appointments.pluck(:id).uniq).incomplete
     end
 
 end
