@@ -15,6 +15,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
         session[:user_id] = resource.id
       end
     end
+    company = Company.create(name: "#{resource.name}'s Company")
+    resource.update(company: company, administrator: true)
+
   end
 
   private

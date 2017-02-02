@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   has_many :budgets
   has_many :reminders, dependent: :destroy
 
-  has_one :profile_config
+  has_one :profile_config, dependent: :destroy
   enum role: [ :buyer, :vendor ]
 
   belongs_to :company

@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   resources :styles, only: [:index]
 
   resources :categories
+  resources :companies
 
   resources :budgets
   resources :reminders
