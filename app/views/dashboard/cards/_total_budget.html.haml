@@ -3,6 +3,18 @@
     =link_to 'Total Budget', budgets_path
   .total-budget
     = number_to_currency(@budget[:total])
-  %small.text-muted
+  %small.text-muted#add-new
     - if @budget[:total].zero?
-      = link_to 'Add New', new_dashboard_budget_path(params), remote: :true
+      %a{href: '#', 'data-remote': 'true'} Add Budget
+  %small
+    = form_for :budget, url: dashboard_budgets_path, method: :post do |f|
+      = hidden_field_tag 'dashboard[merch_month]', params[:merch_month]
+      = hidden_field_tag 'dashboard[merch_year]', params[:merch_year]
+      = f.text_field_tag :value, nil, class: 'form-control hidden', id: 'budget-input'
+
+
+
+:javascript
+  $("#add-new").click(function(){
+    $("#budget-input").toggleClass("hidden");
+  });
