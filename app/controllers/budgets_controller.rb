@@ -27,7 +27,6 @@ class BudgetsController < ApplicationController
     @budget = current_user.budgets.find(params[:id])
     @budget.update(budget_params)
     redirect_to budgets_path
-
   end
 
   def destroy

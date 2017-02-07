@@ -15,9 +15,10 @@
       .input-group#budget-input.hidden
         - if @budget[:total].zero?
           = f.number_field_tag :value, '0.00', class: 'form-control'
-          %span.input-group-addon.btn.btn-primary +
         - else
           = f.number_field_tag :value, @budget[:total], class: 'form-control'
+        .input-group-btn
+          = f.button '>', class: "btn btn-primary"
 
 
 :javascript
