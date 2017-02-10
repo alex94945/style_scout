@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'dashboard#show'
 
   namespace :dashboard do
-    resources :budgets, only: [:new, :create]
+    resources :budgets
   end
 
   resources :appointments do

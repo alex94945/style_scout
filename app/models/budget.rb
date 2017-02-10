@@ -1,11 +1,11 @@
 class Budget < ActiveRecord::Base
   belongs_to :user
-  validates :year, :merch_month, presence: true
-  validates_uniqueness_of :merch_month, scope: :user
+  validates :merch_year, :merch_month, presence: true
+  validates_uniqueness_of :user_id, scope: [:merch_month, :merch_year]
 
   def merch_month_date_range
-    start_date = MerchCalendar.start_of_month(self.year, merch_month: self.merch_month)
-    end_date = MerchCalendar.end_of_month(self.year, merch_month: self.merch_month)
+    start_date = MerchCalendar.start_of_month(self.merch_year, merch_month: self.merch_month)
+    end_date = MerchCalendar.end_of_month(self.merch_year, merch_month: self.merch_month)
     return "#{start_date} ... #{end_date}"
   end
 
@@ -18,7 +18,7 @@ class Budget < ActiveRecord::Base
       current_period_year = MerchCalendar::MerchWeek.from_date(Date.current).year
     end
 
-    where(merch_month: current_period_month, year: current_period_year).last
+    where(merch_month: current_period_month, merch_year: current_period_year).last
   end
 
 end

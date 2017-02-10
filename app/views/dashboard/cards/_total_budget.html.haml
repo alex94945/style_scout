@@ -1,27 +1,12 @@
-.card
+#budget-card.card
   %small.text-muted
     =link_to 'Total Budget', budgets_path
   .total-budget
     = number_to_currency(@budget[:total])
-  %small.text-muted#budget-edit-add
+  %small.text-muted
     - if @budget[:total].zero?
-      %a{href: '#', 'data-remote': 'true'} Add Budget
+      = link_to "Add Budget", new_dashboard_budget_path(params), remote: :true
     - else
-      %a{href: '#', 'data-remote': 'true'} Edit Budget
-  %small
-    = form_for :budget, url: dashboard_budgets_path, method: :post do |f|
-      = hidden_field_tag 'dashboard[merch_month]', params[:merch_month]
-      = hidden_field_tag 'dashboard[merch_year]', params[:merch_year]
-      .input-group#budget-input.hidden
-        - if @budget[:total].zero?
-          = f.number_field_tag :value, '0.00', class: 'form-control'
-        - else
-          = f.number_field_tag :value, @budget[:total], class: 'form-control'
-        .input-group-btn
-          = f.button '>', class: "btn btn-primary"
-
-
-:javascript
-  $("#budget-edit-add").click(function(){
-    $("#budget-input").toggleClass("hidden");
-  });
+      = link_to "Edit Budget", edit_dashboard_budget_path(@budget[:current_budget_id], params), remote: true
+  .user-input
+    - # this is a container div

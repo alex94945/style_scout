@@ -3,7 +3,7 @@
   %hr.style4{:style => "margin: 5px 0 5px 0"}/
   .form-group
   %label Year
-  = f.text_field :year, class: 'form-control', value: Date.current.year
+  = f.text_field :merch_year, class: 'form-control', value: Date.current.year
   %label Month
   %select.form-control{name: '[budget][merch_month]'}
     = options_for_merch_month_picker(params)
