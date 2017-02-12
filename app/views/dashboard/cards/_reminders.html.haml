@@ -1,5 +1,7 @@
 .card.card-row
-  .form-group
+  %small.text-muted
+    = "Reminders"
+  .reminder-form-group
     = form_tag reminders_path, method: :post, remote: true do
       .row
         .col-md-10.reminder-input
