@@ -7,7 +7,7 @@
       %small.text-muted
         Open
         %br
-      = number_to_currency(@budget[:open])
+      = number_to_currency(@budget[:open] + @budget[:pending])
     .col-md-4
       %small.text-muted
         Pending
@@ -32,14 +32,14 @@
             {
                 data: [#{@budget[:open]}, #{@budget[:pending]}, #{@budget[:placed]}],
                 backgroundColor: [
-                    "#FF6384",
                     "#36A2EB",
-                    "#FFCE56"
+                    "#36A2EB",
+                    "#eb7f36"
                 ],
                 hoverBackgroundColor: [
-                    "#FF6384",
                     "#36A2EB",
-                    "#FFCE56"
+                    "#36A2EB",
+                    "#eb7f36"
                 ]
             }]
     };

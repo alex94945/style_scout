@@ -1,6 +1,6 @@
 class Style < ActiveRecord::Base
   belongs_to :appointment
-  enum status: [ :created, :pending, :order_placed, :received, :cancelled, :deleted ]
+  enum status: [ :created, :pending, :placed, :received, :cancelled, :deleted ]
   INCOMPLETE_STATUSES = [0,1]
 
   has_many :attachments, dependent: :destroy

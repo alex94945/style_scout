@@ -20,7 +20,7 @@ class BudgetService < DashboardBaseService
   end
 
   def placed
-    styles.order_placed.map(&:wholesale_or_negotiated_cost).sum()
+    styles.placed.map(&:wholesale_or_negotiated_cost).sum()
   end
 
   def open

@@ -28,10 +28,20 @@
   .col-md-6
     %h3.text-muted
       Styles:
-    - @dashboard_stats[:incomplete_styles].each do |style|
-      .list-group-item
-        = link_to style.vendor_style_number, appointment_style_path(style.appointment.id, style)
-        %small
-          = style.status
-
-
+    .row
+      .col-md-12
+        .list-group-item#style-selection-bar
+          = 'Created'
+          = check_box_tag 'created'
+          = '&nbsp &nbsp'.html_safe
+          = 'Pending'
+          = check_box_tag 'pending'
+          = '&nbsp &nbsp'.html_safe
+          = 'Placed'
+          = check_box_tag 'placed'
+    #created-style-div
+      - @dashboard_stats[:created_styles].each do |style|
+        .list-group-item
+          = link_to style.vendor_style_number, appointment_style_path(style.appointment.id, style)
+          %small
+            = style.status
