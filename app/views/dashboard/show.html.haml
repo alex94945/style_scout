@@ -40,7 +40,8 @@
           = 'Placed'
           = check_box_tag 'placed'
     #created-style-div
-      - @dashboard_stats[:created_styles].each do |style|
+      -# TODO finish this
+      - @dashboard_stats[:all_styles].each do |style|
         .list-group-item
           = link_to style.vendor_style_number, appointment_style_path(style.appointment.id, style)
           %small

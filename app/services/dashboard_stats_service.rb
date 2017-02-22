@@ -5,6 +5,7 @@ class DashboardStatsService < DashboardBaseService
       complete_appointments: complete_appointents,
       incomplete_appointments: incomplete_appointments,
       current_date_range_budget: 1200,
+      all_styles: all_styles,
       # incomplete << created, pending, placed
       incomplete_styles: incomplete_styles,
       created_styles: created_styles,
@@ -25,6 +26,10 @@ class DashboardStatsService < DashboardBaseService
 
     def incomplete_appointments
       appointments.joins(:styles).where(styles: {status: Style::INCOMPLETE_STATUSES}).distinct
+    end
+
+    def all_styles
+      Style.includes(:appointment).where(appointment_id: appointments.pluck(:id).uniq)
     end
 
     def incomplete_styles
