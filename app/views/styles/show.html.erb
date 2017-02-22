@@ -70,7 +70,7 @@
 						<strong>Notes:</strong>
 						<%= form_for @style, url: appointment_style_path(@appointment, @style), method: :put do |f| %>
 							<div class="form-group">
-								<%= f.text_area :notes, class: 'form-control', rows: 6 %>
+								<%= f.text_area :notes, class: 'form-control', style: 'resize: vertical', rows: 6 %>
 							</div>
 							<%= f.submit 'Update Notes', class: 'btn btn-default' %>
 						<% end %>
