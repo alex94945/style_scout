@@ -1,16 +1,15 @@
 .card.card-row
   %small.text-muted
     = "Reminders"
-  .reminder-form-group
+  .row
     = form_tag reminders_path, method: :post, remote: true do
-      .row
-        .col-md-10.reminder-input
+      .col-md-12
+        .input-group
           = text_field_tag 'reminder[content]', '', class: 'form-control'
-        .col-md-2.reminder-submit
-          = submit_tag '+', class: 'btn btn-primary'
+          %span.input-group-btn
+            = submit_tag '+', class: 'btn btn-primary'
   %ol.reminders
     - @reminders.each do |r|
-
       %li{id: "reminder-#{r.id}", class: ('disabled' if r.completed?) }
         %span.content.small
           = form_tag reminder_path(r), method: :put, style: "display: inline;", remote: true do
