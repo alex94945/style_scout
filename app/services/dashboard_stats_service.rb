@@ -17,7 +17,7 @@ class DashboardStatsService < DashboardBaseService
   private
 
     def appointments
-      @appointments ||= @user.appointments.includes(:styles)
+      @appointments ||= @user.appointments.includes(:styles).where(scout_date: @start_date..@end_date)
     end
 
     def complete_appointents

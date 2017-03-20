@@ -4,6 +4,7 @@ class BudgetService < DashboardBaseService
     {
       current_budget_id: budget.try(:id),
       total: total,
+      budget: budget,
       pending: pending,
       placed: placed,
       open: open
@@ -16,11 +17,11 @@ class BudgetService < DashboardBaseService
   end
 
   def pending
-    styles.incomplete.map(&:wholesale_or_negotiated_cost).sum()
+    quantity_times_cost(styles, :incomplete)
   end
 
   def placed
-    styles.placed.map(&:wholesale_or_negotiated_cost).sum()
+    quantity_times_cost(styles, :placed)
   end
 
   def open
@@ -38,5 +39,20 @@ class BudgetService < DashboardBaseService
   def budget
     @budget ||= @user.budgets.for_current_period(@params)
   end
+
+  private
+    def quantity_times_cost(styles, field)
+      return 0 if styles.empty?
+      styles = styles.send(field)
+      cost_array = styles.map(&:wholesale_or_negotiated_cost)
+      qty_array = styles.map(&:quantity)
+      sum_product, i, size = 0, 0, cost_array.size
+      while i < size
+        sum_product += cost_array[i] * qty_array[i]
+        i += 1
+      end
+      return sum_product
+    end
+
 
 end
