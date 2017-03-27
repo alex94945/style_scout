@@ -5,12 +5,10 @@ class DashboardStatsService < DashboardBaseService
       complete_appointments: complete_appointents,
       incomplete_appointments: incomplete_appointments,
       current_date_range_budget: 1200,
-      all_styles: all_styles,
-      # incomplete << created, pending, placed
-      incomplete_styles: incomplete_styles,
-      created_styles: created_styles,
-      pending_styles: pending_styles,
-      placed_styles: placed_styles
+      incomplete_styles: all_styles.select{ |s| s.status == 'incomplete'},
+      created_styles: all_styles.select{ |s| s.status == 'created'},
+      pending_styles: all_styles.select{ |s| s.status == 'pending'},
+      placed_styles: all_styles.select{ |s| s.status == 'placed'}
     }
   end
 
@@ -29,23 +27,9 @@ class DashboardStatsService < DashboardBaseService
     end
 
     def all_styles
-      Style.includes(:appointment).where(appointment_id: appointments.pluck(:id).uniq)
-    end
-
-    def incomplete_styles
-      Style.includes(:appointment).where(appointment_id: appointments.pluck(:id).uniq).incomplete
-    end
-
-    def created_styles
-      Style.includes(:appointment).where(appointment_id: appointments.pluck(:id).uniq).created
-    end
-
-    def pending_styles
-      Style.includes(:appointment).where(appointment_id: appointments.pluck(:id).uniq).pending
-    end
-
-    def placed_styles
-      Style.includes(:appointment).where(appointment_id: appointments.pluck(:id).uniq).placed
+      # calling .all hits the db, and memoizes the result 
+      # into array containing all styles for these appointments, this no longer creates an n+1
+      @all_styles ||= Style.includes(:appointment).where(appointment_id: appointments.uniq).all
     end
 
 end

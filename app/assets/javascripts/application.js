@@ -22,4 +22,7 @@ $(function(){
   $(document).on('submit', '.ui-form', function(){
     $(this).find('.btn-submit').addClass('disabled').attr('value', 'working...');
   })
+
+  //initiaize tooltips
+  $("body").tooltip({ selector: '[data-toggle=tooltip]' });
 })
