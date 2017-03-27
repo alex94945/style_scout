@@ -35,12 +35,19 @@
         %li.active
           %a{"data-toggle" => "tab", :href => "#created-styles"} 
             Created
+            (#{@dashboard_stats[:created_styles].count})
         %li
-          %a{"data-toggle" => "tab", :href => "#pending-styles"} Pending
+          %a{"data-toggle" => "tab", :href => "#pending-styles"} 
+            Pending
+            (#{@dashboard_stats[:pending_styles].count})
         %li
-          %a{"data-toggle" => "tab", :href => "#placed-styles"} Placed
+          %a{"data-toggle" => "tab", :href => "#placed-styles"} 
+            Placed
+            (#{@dashboard_stats[:placed_styles].count})
         %li
-          %a{"data-toggle" => "tab", :href => "#incomplete-styles"} Incomplete
+          %a{"data-toggle" => "tab", :href => "#incomplete-styles"} 
+            Incomplete
+            (#{@dashboard_stats[:created_styles].count + @dashboard_stats[:pending_styles].count })
       .tab-content
         - %w(created pending placed incomplete).each_with_index do |status, i|
           .tab-pane{id: "#{status}-styles", class: ('active' if i == 0).to_s }
