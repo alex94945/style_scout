@@ -13,7 +13,7 @@ company = Company.create(name: 'Tech & Stuff')
 user = User.create(name: 'Alex Alex', email: 'alex@alex.com', password:'1234567890', password_confirmation: '1234567890', company: company)
 
 # Create a budget
-budget = Budget.create(value: 100000, merch_month: DateTime.current.month, year: DateTime.current.year)
+budget = Budget.create(value: 100000, merch_month: DateTime.current.month, merch_year: DateTime.current.year)
 
 #Create Appointments/Styles
 
