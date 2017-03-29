@@ -1,0 +1,21 @@
+= form_for :attachment, url: appointment_style_attachments_path(@appointment, @style), method: :post do |f|
+  = f.file_field :photo, type: 'file', class: 'hidden'
+  .col-md-4
+    .well.photo-upload-well
+      .ghost-photo-input-group.hidden
+        %label.btn.btn-success.btn-file.btn-block
+          Add photo
+          %input{type:'file', name: 'style[photos][]', style: 'display: none'}
+        %img{src:'#'}
+      .row
+        .col-sm-12.photo-upload-fields
+          .photo-input-group
+            %label.btn.btn-success.btn-file.btn-block{style: 'margin-bottom: 15px;'}
+              Add photo
+              %input{type:'file', name: 'style[photos][]', style: 'display: none'}
+            %img{src:'#'}
+      .row
+        .col-sm-6
+          = f.submit 'Upload', class: 'btn btn-primary' 
+        .col-sm-6.text-right
+          = link_to 'Cancel', appointment_style_path()
