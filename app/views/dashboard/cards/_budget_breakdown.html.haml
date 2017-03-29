@@ -3,17 +3,17 @@
     .col-md-12
       %canvas#pie-chart{style:'width: 200px;height:150px;'}
   .row
-    .col-md-4
+    .col-md-4{data:{placement: "bottom"},"data-toggle": "tooltip", title: "Open = Total Budget - Placed"}
       %small.text-muted
         Open
         %br
       = number_to_currency(@budget[:open] + @budget[:pending])
-    .col-md-4
+    .col-md-4{data:{placement: "bottom"},"data-toggle": "tooltip", title: "Pending is a subset of Open"}
       %small.text-muted
         Pending
         %br
       = number_to_currency(@budget[:pending])
-    .col-md-4
+    .col-md-4{data:{placement: "bottom"},"data-toggle": "tooltip", title: "Placed funds are no longer available"}
       %small.text-muted
         Placed
         %br
