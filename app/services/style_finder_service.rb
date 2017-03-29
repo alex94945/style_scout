@@ -9,7 +9,7 @@ class StyleFinderService
   end
 
   def perform
-    @styles = @current_company.styles.includes(:attachments, appointment: :user)
+    @styles = @current_company.styles.includes(:attachments, appointment: :user).paginate(page: @params[:page], per_page: 20)
 
     filter
     sort
