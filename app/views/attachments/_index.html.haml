@@ -15,3 +15,18 @@
         %a.right.carousel-control{"data-slide" => "next", :href => "#attachment-carousel", :role => "button"}
           %span.fa.fa-arrow-right{"aria-hidden" => "true"}
           %span.sr-only Next
+
+:javascript
+  // Register keyboard events
+  $(document).keydown(function(e) {
+    if (e.keyCode === 37) {
+       // Previous
+       $(".carousel-control.left").click();
+       return false;
+    }
+    if (e.keyCode === 39) {
+       // Next
+       $(".carousel-control.right").click();
+       return false;
+    }
+  });
