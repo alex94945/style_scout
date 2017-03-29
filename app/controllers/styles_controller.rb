@@ -1,5 +1,5 @@
 class StylesController < ApplicationController
-     
+
   def index
     @styles = StyleFinderService.new(params, current_company).perform
   end
@@ -15,12 +15,12 @@ class StylesController < ApplicationController
    def new
     @style = Style.new
     @appointment = Appointment.find(params[:appointment_id])
-   
+
   end
 
   def edit
       @appointment = Appointment.find(params[:appointment_id])
-      @style = @appointment.styles.find(params[:id]) 
+      @style = @appointment.styles.find(params[:id])
   end
 
   def update
@@ -32,7 +32,7 @@ class StylesController < ApplicationController
 
   def show
       @appointment = Appointment.find(params[:appointment_id])
-      @style = @appointment.styles.find(params[:id]) 
+      @style = @appointment.styles.find(params[:id])
   end
 
   def destroy
@@ -50,7 +50,7 @@ class StylesController < ApplicationController
 
   private
     def style_params
-      params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost, 
+      params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost,
                     :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :exclusive, :default_attachment_id, :photos => [])
            end
 

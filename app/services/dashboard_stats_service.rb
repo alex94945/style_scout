@@ -4,7 +4,6 @@ class DashboardStatsService < DashboardBaseService
     {
       complete_appointments: complete_appointents,
       incomplete_appointments: incomplete_appointments,
-      current_date_range_budget: 1200,
       created_styles: all_styles.select{ |s| s.status == 'created'},
       pending_styles: all_styles.select{ |s| s.status == 'pending'},
       placed_styles: all_styles.select{ |s| s.status == 'placed'},

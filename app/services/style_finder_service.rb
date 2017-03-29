@@ -7,12 +7,13 @@ class StyleFinderService
   end
 
   def perform
-    @styles = @current_company.styles.includes(:attachments, :appointment).all
+    @styles = @current_company.styles.includes(:attachments, appointment: :user)
 
     return @styles unless @filters
 
     filter_by_appointment_name
     filter_by_status
+    filter_by_style_number
   end
 
 
@@ -28,6 +29,14 @@ class StyleFinderService
     def filter_by_status
       if @filters[:status].present?
          @styles = @styles.where(status: @filters[:status])
+      end
+
+      return @styles
+    end
+
+    def filter_by_style_number
+      if @filters[:vendor_style_number].present?
+        @styles = @styles.where('vendor_style_number ilike ?', "%#{@filters[:vendor_style_number]}%")
       end
 
       return @styles

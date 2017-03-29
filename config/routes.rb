@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :styles, only: [:index]
+  resources :styles, only: :index
 
   resources :categories
   resources :companies

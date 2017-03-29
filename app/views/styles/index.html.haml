@@ -1,0 +1,54 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        All Styles
+      .panel-body
+        = render partial: 'shared/styles/filters'
+      %hr#style-index-line/
+      .hidden-xs
+        %table.table
+          %thead
+            %tr
+              %th
+              %th Style Name
+              %th Appointment
+              %th Status
+              %th Buyer
+              %th Date
+              %th IMU %
+              %th Retail
+              %th
+          %tbody
+            - @styles.each do |style|
+              %tr{:id => "style-id-#{style.id}"}
+                %td
+                  = style.default_photo ? ( image_tag style.default_photo('square'), style:'width:60px;' ) : "--"
+                %td
+                  = link_to style.vendor_style_number, appointment_style_path(style.appointment, style)
+                %td
+                  = style.appointment.name
+                %td
+                  = form_for style, url: appointment_style_update_status_path(style.appointment_id, style), method: :put, remote: true do |f|
+                    = hidden_field_tag :authenticity_token, form_authenticity_token
+                    = f.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, style.status), { }, onchange: "$(this.form).submit();", class: 'form-control'
+                    = f.submit ' ', class: "hidden"
+                %td
+                  = style.appointment.user.name
+                %td
+                  - if style.appointment.scout_date.present?
+                    = style.appointment.scout_date.strftime('%b %e, %Y')
+                  - else
+                    N/A
+                %td
+                  = number_to_percentage style.initial_mark_up, precision: 2
+                %td
+                  = number_to_currency style.retail_price, precision: 2
+                %td.text-right
+      / end
+      .visible-xs
+        - @styles.each do |style|
+          = link_to appointment_style_path(style.appointment, style) do
+            .panel-body
+              .well
+                = style.vendor_style_number

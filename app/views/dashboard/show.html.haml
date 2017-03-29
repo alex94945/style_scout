@@ -47,7 +47,7 @@
         %li
           %a{"data-toggle" => "tab", :href => "#incomplete-styles"} 
             Incomplete
-            (#{@dashboard_stats[:created_styles].count + @dashboard_stats[:pending_styles].count })
+            (#{@dashboard_stats[:incomplete_styles].count})
       .tab-content
         - %w(created pending placed incomplete).each_with_index do |status, i|
           .tab-pane{id: "#{status}-styles", class: ('active' if i == 0).to_s }
