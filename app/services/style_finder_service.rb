@@ -2,6 +2,7 @@ class StyleFinderService
 
   def initialize(params, company)
     @params = params
+    @sort_by = params[:sort_by]
     @filters = params[:filters]
     @current_company = company
   end
@@ -9,15 +10,28 @@ class StyleFinderService
   def perform
     @styles = @current_company.styles.includes(:attachments, appointment: :user)
 
-    return @styles unless @filters
-
-    filter_by_appointment_name
-    filter_by_status
-    filter_by_style_number
+    filter
+    sort
+    return @styles
   end
 
 
   private
+
+    def sort
+      if @sort_by.present?
+        binding.pry
+        @styles = @styles.order(@sort_by) if @styles
+      end
+    end
+
+    def filter
+      return unless @filters
+      filter_by_appointment_name
+      filter_by_status
+      filter_by_style_number
+    end
+
     def filter_by_appointment_name
       if @filters[:appointment_name].present?
          @styles = @styles.includes(:appointment).where(appointments: {name: @filters[:appointment_name] })
