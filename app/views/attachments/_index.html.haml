@@ -1,0 +1,17 @@
+.modal-dialog
+  .modal-content
+    .modal-body
+      #attachment-carousel.carousel.slide{"data-ride" => "carousel"}
+        %ol.carousel-indicators
+          - @attachments.length.times do |i|
+            %li{:class => ('active' if i == 0).to_s, "data-slide-to" => i, "data-target" => "#attachment-carousel"}
+        .carousel-inner{:role => "listbox"}
+          - @attachments.each_with_index do |attachment, i|
+            %div{:class => "item #{'active' if i == 0}"}
+              = image_tag attachment.photo.url('large')
+        %a.left.carousel-control{"data-slide" => "prev", :href => "#attachment-carousel", :role => "button"}
+          %span.fa.fa-arrow-left{"aria-hidden" => "true"}
+          %span.sr-only Previous
+        %a.right.carousel-control{"data-slide" => "next", :href => "#attachment-carousel", :role => "button"}
+          %span.fa.fa-arrow-right{"aria-hidden" => "true"}
+          %span.sr-only Next

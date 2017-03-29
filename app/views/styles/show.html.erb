@@ -83,7 +83,7 @@
       <%- @style.attachments.each do |attachment| %>
         <div class='col-md-2'>
           <div class="well">
-            <%= link_to appointment_style_attachment_path(@appointment, @style, attachment), remote: true do %>
+            <%= link_to appointment_style_attachments_path(@appointment, @style), remote: true do %>
               <%= image_tag attachment.photo.url('square'), :style=>'display: block; margin: auto; max-width:100%;' %>
             <% end %>
             <%= link_to 'Delete', appointment_style_attachment_path(@appointment, @style, attachment),

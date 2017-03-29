@@ -23,8 +23,12 @@
           %tbody
             - @styles.each do |style|
               %tr{:id => "style-id-#{style.id}"}
-                %td
-                  = style.default_photo ? ( image_tag style.default_photo('square'), style:'width:60px;' ) : "--"
+                %td.text-center
+                  - if style.default_photo
+                    = link_to appointment_style_attachments_path(style.appointment.id, style), remote: true do
+                      = image_tag style.default_photo('square'), style:'width:60px;'
+                  - else
+                    \--
                 %td
                   = link_to style.vendor_style_number, appointment_style_path(style.appointment, style)
                 %td
