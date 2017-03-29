@@ -3,6 +3,7 @@ class StyleFinderService
   def initialize(params, company)
     @params = params
     @sort_by = params[:sort_by]
+    @sort_direction = params[:sort_direction]
     @filters = params[:filters]
     @current_company = company
   end
@@ -20,8 +21,7 @@ class StyleFinderService
 
     def sort
       if @sort_by.present?
-        binding.pry
-        @styles = @styles.order(@sort_by) if @styles
+        @styles = @styles.order("#{@sort_by} #{@sort_direction}") if @styles
       end
     end
 
