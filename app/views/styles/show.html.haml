@@ -40,7 +40,7 @@
                 = f.text_field :quantity, class: 'form-control pull-right'
               .form-inline.form-group
                 %label IMU:
-                %strong.pull-right
+                %strong.pull-right#imu-data-display
                   = number_to_percentage @style.initial_mark_up, precision: 2
             .col-md-4
               .form-inline.form-group
@@ -74,6 +74,8 @@
 
 :javascript
   $(document).ready(function() {
+    bind_imu_calculator();
+
     $( "#style_delivery_date" ).datepicker({
       dateFormat: "yy-mm-dd"
     });

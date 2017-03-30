@@ -1,6 +1,5 @@
 
 function bind_imu_calculator(){
-  
     var $wholesale_cost_field = $("#style_wholesale_cost");
     var $negotiated_cost_field = $("#style_negotiated_cost");
     var $retail_price_field = $("#style_retail_price");
