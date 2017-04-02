@@ -9,8 +9,9 @@
 #Create a Company
 company = Company.create(name: 'Tech & Stuff')
 
-#Create a User
-user = User.create(name: 'Alex Alex', email: 'alex@alex.com', password:'1234567890', password_confirmation: '1234567890', company: company)
+#Create an Admin User
+user = User.create(name: 'Alex Alex', email: 'alex@alex.com', password:'1234567890',
+  password_confirmation: '1234567890', company: company, administrator: true)
 
 # Create a budget
 budget = Budget.create(value: 100000, merch_month: DateTime.current.month, merch_year: DateTime.current.year)
