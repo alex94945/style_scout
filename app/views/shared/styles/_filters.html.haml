@@ -7,18 +7,18 @@
             %label Appointment Name
             = select_tag '[filters][appointment_name]',                                    |
               options_for_select(Appointment.all.map(&:name).insert(0, ['---', nil]).uniq, |
-               params[:filters].try(:[], :appointment_name)                                |
-              ), class: 'form-control'                                                     |
+               params[:filters].try(:[], :appointment_name)),                              |
+               class: 'form-control'
           .col-md-3
             %label Status
             = select_tag '[filters][status]',                                            |
               options_for_select(Style.statuses.map{ |key, value| [key.titleize, value]} |
                 .insert(0, ['---', nil]),                                                |
-                params[:filters].try(:[], :status)                                       |
-              ), class: 'form-control'                                                   |
+                params[:filters].try(:[], :status)), class: 'form-control'               |
           .col-md-3
             %label Style Number
-            = text_field_tag '[filters][vendor_style_number]', params[:filters].try(:[], :vendor_style_number), class: 'form-control'
+            = text_field_tag '[filters][vendor_style_number]',
+            params[:filters].try(:[], :vendor_style_number), class: 'form-control'
 
         .row
           .col-md-6
