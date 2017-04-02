@@ -30,11 +30,12 @@ class StyleFinderService
       filter_by_appointment_name
       filter_by_status
       filter_by_style_number
+      filter_by_buyer_name
     end
 
     def filter_by_appointment_name
       if @filters[:appointment_name].present?
-         @styles = @styles.includes(:appointment).where(appointments: {name: @filters[:appointment_name] })
+         @styles = @styles.includes(:appointment).where(appointments: { name: @filters[:appointment_name] })
       end
 
       return @styles
@@ -51,6 +52,14 @@ class StyleFinderService
     def filter_by_style_number
       if @filters[:vendor_style_number].present?
         @styles = @styles.where('vendor_style_number ilike ?', "%#{@filters[:vendor_style_number]}%")
+      end
+
+      return @styles
+    end
+
+    def filter_by_buyer_name
+      if @filters[:user_id].present?
+        @styles = @styles.includes(:appointment).where(appointments: { user_id: @filters[:user_id] })
       end
 
       return @styles

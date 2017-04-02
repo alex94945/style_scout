@@ -21,9 +21,9 @@
               params[:filters].try(:[], :vendor_style_number), class: 'form-control'
           .col-md-3
             %label Buyer
-            = select_tag '[filters][name]', |
-              options_for_select(current_company.users.map(&:name).insert(0, ['---', nil]).uniq, |
-               params[:filters].try(:[], :name)), |
+            = select_tag '[filters][user_id]', |
+              options_for_select(current_company.users.map{|u| [u.name, u.id]}.insert(0, ['---', nil]).uniq, |
+               params[:filters].try(:[], :user_id)), |
               class: 'form-control'
         .row
           .col-md-6
