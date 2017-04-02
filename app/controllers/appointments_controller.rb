@@ -1,7 +1,7 @@
 class AppointmentsController < ApplicationController
 
 def index
-  @appointments = current_company.appointments.includes(:styles, :user)
+  @appointments = current_company.appointments.includes(:styles, :user).paginate(page: params[:page], per_page: 20)
 end
 
 def create
