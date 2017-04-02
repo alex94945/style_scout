@@ -25,8 +25,9 @@ dates = [3.months.ago, Date.tomorrow, Date.yesterday, Date.today, 1.month.ago, 4
     a.styles.create(
       vendor_style_number: Faker::Number.number(10),
       negotiated_cost: Faker::Commerce.price,
-      retail_price:Faker::Commerce.price,
-      wholesale_cost:Faker::Commerce.price
+      retail_price: Faker::Commerce.price,
+      wholesale_cost: Faker::Commerce.price,
+      status: [0,1,2,3,4,5].sample
     )
   end
 end
