@@ -7,8 +7,8 @@ describe "creating an appointment", type: :feature, js: true do
     login_as(@user, scope: :user)
   end
 
-  it "creates an appointment" do 
-    visit '/'
+  it "creates an appointment" do
+    visit '/appointments'
     click_link('Add New Appointment')
     modal = page.find('#modal')
 
