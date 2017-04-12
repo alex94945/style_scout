@@ -22,8 +22,7 @@
                 %label Status:
                 = f.select :status, options_for_select(Style.statuses.map{ |k,v| [k.humanize, k] }, @style.status), { }, class: 'form-control pull-right'
               .form-inline.form-group
-                %label
-                  Exclusive:
+                %label Exclusive:
                 = f.check_box :exclusive, class: 'pull-right'
             .col-md-4
               .form-inline.form-group
