@@ -6,7 +6,7 @@
 	<div class="col-sm-6">
 		<label>Buyer</label>
 		<%= form.select :user_id, options_for_select(
-			User.all.map{ |u| [u.name, u.id] }, current_user.id),
+			current_company.users.all.map{ |u| [u.name, u.id] }, current_user.id),
 			{ }, class: 'form-control' %>
 	</div>
 </div>
