@@ -3,7 +3,7 @@
     %li= link_to @appointment.name, appointment_path(@appointment)
     %li.active= @style.vendor_style_number
     %span.pull-right
-      %li= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: @style}
+      %li= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: @style, inline: false}
   .panel-body
     .row.form-group
       .col-sm-3

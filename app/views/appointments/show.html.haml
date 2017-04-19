@@ -66,7 +66,7 @@
                 %td
                   = style.exclusive? ? "Yes" : "No"
                 %td.text-right
-                  = render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style}
+                  = render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style, inline: true}
           %tfoot
             %tr
               %td Averages

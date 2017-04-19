@@ -19,13 +19,19 @@ class StylesController < ApplicationController
   end
 
   def edit
-      @style = @appointment.styles.find(params[:id])
+    @style = @appointment.styles.find(params[:id])
+    @inline = params[:inline]
   end
 
   def update
-      @style = Style.find(params[:id])
-      @style.update(style_params)
+    @style = Style.find(params[:id])
+    @style.update(style_params)
+
+    if params[:inline] == 'true'
+      redirect_to appointment_path(@appointment)
+    else
       redirect_to appointment_style_path(@appointment, @style)
+    end
   end
 
   def show
