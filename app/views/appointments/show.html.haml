@@ -1,0 +1,107 @@
+.panel.panel-default
+  %ul.panel-heading.breadcrumb.hidden-xs{:style => "margin-bottom: 0px"}
+    %li= link_to "All Appointments", appointments_path
+    %li.active
+      = @appointment.name.titleize
+      |
+      - if @appointment.scout_date.present?
+        = @appointment.scout_date.strftime('%b %e, %Y')
+      - else
+        N/A
+    %span
+      .pull-right
+        = render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment}
+  .panel-body.hidden-xs
+    / Panel body, upper
+    .row
+      #appointment-header.col-md-6
+        = @appointment.name.titleize
+      .col-md-6
+        %span.pull-right
+          = link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary"
+    %br/
+    / Panel body, table
+    .well.hidden-xs
+      .table-responsive
+        %table.table
+          %thead
+            %th
+            %th
+              Vendor Style Number
+            %th
+              Status
+            %th
+              Delivery Date
+            %th
+              Retail
+            %th
+              IMU %
+            %th
+              Exclusive?
+            %th
+          %tbody
+            - @appointment.styles.each do |style|
+              %tr{:id => "style-id-#{style.id}"}
+                %td
+                  = style.default_photo ? ( image_tag style.default_photo('square'), style:'width:60px;' ) : "--"
+                %td
+                  %a.btn-block.appointment-container-toggle{"data-target" => "#style-notes-metadata-#{style.id}", "data-toggle" => "collapse"}
+                    = link_to style.vendor_style_number, appointment_style_path(@appointment, style)
+                %td
+                  = form_for style, url: appointment_style_update_status_path(@appointment, style), method: :put, remote: true do |f|
+                    = hidden_field_tag :authenticity_token, form_authenticity_token
+                    = f.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, style.status), { }, onchange: "$(this.form).submit();", class: 'form-control'
+                    = f.submit ' ', class: "hidden"
+                %td
+                  = style.delivery_date.strftime('%b %e, %Y') if style.delivery_date
+                %td
+                  = number_to_currency style.retail_price
+                %td
+                  = number_to_percentage(style.initial_mark_up, precision: 2) unless style.initial_mark_up == 0
+                %td
+                  = style.exclusive? ? "Yes" : "No"
+                %td.text-right
+                  = render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style}
+          %tfoot
+            %tr
+              %td Averages
+              %td
+              %td
+              %td
+              %td
+                = number_to_currency @appointment.average_initial_retail, precision: 2
+              %td
+                = number_to_percentage @appointment.weighted_average_imu, precision: 2
+              %td
+  / Mobile view
+  %ul.panel-heading.breadcrumb.visible-xs{:style => "margin-bottom: 0px"}
+    %li= link_to "All Appointments", appointments_path
+    %li.active
+      = @appointment.name.titleize
+      |
+      - if @appointment.scout_date.present?
+        = @appointment.scout_date.strftime('%b %e, %Y')
+      - else
+        N/A
+    %span
+      .pull-right
+        = render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment}
+  .panel-body.visible-xs
+    / Panel body, upper
+    .row
+      #appointment-header.col-md-12
+        = @appointment.name.titleize
+    .row
+      .col-md-12
+        = link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary mobile-add-style-button"
+  %br/
+  / Panel body
+  .visible-xs
+    - @appointment.styles.each do |style|
+      = link_to appointment_style_path(@appointment, style) do
+        .well
+          .row
+            .col-xs-6
+              = image_tag style.default_photo('square'), style:'max-width:100%;'
+            .col-xs-6
+              = style.vendor_style_number
