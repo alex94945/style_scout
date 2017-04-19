@@ -1,0 +1,11 @@
+ul#style-edit-dropdown{
+  background-color: #efefef;
+}
+
+li.even {
+  background-color: #efefef;
+}
+
+li.odd {
+  background-color: white;
+}

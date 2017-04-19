@@ -1,17 +1,15 @@
 .div.dropdown
-  %button#appointmentsEditDropdown.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
+  %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
     %i.fa.fa-wrench
     %span.fa.fa-caret-down
-  %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
-    %li
+  %ul#style-edit-dropdown.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+    %li.even
       %a{href: "#"} Duplicate
-    %li
+    %li.odd
       = link_to edit_appointment_path(appointment), remote: true  do
         %i.fa.fa-pencil
-        %span
-          Edit
-    %li
+        %span Edit
+    %li.even
       = link_to appointment_path(appointment), method: :delete, data: {confirm: 'Are You Sure?'}  do
         %i.fa.fa-trash-o
-        %span
-          Delete
+        %span Delete
