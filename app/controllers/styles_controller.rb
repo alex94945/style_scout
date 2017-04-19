@@ -29,7 +29,7 @@ class StylesController < ApplicationController
   end
 
   def show
-      @style = @appointment.styles.find(params[:id])
+    @style = @appointment.styles.find(params[:id])
   end
 
   def destroy
