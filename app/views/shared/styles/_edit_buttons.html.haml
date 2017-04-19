@@ -1,0 +1,17 @@
+.div.dropdown
+  %button#appointmentsEditDropdown.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
+    %i.fa.fa-wrench
+    %span.fa.fa-caret-down
+  %ul.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+    %li
+      %a{href: "#"} Duplicate
+    %li
+      = link_to edit_appointment_path(appointment), remote: true  do
+        %i.fa.fa-pencil
+        %span
+          Edit
+    %li
+      = link_to appointment_path(appointment), method: :delete, data: {confirm: 'Are You Sure?'}  do
+        %i.fa.fa-trash-o
+        %span
+          Delete
