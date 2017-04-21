@@ -14,6 +14,7 @@ Rails.application.routes.draw do
     resources :styles do
       resources :attachments
       put :update_status
+      post :duplicate
     end
   end
 
