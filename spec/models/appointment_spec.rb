@@ -3,14 +3,14 @@ require "rails_helper"
 describe Appointment do
 
   before do
-    @appointment = Appointment.create
+    @appointment = Appointment.create(name: 'Appointment')
     10.times do
-      @appointment.styles.create(quantity: Faker::Number.number(Random.rand(1...3)), negotiated_cost: Faker::Number.decimal(2), 
+      @appointment.styles.create(quantity: Faker::Number.number(Random.rand(1...3)), negotiated_cost: Faker::Number.decimal(2),
           wholesale_cost: Faker::Number.decimal(2), retail_price: Faker::Number.decimal(2), vendor_style_number: 'yeah' )
     end
-    
+
     2.times do
-      @appointment.styles.create(quantity: Faker::Number.number(Random.rand(1...3)), negotiated_cost: Faker::Number.decimal(2), 
+      @appointment.styles.create(quantity: Faker::Number.number(Random.rand(1...3)), negotiated_cost: Faker::Number.decimal(2),
           wholesale_cost: Faker::Number.decimal(2), retail_price: Faker::Number.decimal(2), vendor_style_number: 'yeah', status: 4 )
     end
 
@@ -24,7 +24,7 @@ describe Appointment do
         sumproduct += style.quantity * style.initial_mark_up
     end
 
-    imu = sumproduct / @appointment.styles.open.sum(:quantity) 
+    imu = sumproduct / @appointment.styles.open.sum(:quantity)
 
     expect( @appointment.weighted_average_imu.round(5) ).to eq( imu.round(5) )
   end
