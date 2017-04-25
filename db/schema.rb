@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170210035321) do
+ActiveRecord::Schema.define(version: 20170425045343) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "appointments", force: :cascade do |t|
-    t.string   "name"
+    t.string   "name",       null: false
     t.date     "scout_date"
     t.string   "vendor"
     t.string   "location"
@@ -83,7 +83,7 @@ ActiveRecord::Schema.define(version: 20170210035321) do
   add_index "reminders", ["user_id"], name: "index_reminders_on_user_id", using: :btree
 
   create_table "styles", force: :cascade do |t|
-    t.string   "vendor_style_number"
+    t.string   "vendor_style_number",                                            null: false
     t.integer  "appointment_id"
     t.datetime "created_at",                                                     null: false
     t.datetime "updated_at",                                                     null: false
