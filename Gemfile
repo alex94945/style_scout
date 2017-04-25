@@ -35,7 +35,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.0'
   gem 'capybara'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '2.53.0'
   gem 'pry'
   gem 'database_cleaner'
   gem 'dotenv-rails'
