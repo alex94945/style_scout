@@ -14,8 +14,7 @@
               %th Appointment Name
               %th Open Styles
               %th Buyer
-              %th Date
-              %th Location
+              %th Scout Date
               %th Avg IMU %
               %th AIR
               %th
@@ -34,8 +33,6 @@
                     = appointment.scout_date.strftime('%b %e, %Y')
                   - else
                     N/A
-                %td
-                  = appointment.location
                 %td
                   = number_to_percentage appointment.weighted_average_imu, precision: 2
                 %td
