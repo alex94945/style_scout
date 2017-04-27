@@ -5,7 +5,8 @@
         Edit Appointment: <%= appointment.name %>
       </div>
       <div class="half-wide text-right">
-        <%= link_to appointment_path(@appointment), method: :delete, data: {confirm: 'Are You Sure?'}  do %>
+        <%= link_to appointment_path(@appointment), method: :delete,
+          data: {confirm: "Delete appointment: #{appointment.name}?"}  do %>
           <i class="fa fa-trash-o fa-lg" style="color: white"></i>
         <% end %>
       </div>

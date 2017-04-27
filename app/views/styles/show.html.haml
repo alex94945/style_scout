@@ -63,7 +63,7 @@
         = link_to appointment_style_attachments_path(@appointment, @style), remote: true do
           = image_tag attachment.photo.url('square'), :style=>'display: block; margin: auto; max-width:100%;'
         = link_to 'Delete', appointment_style_attachment_path(@appointment, @style, attachment), |
-          data: {confirm: 'Are You Sure?'}, method: :delete                                      |
+          data: {confirm: 'Delete attachment?'}, method: :delete                                      |
         |
         \#{link_to 'Make Default', appointment_style_path(@appointment, @style, style: {default_attachment_id: attachment.id}), method: :put}
 

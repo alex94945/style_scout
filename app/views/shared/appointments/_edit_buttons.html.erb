@@ -2,6 +2,6 @@
 	<i class="fa fa-pencil"></i>
 <% end %>
 &nbsp; | &nbsp;
-<%= link_to appointment_path(appointment), method: :delete, data: {confirm: 'Are You Sure?'}  do %>
+<%= link_to appointment_path(appointment), method: :delete, data: {confirm: "Delete appointment: #{appointment.name}?"}  do %>
 	<i class="fa fa-trash-o"></i>
 <% end %>
