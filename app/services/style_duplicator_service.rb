@@ -19,7 +19,7 @@ class StyleDuplicatorService
   private
     def new_style
       duplicate_style = @style.dup
-      duplicate_style.vendor_style_number = 'DUPLICATE'
+      duplicate_style.vendor_style_number = duplicate_style.vendor_style_number + ' - DUPLICATE'
 
       return duplicate_style
     end
