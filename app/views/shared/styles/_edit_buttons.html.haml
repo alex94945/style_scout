@@ -2,7 +2,7 @@
   %button.btn.btn-default.dropdown-toggle{"aria-expanded" => "true", "aria-haspopup" => "true", "data-toggle" => "dropdown", type: "button"}
     %i.fa.fa-wrench
     %span.fa.fa-caret-down
-  %ul#style-edit-dropdown.dropdown-menu{"aria-labelledby" => "dropdownMenu1"}
+  %ul#style-edit-dropdown.dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1"}
     %li.even
       = link_to appointment_style_duplicate_path(appointment, style), method: :post do
         %i.fa.fa-files-o
