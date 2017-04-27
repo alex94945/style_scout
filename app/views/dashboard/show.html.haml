@@ -33,19 +33,19 @@
     #style-tabs
       %ul.nav.nav-tabs
         %li.active
-          %a{"data-toggle" => "tab", :href => "#created-styles"} 
+          %a{"data-toggle" => "tab", :href => "#created-styles"}
             Created
             (#{@dashboard_stats[:created_styles].count})
         %li
-          %a{"data-toggle" => "tab", :href => "#pending-styles"} 
+          %a{"data-toggle" => "tab", :href => "#pending-styles"}
             Pending
             (#{@dashboard_stats[:pending_styles].count})
         %li
-          %a{"data-toggle" => "tab", :href => "#placed-styles"} 
+          %a{"data-toggle" => "tab", :href => "#placed-styles"}
             Placed
             (#{@dashboard_stats[:placed_styles].count})
         %li
-          %a{"data-toggle" => "tab", :href => "#incomplete-styles"} 
+          %a{"data-toggle" => "tab", :href => "#incomplete-styles"}
             Incomplete
             (#{@dashboard_stats[:incomplete_styles].count})
       .tab-content
@@ -56,25 +56,3 @@
                 .list-group-item
                   = link_to style.vendor_style_number, appointment_style_path(style.appointment.id, style)
                   = style.status
-       
-  //.col-md-6
-  //  %h3.text-muted
-  //    Styles:
-  //  = form_tag styles_path, method: :get do
-  //    .row
-  //      .col-md-12
-  //        .input-group
-  //          = select_tag '[filters][status]',                               |
-  //          options_for_select(                                             |
-  //            Style.statuses.map{ |key, value| [key.titleize, value]}.      |
-  //            insert(0, ['---', nil]), params[:filters].try(:[], :status)), |
-  //            class: 'form-control'
-  //          %span.input-group-btn
-  //            = submit_tag '>', class: 'btn btn-primary'
-  //  -# TODO finish this
-  //  - @dashboard_stats[:all_styles].each do |style|
-  //    .list-group-item
-  //      = link_to style.vendor_style_number, |
-  //      appointment_style_path(style.appointment.id, style)
-  //      %small
-  //        = style.status
