@@ -23,8 +23,9 @@ function bind_imu_calculator(){
 
 
 function calculate_imu(wholesale_cost, negotiated_cost, retail_price){
- 
+
     var total = ( ( (parseFloat(retail_price)) - wholesale_or_negotiated_cost(wholesale_cost, negotiated_cost) ) / parseFloat(retail_price) ) * 100
+    total = total || 0
     render_imu_to_page(total.toFixed(2));
 }
 
@@ -40,7 +41,7 @@ function wholesale_or_negotiated_cost(wholesale_cost, negotiated_cost){
    var cost = 0
    var wholesale_cost = parseFloat(wholesale_cost);
    var negotiated_cost = parseFloat(negotiated_cost);
-   
+
 
     if (negotiated_cost >= 0 ){
       cost = negotiated_cost
