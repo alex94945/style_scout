@@ -34,13 +34,13 @@ p.large{
 
 .get-started-button{
   font-family: 'Open Sans';
-  background-color: rgb(51,69,113);
-  opacity: 0.8;
+  background: rgba(51,69,113,0.8);
+  color: rgba(255,255,255,1);
   border: none;
   border-radius: 4px;
   transition: all 0.3s;
   &:hover{
-    opacity: 1;
-    background-color: rgb(51,69,113);
+    background: rgba(51,69,113,1);
+    color: rgba(255,255,255,1);
   }
 }
