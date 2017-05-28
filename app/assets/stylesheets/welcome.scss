@@ -48,6 +48,16 @@ h3{
   border-radius: 3px;
 }
 
+#log-in-button{
+  font-family: 'Open Sans';
+  color: #fff;
+  font-size: large;
+  text-shadow: 0 0 5px black;
+  &:hover{
+    color: #777;
+  }
+}
+
 .get-started-button{
   font-family: 'Open Sans';
   background: rgba(51,69,113,0.8);
