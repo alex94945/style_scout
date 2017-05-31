@@ -15,7 +15,8 @@ class DashboardStatsService < DashboardBaseService
   private
 
     def appointments
-      @appointments ||= @user.appointments.includes(:styles).where(scout_date: @start_date..@end_date)
+      date_range = @start_date..@end_date
+      @appointments ||= @user.appointments.joins(:styles).where(styles: { delivery_date: date_range })
     end
 
     def complete_appointents
@@ -27,7 +28,7 @@ class DashboardStatsService < DashboardBaseService
     end
 
     def all_styles
-      # calling .all hits the db, and memoizes the result 
+      # calling .all hits the db, and memoizes the result
       # into array containing all styles for these appointments, this no longer creates an n+1
       @all_styles ||= Style.includes(:appointment).where(appointment_id: appointments.uniq).all
     end
