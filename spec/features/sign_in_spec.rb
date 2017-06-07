@@ -6,16 +6,16 @@ describe "visiting the application", type: :feature, js: true do
     create(:company)
   end
 
-  it "it shows appointments index if signed in" do 
+  it "it shows appointments index if signed in" do
     @user = create(:user, company: create(:company))
     login_as(@user, scope: :user)
     visit '/'
     expect(page.text).to include(@user.name)
   end
 
-  it "it shows the login page if not logged in" do 
+  it "it shows the login page if not logged in" do
     visit'/'
-    expect(page).to have_css('h2', text: 'Sign in')
+    expect(page.text).to include("Log In")
   end
 
 end

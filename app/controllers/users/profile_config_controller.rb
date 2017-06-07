@@ -8,6 +8,6 @@ class Users::ProfileConfigController < ApplicationController
 private
     def profile_config_params
       params.require(:profile_config).permit(:default_home_my_appointments, :navbar_color)
-     end
+    end
 
 end

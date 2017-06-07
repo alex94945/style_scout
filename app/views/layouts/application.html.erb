@@ -6,6 +6,7 @@
 	  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 	  <%= csrf_meta_tags %>
 	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Josefin+Slab|Open+Sans|Open+Sans+Condensed:300" rel="stylesheet">
 	</head>
 
 	<body>
@@ -15,7 +16,7 @@
 			<%= render partial:'shared/default_nav' %>
 		<% end %>
 		<div class="container-fluid">
-			<%= yield %>	
+			<%= yield %>
 		</div>
 		<div id='modal' class='modal fade' role='dialog' ></div>
 	</body>
