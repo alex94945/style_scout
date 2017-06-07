@@ -7,6 +7,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  def new
+    build_resource({})
+    self.resource.company = Company.new
+    respond_with self.resource
+  end
+
   def create
     # if valid user, on sign up, set their role to buyer
     super do
@@ -15,7 +21,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
         session[:user_id] = resource.id
       end
     end
-    company = Company.create(name: "#{resource.name}'s Company")
+    company = Company.create(name: params[:company][:name])
     resource.update(company: company, administrator: true)
 
   end

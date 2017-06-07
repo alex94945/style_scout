@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   enum role: [ :buyer, :vendor ]
 
   belongs_to :company
+  accepts_nested_attributes_for :company
 
   after_create :make_profile_config
 
