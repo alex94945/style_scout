@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   # Stripe
   resources :charges, only: [:new, :create]
+  get 'thanks', to: 'charges#thanks', as: 'thanks'
 
   namespace :dashboard do
     resources :budgets
