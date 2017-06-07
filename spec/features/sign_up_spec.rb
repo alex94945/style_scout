@@ -17,6 +17,7 @@ describe "signing up a new user", type: :feature, js: true do
 
       expect(user).to be_present
       expect(user.name).to eq "JOOSE"
+      expect(user.email).to eq "he@knowshernow.com"
       expect(company.name).to eq "Big Time"
     end
   end
