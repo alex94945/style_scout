@@ -5,12 +5,19 @@ describe "signing up a new user", type: :feature, js: true do
   context 'with a valid user' do
     it "allows user to sign up" do
       visit new_user_registration_path
-      fill_in('user_name', with: "JOOSE")
-      fill_in('user_email', with: "he@knowshernow.com")
-      fill_in('user_password', with: "itsalljoosey1")
-      fill_in('user_password_confirmation', with: "itsalljoosey1")
+      fill_in(:user_name, with: "JOOSE")
+      fill_in(:user_email, with: "he@knowshernow.com")
+      fill_in(:user_password, with: "itsalljoosey1")
+      fill_in(:user_password_confirmation, with: "itsalljoosey1")
+      fill_in(:company_name, with: "Big Time")
       click_button('Sign up')
-      expect(User.count).to eq 1
+
+      user = User.first
+      company = User.first.company
+
+      expect(user).to be_present
+      expect(user.name).to eq "JOOSE"
+      expect(company.name).to eq "Big Time"
     end
   end
 
