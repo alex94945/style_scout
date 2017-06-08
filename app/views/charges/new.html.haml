@@ -5,6 +5,9 @@
         %p= flash[:error]
     %label.amount
       %span Amount: #{pretty_amount(@amount)}
+
+  = hidden_field_tag :subscription, value: params[:subscription]
+
   %script.stripe-button{ "data-amount" => @amount,
                         "data-description" => @description,
                         "data-email" => current_user.email,
