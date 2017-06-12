@@ -1,4 +1,5 @@
 class ChargesController < ApplicationController
+  skip_before_action :check_payment_status
   before_action :amount_to_be_charged
   before_action :set_description
   before_action :authenticate_user!
@@ -18,6 +19,20 @@ class ChargesController < ApplicationController
       charge = StripeTool.create_charge(customer_id: customer.id,
                                  amount: @amount,
                                  description: @description)
+    end
+    if charge && customer
+      #looks like the charge was successful, persist the data locally
+      if current_user.payment_account.present?
+        payment_account = current_user.payment_account
+      else
+        payment_account = PaymentAccount.new
+      end
+
+      payment_account.update(user: current_user,
+                            stripe_customer_id: customer['id'],
+                            plan_id: set_plan,
+                            trial_period_active: true,
+                            status: :active)
     end
 
     redirect_to thanks_path

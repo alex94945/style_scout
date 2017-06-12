@@ -12,6 +12,9 @@
 	<body>
 		<%- if current_user.present? %>
 			<%= render partial:'shared/logged_in_nav' %>
+			<div>
+				<%= "Account Status: #{current_user.payment_account.try(:status)}" %>
+			</div>
 		<% else %>
 			<%= render partial:'shared/default_nav' %>
 		<% end %>
