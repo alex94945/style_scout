@@ -28,6 +28,7 @@ gem 'paperclip', '< 5.0'
 gem 'aws-sdk', '< 2.0'
 gem "merch_calendar"
 gem 'will_paginate', '~> 3.1.0'
+gem 'stripe'
 
 
 group :development, :test do

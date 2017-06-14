@@ -5,9 +5,15 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  before_action :check_payment_status
   helper_method :current_company
 
   protected
+
+    def check_payment_status
+      return unless current_user #nobody is logged in
+      redirect_to new_charge_path and return unless (current_user.payment_account.try(:active?) || current_user.payment_account.try(:trial_period_active?))
+    end
 
     def configure_permitted_parameters
       devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
