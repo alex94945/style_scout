@@ -9,19 +9,13 @@ class ChargesController < ApplicationController
   end
 
   def create
-    if params[:subscription].include? 'yes'
-      StripeTool.create_membership(email: params[:stripeEmail],
-                                 stripe_token: params[:stripeToken],
-                                 plan: @plan)
-    else
-      customer = StripeTool.create_customer(email: params[:stripeEmail],
-                                            stripe_token: params[:stripeToken])
-      charge = StripeTool.create_charge(customer_id: customer.id,
-                                 amount: @amount,
-                                 description: @description)
-    end
-    if charge && customer
-      #looks like the charge was successful, persist the data locally
+
+    membership = StripeService.new().create_membership(email: params[:stripeEmail],
+                                         stripe_token: params[:stripeToken],
+                                         plan: @plan) #creates customer in StripeService
+
+    if membership
+      #looks like the membership creation was successful, persist the data locally
       if current_user.payment_account.present?
         payment_account = current_user.payment_account
       else
@@ -29,7 +23,7 @@ class ChargesController < ApplicationController
       end
 
       payment_account.update(user: current_user,
-                            stripe_customer_id: customer['id'],
+                            stripe_customer_id: membership['id'],
                             plan_id: set_plan,
                             trial_period_active: true,
                             status: :active)
