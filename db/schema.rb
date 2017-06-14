@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170510050606) do
+ActiveRecord::Schema.define(version: 20170612040911) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -63,16 +63,23 @@ ActiveRecord::Schema.define(version: 20170510050606) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "payment_accounts", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "stripe_customer_id"
+    t.integer  "plan_id"
+    t.integer  "status"
+    t.boolean  "trial_period_active"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "payment_accounts", ["user_id"], name: "index_payment_accounts_on_user_id", using: :btree
+
   create_table "profile_configs", force: :cascade do |t|
     t.boolean  "default_home_my_appointments", default: false
     t.integer  "user_id"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
-  end
-
-  create_table "registrations", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "reminders", force: :cascade do |t|
@@ -131,5 +138,6 @@ ActiveRecord::Schema.define(version: 20170510050606) do
   end
 
   add_foreign_key "attachments", "styles"
+  add_foreign_key "payment_accounts", "users"
   add_foreign_key "reminders", "users"
 end
