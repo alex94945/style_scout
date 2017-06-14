@@ -6,6 +6,10 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'dashboard#show'
 
+  namespace :stripe do
+    post :webhook
+  end
+
   # Stripe
   resources :charges, only: [:new, :create]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
