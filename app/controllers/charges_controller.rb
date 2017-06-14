@@ -34,7 +34,7 @@ class ChargesController < ApplicationController
     end
 
     def amount_to_be_charged
-      @amount = 500
+      @amount = 50 * 100 #cents
     end
 
     def set_description
