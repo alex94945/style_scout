@@ -33,7 +33,7 @@ class BudgetService < DashboardBaseService
       @user
         .styles
         .includes(:appointment)
-        .where(appointments: {scout_date: @start_date..@end_date})
+        .where(styles: {delivery_date: @start_date..@end_date})
   end
 
   def budget
