@@ -18,7 +18,7 @@ FactoryGirl.define do
       inactive_account
     end
 
-    trait :administrator do
+    trait :who_is_administrator do
       administrator true
     end
 

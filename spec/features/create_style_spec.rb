@@ -5,7 +5,7 @@ require "rails_helper"
 describe "creating a style", type: :feature, js: true do
 
   before do
-    @user = create(:user, company: create(:company))
+    @user = create(:user, :with_valid_payment, company: create(:company))
     create(:appointment, user: @user)
     @appointment = Appointment.last
     category_names = ["Sweaters", "Pants", "Accessories", "Shoes", "Shirts", "Dresses"]
@@ -35,7 +35,7 @@ context "without a photo" do
 
     @vendor_style_number = Random.rand(1..9).times.map { [*'0'..'9', *'a'..'z'].sample }.join
     @style_quantity = Faker::Number.number( Random.rand(1..4) ).to_i
-    @status = ["Created", "Approved", "Order placed", "Received", "Cancelled", "Deleted"].sample
+    @status = ["Created", "Pending", "Placed", "Received", "Cancelled", "Deleted"].sample
     @wholesale_cost = Faker::Number.decimal(2).to_d
     @negotiated_cost = Faker::Number.decimal(2).to_d
     @retail_price = Faker::Number.decimal(2).to_d
@@ -50,7 +50,7 @@ context "without a photo" do
     fill_in('style_vendor_style_number', with: @vendor_style_number)
     fill_in('style_quantity', with: @style_quantity )
     select @status, from: 'style_status'
-    page.execute_script('$("#style_delivery_date").val("2016-06-11") ' )
+    page.execute_script(' $("#style_delivery_date").val("2016-06-11") ')
     fill_in('style_wholesale_cost', with: @wholesale_cost )
     fill_in('style_negotiated_cost', with: @negotiated_cost )
     fill_in('style_retail_price', with: @retail_price )

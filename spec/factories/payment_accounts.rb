@@ -2,8 +2,6 @@ FactoryGirl.define do
   factory :payment_account do
     user nil
     plan_id 1
-    # status "MyString"
-    # trial_period_active false
     status "active"
 
     trait :active_account do
