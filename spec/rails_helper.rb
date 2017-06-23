@@ -29,6 +29,7 @@ require 'capybara/rspec'
 ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
+  config.include Devise::Test::ControllerHelpers, type: :controller
   config.use_transactional_fixtures = false
   config.include Warden::Test::Helpers
   config.before (:suite) do
@@ -49,7 +50,7 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 
-  config.after do 
+  config.after do
     Warden.test_reset!
   end
 

@@ -3,7 +3,7 @@ require "rails_helper"
 describe "creating an appointment", type: :feature, js: true do
 
   before do
-    @user = create(:user, company: create(:company))
+    @user = create(:user, :with_valid_payment, company: create(:company))
     login_as(@user, scope: :user)
   end
 
