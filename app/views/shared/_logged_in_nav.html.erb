@@ -27,7 +27,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
         	<%- if current_user.administrator? %>
-        		<%= link_to "Application Settings", settings_path %>
+        		<%= link_to "Admin Settings", settings_path %>
         	<% end %>
         </li>
         <li class="dropdown">
@@ -37,7 +37,10 @@
           </a>
           <ul class="dropdown-menu">
             <li>
-              <%= link_to "Edit Account", edit_user_registration_path %>
+              "Stripe Account"
+            </li>
+            <li>
+              <%= link_to "Edit User Info", edit_user_registration_path %>
             </li>
             <li>
               <%= link_to "Manage Budget", budgets_path %>
