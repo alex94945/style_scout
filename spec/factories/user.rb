@@ -7,7 +7,7 @@ FactoryGirl.define do
     company
 
     trait :with_trial_account do
-      trail_period_account
+      association :payment_account, :trail_period_account
     end
 
     trait :with_valid_payment do
@@ -15,7 +15,7 @@ FactoryGirl.define do
     end
 
     trait :with_invalid_payment do
-      inactive_account
+      association :payment_account, :inactive_account
     end
 
     trait :who_is_administrator do
