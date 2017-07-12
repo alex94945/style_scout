@@ -29,6 +29,7 @@ gem 'aws-sdk', '< 2.0'
 gem "merch_calendar"
 gem 'will_paginate', '~> 3.1.0'
 gem 'stripe'
+gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
 
 
 group :development, :test do
@@ -40,6 +41,7 @@ group :development, :test do
   gem 'pry'
   gem 'database_cleaner'
   gem 'dotenv-rails'
+
 end
 
 group :production do
