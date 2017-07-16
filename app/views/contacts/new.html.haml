@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-body
+    .row.form-group
+      .col-md-12
+        %h3 Send us a message
+        = form_for @contact, :html => {:class => 'form-horizontal' } do |f|
+          .col-md-6
+            .row.form-group
+              %label Name
+              = f.text_field :name, class: 'form-control', required: true
+            .form-group
+              %label Email
+              = f.email_field :email, class: 'form-control', required: true
+            .form-group
+              %label Message
+              = f.text_area :message, class: 'form-control', rows: 5, as: :text, required: true
+            .hidden
+              = f.text_field :nickname, hint: 'Leave this field blank!'
+            %div
+              = f.submit 'Send message', class: "btn btn-primary"

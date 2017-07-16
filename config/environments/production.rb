@@ -3,6 +3,17 @@ Rails.application.routes.default_url_options[:host] = 'http://salty-inlet-26605.
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings for mailgun
+  ActionMailer::Base.smtp_settings = {
+    :port           => 587,
+    :address        => "smtp.mailgun.org",
+    :domain         => ENV['DOMAIN'],
+    :user_name      => ENV['USERNAME'],
+    :password       => ENV['PASSWORD'],
+    :authentication => :plain,
+  }
+
   config.paperclip_defaults = {
     :storage => :s3,
     :s3_credentials => {

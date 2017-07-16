@@ -30,6 +30,7 @@ gem "merch_calendar"
 gem 'will_paginate', '~> 3.1.0'
 gem 'stripe'
 gem 'mailgun-ruby', '~>1.0.2', require: 'mailgun'
+gem 'mail_form'
 
 
 group :development, :test do

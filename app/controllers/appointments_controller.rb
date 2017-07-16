@@ -44,6 +44,6 @@ end
 private
 	def appointment_params
 		params.require(:appointment).permit(:name, :user_id, :scout_date, :location, :notes)
-   end
+  end
 
 end

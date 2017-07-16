@@ -6,6 +6,11 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'dashboard#show'
 
+
+  get 'contact', to: 'contacts#new', as: 'new_contact'
+  post 'contact', to: 'contacts#create', as: 'contacts'
+
+
   namespace :stripe do
     post :webhook
   end
