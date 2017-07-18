@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!
   before_action :configure_permitted_parameters, if: :devise_controller?
 
-  before_action :check_payment_status
+  # before_action :check_payment_status
   helper_method :current_company
 
   protected
