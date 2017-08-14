@@ -5,7 +5,7 @@ module DashboardHelper
     12.times do |i|
       month = i+1
       html += content_tag(:option, value: month, selected: current_or_active_merch_month(params, month)) do
-        date_range_to_month_name(month)
+        Date::MONTHNAMES[month]
       end
     end
     return html.html_safe
@@ -22,27 +22,28 @@ module DashboardHelper
     return html_year.html_safe
   end
 
-  def date_range_to_month_name(month)
-    start_date = MerchCalendar.start_of_month(Date.current.year, merch_month: month)
-    end_date = MerchCalendar.end_of_month(Date.current.year, merch_month: month)
+  # def date_range_to_month_name(month)
+  #   start_date = MerchCalendar.start_of_month(Date.current.year, merch_month: month)
+  #   end_date = MerchCalendar.end_of_month(Date.current.year, merch_month: month)
 
-    # returns the month corresponding to each day in a given date range
-    months_of_days = (start_date..end_date).map{ |date| date.strftime("%B") }
-    counts = Hash.new 0
-    months_of_days.each do |d|
-      counts[d] += 1
-    end
+  #   # returns the month corresponding to each day in a given date range
+  #   months_of_days = (start_date..end_date).map{ |date| date.strftime("%B") }
+  #   counts = Hash.new 0
+  #   months_of_days.each do |d|
+  #     counts[d] += 1
+  #   end
 
-    most_days = counts.max_by{|k,v| v}
-    merch_month_in_words = most_days[0]
-    return merch_month_in_words
-  end
+  #   most_days = counts.max_by{|k,v| v}
+  #   merch_month_in_words = most_days[0]
+  #   return merch_month_in_words
+  # end
 
   def current_or_active_merch_month(params, month)
     if params[:merch_month].present?
       return 'selected' if params[:merch_month] == month.to_s
     else
-      return 'selected' if month == MerchCalendar::MerchWeek.from_date(Date.current).merch_month
+      # return 'selected' if month == MerchCalendar::MerchWeek.from_date(Date.current).merch_month
+      return 'selected' if month == Date.current.month
     end
   end
 
@@ -56,22 +57,25 @@ module DashboardHelper
 
   def start_of_period(params = {})
     if params[:merch_month].present? && params[:merch_year].present?
-      return MerchCalendar.start_of_month(params[:merch_year].to_i, merch_month: params[:merch_month].to_i).strftime("%B %d, %Y")
+      # return MerchCalendar.start_of_month(params[:merch_year].to_i, merch_month: params[:merch_month].to_i).strftime("%B %d, %Y")
+      return DateTime.new(params[:merch_year].to_i, params[:merch_month].to_i).beginning_of_month.strftime("%B %d, %Y")
     else
-      month = MerchCalendar::MerchWeek.from_date(Date.current).merch_month
-      year = MerchCalendar::MerchWeek.from_date(Date.current).year
-      return MerchCalendar.start_of_month(year, merch_month: month).strftime("%B %d, %Y")
+      return Date.current.beginning_of_month.strftime("%B %d, %Y")
+      # month = MerchCalendar::MerchWeek.from_date(Date.current).merch_month
+      # year = MerchCalendar::MerchWeek.from_date(Date.current).year
+      # return MerchCalendar.start_of_month(year, merch_month: month).strftime("%B %d, %Y")
     end
   end
 
   def end_of_period(params = {})
     if params[:merch_month].present? && params[:merch_year].present?
-      return MerchCalendar.end_of_month(params[:merch_year].to_i, merch_month: params[:merch_month].to_i).strftime("%B %d, %Y")
+      # return MerchCalendar.end_of_month(params[:merch_year].to_i, merch_month: params[:merch_month].to_i).strftime("%B %d, %Y")
+      return DateTime.new(params[:merch_year].to_i, params[:merch_month].to_i).end_of_month.strftime("%B %d, %Y")
     else
-      month = MerchCalendar::MerchWeek.from_date(Date.current).merch_month
-      year = MerchCalendar::MerchWeek.from_date(Date.current).year
-
-      return MerchCalendar.end_of_month(year, merch_month: month).strftime("%B %d, %Y")
+      return Date.current.end_of_month.strftime("%B %d, %Y")
+      # month = MerchCalendar::MerchWeek.from_date(Date.current).merch_month
+      # year = MerchCalendar::MerchWeek.from_date(Date.current).year
+      # return MerchCalendar.end_of_month(year, merch_month: month).strftime("%B %d, %Y")
     end
   end
 
