@@ -15,17 +15,31 @@
   .col-md-6
     %h3.text-muted
       Appointments:
-    - @dashboard_stats[:incomplete_appointments].each_with_index do |appointment|
-      .list-group-item
-        = link_to appointment.name, appointment_path(appointment)
-        %i.fa.fa-exclamation.text-danger{data:{toggle: "tooltip"}, title: "This appointment has some styles that are still created or pending."}
+    #style-tabs
+      %ul.nav.nav-tabs
+        %li.active{data:{toggle: "tooltip"}, title: "Appointments with styles that have due dates in the specified month"}
+          %a{"data-toggle" => "tab", :href => "#appointments"}
+            Appointments
+        %li{data:{toggle: "tooltip"}, title: "Appointments with styles that have no specified due date"}
+          %a{"data-toggle" => "tab", href: "#orphan-appointments"}
+            Orphan Appointments
+      .tab-content
+        .tab-pane.active#appointments
+          %ul.list-group
+            - @dashboard_stats[:incomplete_appointments].each_with_index do |appointment|
+              .list-group-item
+                = link_to appointment.name, appointment_path(appointment)
+                %i.fa.fa-exclamation.text-danger{data:{toggle: "tooltip"}, title: "This appointment has some styles that are still created or pending."}
 
-    - @dashboard_stats[:complete_appointments].each do |appointment|
-      .list-group-item
-        = link_to appointment.name, appointment_path(appointment)
-        %i.fa.fa-check.text-success{data:{toggle: "tooltip"}, title: "All styles have been processed!"}
-
-
+            - @dashboard_stats[:complete_appointments].each do |appointment|
+              .list-group-item
+                = link_to appointment.name, appointment_path(appointment)
+                %i.fa.fa-check.text-success{data:{toggle: "tooltip"}, title: "All styles have been processed!"}
+        .tab-pane#orphan-appointments
+          %ul.list-group
+            - @dashboard_stats[:dateless_style_appointments].each do |appointment|
+              .list-group-item
+                = link_to appointment.name, appointment_path(appointment)
 
   .col-md-6
     %h3.text-muted
@@ -45,7 +59,7 @@
             Placed
             (#{@dashboard_stats[:placed_styles].count})
       .tab-content
-        - %w(created pending placed incomplete).each_with_index do |status, i|
+        - %w(created pending placed).each_with_index do |status, i|
           .tab-pane{id: "#{status}-styles", class: ('active' if i == 0).to_s }
             %ul.list-group
               - @dashboard_stats["#{status}_styles".to_sym].each do |style|

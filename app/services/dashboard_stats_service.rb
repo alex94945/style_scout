@@ -8,6 +8,7 @@ class DashboardStatsService < DashboardBaseService
       pending_styles: all_styles.select{ |s| s.status == 'pending'},
       placed_styles: all_styles.select{ |s| s.status == 'placed'},
       incomplete_styles: all_styles.select{ |s| s.status == 'created' || s.status == 'pending'}, #meh?
+      dateless_style_appointments: dateless_style_appointments
 
     }
   end
@@ -17,6 +18,10 @@ class DashboardStatsService < DashboardBaseService
     def appointments
       date_range = @start_date..@end_date
       @appointments ||= @user.appointments.joins(:styles).where(styles: { delivery_date: date_range })
+    end
+
+    def dateless_style_appointments
+      @user.appointments.includes(:styles).where( styles: {delivery_date: nil} )
     end
 
     def complete_appointents
