@@ -16,9 +16,12 @@
               %th Status
               %th Buyer
               %th
-                = style_sort_link(params)
-              %th IMU %
-              %th Retail
+                = scout_date_sort_link(params)
+              %th
+                = delivery_date_sort_link(params)
+              %th Markup
+              %th Cost
+              %th Retail Price
               %th
           %tbody
             - @styles.each do |style|
@@ -46,7 +49,14 @@
                   - else
                     N/A
                 %td
+                  - if style.delivery_date.present?
+                    = style.delivery_date.strftime('%b %e, %Y')
+                  - else
+                    N/A
+                %td
                   = number_to_percentage style.initial_mark_up, precision: 2
+                %td
+                  = number_to_currency style.wholesale_cost, precision: 2
                 %td
                   = number_to_currency style.retail_price, precision: 2
                 %td.text-right

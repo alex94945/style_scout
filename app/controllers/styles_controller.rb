@@ -49,7 +49,7 @@ class StylesController < ApplicationController
     @style.update(style_params)
   end
 
-  #TODO: non REST-ful route. Can refactor 
+  #TODO: non REST-ful route. Can refactor
   def duplicate
     @duplicate_style = StyleDuplicatorService.new(params[:style_id]).perform
     redirect_to appointment_path(@appointment)
@@ -63,7 +63,8 @@ class StylesController < ApplicationController
 
     def style_params
       params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost,
-                    :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :exclusive, :default_attachment_id, :photos => [])
+                    :negotiated_cost, :retail_price, :delivery_date, :delivery_year, :quantity,
+                    :notes, :status, :color, :exclusive, :default_attachment_id, :photos => [])
            end
 
 end

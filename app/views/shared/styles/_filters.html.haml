@@ -25,6 +25,20 @@
               options_for_select(current_company.users.map{|u| [u.name, u.id]}.insert(0, ['---', nil]).uniq, |
                params[:filters].try(:[], :user_id)), |
               class: 'form-control'
+        .row.form-group
+          .col-md-3
+            %label Delivery Year
+            = select_tag '[filters][delivery_year]', |
+              options_for_select(options_for_year_picker(params), |
+                params[:filters].try(:[], :delivery_year)), |
+              class: 'form-control'
+          .col-md-3
+            %label Delivery Month
+            = select_tag '[filters][delivery_month]', |
+              options_for_select(options_for_month_picker(params), |
+                params[:filters].try(:[], :delivery_month)), |
+              class: 'form-control'
+
         .row
           .col-md-6
             = link_to 'Reset Filters', styles_path, class: 'btn btn-default'
