@@ -2,7 +2,7 @@ require "rails_helper"
 
 describe "visiting the application", type: :feature, js: true do
 
-  it "it shows appointments index if signed in" do
+  it "it shows styles index if signed in" do
     @user = create(:user, :with_valid_payment, company: create(:company))
     login_as(@user, scope: :user)
     visit '/'

@@ -14,10 +14,6 @@ Rails.application.routes.draw do
   resources :charges, only: [:new, :create]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
 
-  namespace :dashboard do
-    resources :budgets
-  end
-
   resources :appointments do
     get :export
     resources :styles do
