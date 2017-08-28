@@ -33,41 +33,97 @@ module StylesHelper
     end
   end
 
-  def options_for_month_picker(params)
-    html_month = ""
+  # DELIVERY MONTHS AND YEARS
+  def options_for_delivery_month_picker(params)
+    html_months = "<option value=\"null\"> --- </option>"
     12.times do |i|
       month = i+1
-      html_month += content_tag(:option, value: month, selected: current_or_active_month(params, month)) do
+      html_months += content_tag(:option, value: month, selected: current_or_active_delivery_month(params, month)) do
         Date::MONTHNAMES[month]
       end
     end
-    return html_month.html_safe
+    return html_months.html_safe
   end
 
-  def options_for_year_picker(params)
-    html_year = ""
+  def options_for_delivery_year_picker(params)
+    html_years = "<option value=\"null\"> --- </option>"
     years = (Date.current.year-1)..(Date.current.year+4)
     years.each do |year|
-      html_year += content_tag(:option, value: year, selected: current_or_active_year(params, year)) do
+      html_years += content_tag(:option, value: year, selected: current_or_active_delivery_year(params, year)) do
         year.to_s
       end
     end
-    return html_year.html_safe
+    return html_years.html_safe
   end
 
-  def current_or_active_month(params, month)
+  def current_or_active_delivery_month(params, month)
     if params[:filters].present?
-      return 'selected' if params[:filters][:delivery_month] == month.to_s
+      if params[:filters][:delivery_month] == month.to_s
+        return 'selected'
+      elsif params[:filters][:delivery_month] == '---'
+        return 'selected'
+      end
     else
-      return 'selected' if month == Date.current.month
+      return 'selected' if month == '---'
     end
   end
 
-  def current_or_active_year(params, year)
+  def current_or_active_delivery_year(params, year)
     if params[:filters].present?
-      return 'selected' if params[:filters][:delivery_year] == year.to_s
+      if params[:filters][:delivery_year] == year.to_s
+        return 'selected'
+      elsif params[:filters][:delivery_year] == '---'
+        return 'selected'
+      end
     else
-      return 'selected' if year == Date.current.year
+      return 'selected' if year == '---'
+    end
+  end
+
+# SCOUT MONTHS AND YEARS
+  def options_for_scout_month_picker(params)
+    html_months = "<option value=\"null\"> --- </option>"
+    12.times do |i|
+      month = i+1
+      html_months += content_tag(:option, value: month, selected: current_or_active_scout_month(params, month)) do
+        Date::MONTHNAMES[month]
+      end
+    end
+    return html_months.html_safe
+  end
+
+  def options_for_scout_year_picker(params)
+    html_years = "<option value=\"null\"> --- </option>"
+    years = (Date.current.year-1)..(Date.current.year+4)
+    years.each do |year|
+      html_years += content_tag(:option, value: year, selected: current_or_active_scout_year(params, year)) do
+        year.to_s
+      end
+    end
+    return html_years.html_safe
+  end
+
+  def current_or_active_scout_month(params, month)
+    if params[:filters].present?
+      if params[:filters][:scout_month] == month.to_s
+        return 'selected'
+      elsif params[:filters][:scout_month] == '---'
+        return 'selected'
+      end
+    else
+      return 'selected' if month == '---'
+    end
+  end
+
+  def current_or_active_scout_year(params, year)
+    if params[:filters].present?
+      if params[:filters][:scout_year] == year.to_s
+        return 'selected'
+      elsif params[:filters][:scout_year] == '---'
+        return 'selected'
+      end
+    else
+      return 'selected' if year == '---'
     end
   end
 

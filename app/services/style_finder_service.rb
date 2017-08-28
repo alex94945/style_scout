@@ -37,19 +37,46 @@ class StyleFinderService
       filter_by_buyer_name
       filter_by_style_delivery_year
       filter_by_style_delivery_month
+      filter_by_style_scout_year
+      filter_by_style_scout_month
+    end
+
+    # TODO needs finishing to account for scout_date living on appts table
+    def filter_by_style_scout_year
+      if @filters[:scout_year].present? && @filters[:scout_year] != "null"
+        @styles = @styles.where('extract(year from scout_date) = ?', @filters[:scout_year])
+      else
+        @styles = @styles
+      end
+
+      return @styles
+    end
+
+    def filter_by_style_scout_month
+      if @filters[:scout_month].present? && @filters[:scout_month] != "null"
+        @styles = @styles.where('extract(month from scout_date) = ?', @filters[:scout_month])
+      else
+        @styles = @styles
+      end
+
+      return @styles
     end
 
     def filter_by_style_delivery_year
-      if @filters[:delivery_year].present?
+      if @filters[:delivery_year].present? && @filters[:delivery_year] != "null"
         @styles = @styles.where('extract(year from delivery_date) = ?', @filters[:delivery_year])
+      else
+        @styles = @styles
       end
 
       return @styles
     end
 
     def filter_by_style_delivery_month
-      if @filters[:delivery_month].present?
+      if @filters[:delivery_month].present? && @filters[:delivery_month] != "null"
         @styles = @styles.where('extract(month from delivery_date) = ?', @filters[:delivery_month])
+      else
+        @styles = @styles
       end
 
       return @styles

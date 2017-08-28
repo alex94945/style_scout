@@ -27,15 +27,27 @@
               class: 'form-control'
         .row.form-group
           .col-md-3
+            %label Scout Year
+            = select_tag '[filters][scout_year]', |
+              options_for_select(options_for_scout_year_picker(params), |
+                params[:filters].try(:[], :scout_year)), |
+              class: 'form-control'
+          .col-md-3
+            %label Scout Month
+            = select_tag '[filters][scout_month]', |
+              options_for_select(options_for_scout_month_picker(params), |
+                params[:filters].try(:[], :scout_month)), |
+              class: 'form-control'
+          .col-md-3
             %label Delivery Year
             = select_tag '[filters][delivery_year]', |
-              options_for_select(options_for_year_picker(params), |
+              options_for_select(options_for_delivery_year_picker(params), |
                 params[:filters].try(:[], :delivery_year)), |
               class: 'form-control'
           .col-md-3
             %label Delivery Month
             = select_tag '[filters][delivery_month]', |
-              options_for_select(options_for_month_picker(params), |
+              options_for_select(options_for_delivery_month_picker(params), |
                 params[:filters].try(:[], :delivery_month)), |
               class: 'form-control'
 
