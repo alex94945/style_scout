@@ -1,4 +1,6 @@
 class StylesController < ApplicationController
+  skip_before_action :authenticate_user!
+  before_action :render_styles_index_or_welcome, only: :index
   before_action :fetch_appointment, except: :index
 
   def index
@@ -57,6 +59,10 @@ class StylesController < ApplicationController
   end
 
   private
+    def render_styles_index_or_welcome
+      render :welcome unless user_signed_in?
+    end
+
     def fetch_appointment
       @appointment = Appointment.find(params[:appointment_id])
     end
