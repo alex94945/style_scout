@@ -1,8 +1,0 @@
-= form_for @budget, url: dashboard_budgets_path, method: :post do |f|
-  = f.number_field :merch_year, class: 'hidden', value: params[:merch_year] || Date.current.year
-  %select.hidden{name: '[budget][merch_month]'}
-    = options_for_merch_month_picker(params)
-  .input-group
-    = f.number_field :value, class: 'form-control'
-    .input-group-btn
-      = f.submit ">", class: "btn btn-primary"

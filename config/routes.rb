@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'dashboard#show'
+  root 'styles#index'
 
   namespace :stripe do
     post :webhook
@@ -13,10 +13,6 @@ Rails.application.routes.draw do
   # Stripe
   resources :charges, only: [:new, :create]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
-
-  namespace :dashboard do
-    resources :budgets
-  end
 
   resources :appointments do
     get :export

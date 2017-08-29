@@ -1,6 +1,10 @@
+.top-buffer {
+  margin-top: 20px;
+}
+
 .card-row {
-  margin: 20px 0px;
-  margin-bottom: 5px
+  margin: 0px 0px;
+  margin-bottom: 20px
 }
 
 .card-row .card {
@@ -8,12 +12,6 @@
   box-shadow: 0 0 4px #696969;
   border-radius: 3px;
   padding: 5px 10px;
-}
-
-.total-budget {
-  font-size: 60px;
-  color: green;
-  text-align: center;
 }
 
 .merch_period_picker {

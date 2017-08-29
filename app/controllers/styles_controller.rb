@@ -1,4 +1,6 @@
 class StylesController < ApplicationController
+  skip_before_action :authenticate_user!
+  before_action :render_styles_index_or_welcome, only: :index
   before_action :fetch_appointment, except: :index
 
   def index
@@ -49,7 +51,7 @@ class StylesController < ApplicationController
     @style.update(style_params)
   end
 
-  #TODO: non REST-ful route. Can refactor 
+  #TODO: non REST-ful route. Can refactor
   def duplicate
     @duplicate_style = StyleDuplicatorService.new(params[:style_id]).perform
     redirect_to appointment_path(@appointment)
@@ -57,13 +59,18 @@ class StylesController < ApplicationController
   end
 
   private
+    def render_styles_index_or_welcome
+      render :welcome unless user_signed_in?
+    end
+
     def fetch_appointment
       @appointment = Appointment.find(params[:appointment_id])
     end
 
     def style_params
       params.require(:style).permit(:name, :category_name, :vendor_style_number, :wholesale_cost,
-                    :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status, :color, :exclusive, :default_attachment_id, :photos => [])
-           end
+                    :negotiated_cost, :retail_price, :delivery_date, :quantity, :notes, :status,
+                    :color, :exclusive, :default_attachment_id, :photos => [])
+    end
 
 end
