@@ -29,7 +29,6 @@ Rails.application.routes.draw do
   resources :companies
 
   resources :budgets
-  resources :reminders
   namespace :api do
     namespace :v1 do
       get '/attachments/:id' => 'attachments#show'
