@@ -1,4 +1,4 @@
-Rails.application.routes.default_url_options[:host] = 'http://salty-inlet-26605.herokuapp.com/'
+Rails.application.routes.default_url_options[:host] = 'http://www.stylescout.io/'
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
