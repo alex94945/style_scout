@@ -19,7 +19,7 @@ p.large{
 
 p.welcome-page{
   font-family: 'Josefin Slab', serif;
-  font-size: 17px;
+  font-size: 20px;
 }
 
 h1.welcome-page,h3.welcome-page{
@@ -42,8 +42,24 @@ h3.welcome-page{
   z-index: -1;
 }
 
+.welcome-bg-image:after{
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.6) 54%, rgba(0,0,0,0.2) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 54%,rgba(0,0,0,0.2) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%,rgba(0,0,0,0.6) 54%,rgba(0,0,0,0.2) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#99000000', endColorstr='#33000000',GradientType=0 ); /* IE6-9 */
+
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  content: '';
+  transition: all 1s;
+}
+
 .panel-welcome{
-  background-color: rgba(0,0,0,0.3);
+  background-color: transparent;
   color: #fff;
   border-radius: 3px;
 }

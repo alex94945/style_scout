@@ -1,25 +1,17 @@
 %div
   / Nav tabs
   %ul.nav.nav-tabs{:role => "tablist"}
-    - if current_user.administrator?
-      %li.active{:role => "presentation"}
-        %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#style-categories", :role => "tab"} Style Categories
-    / TODO: this stopped working
-    / %li{:role => "presentation"}
-    /   %a{"aria-controls" => "profile", "data-toggle" => "tab", :href => "#profile", :role => "tab"} Profile
-    %li{:role => "presentation"}
+    %li.active{:role => "presentation"}
       %a{"aria-controls" => "company-settings", "data-toggle" => "tab", :href => "#company-settings", :role => "tab"} Company Settings
+      
+    - if current_user.administrator?
+      %li{:role => "presentation"}
+        %a{"aria-controls" => "home", "data-toggle" => "tab", :href => "#style-categories", :role => "tab"} Style Categories
+    
   / Tab panes
 
   .tab-content
-    - if current_user.administrator?
-      #style-categories.tab-pane.active{:role => "tabpanel"}
-        = render partial: "shared/categories/index"
-
-    / #profile.tab-pane{:role => "tabpanel"}
-    /   = render partial: "shared/users/profile_config"
-
-    #company-settings.tab-pane{:role => "tabpanel"}
+    #company-settings.tab-pane.active{:role => "tabpanel"}
       .row
         .col-sm-6
           .well
@@ -37,8 +29,12 @@
               %li.list-group-item
                 .row
                   .col-md-6
-                    = link_to user.name, edit_settings_user_path(user), remote:true
+                    = link_to user.name, edit_settings_user_path(user), remote: true
                   .col-md-6
                     = user.administrator? ? "Admin" : "Not Admin"
         .col-sm-6
           #user-form-container
+
+    - if current_user.administrator?
+      #style-categories.tab-pane{:role => "tabpanel"}
+        = render partial: "shared/categories/index"

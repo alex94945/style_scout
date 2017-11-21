@@ -1,13 +1,14 @@
 .welcome-bg-image
 
 .row
-  .col-sm-8
+  .col-sm-6.col-sm-offset-3
     .panel.panel-welcome
       .panel-body
-        %h1.welcome-page Product Sourcing Made Easy
-        %p.large.welcome-page
+        %h1.welcome-page.text-center Product Sourcing Made Easy
+        %p.large.welcome-page.text-center
           Style Scout is a product assortment management tool designed specifically
           for fashion industry buyers, retailers, and planners.
+        %hr
         %ul
           %h3.welcome-page
             %i.fa.fa-mobile.fa-lg
@@ -27,6 +28,6 @@
 
 .row
   = link_to new_user_registration_path do
-    .col-md-8.col-md-offset-2
-      .btn.btn-primary.btn-block.btn-lg.get-started-button
+    .col-md-4.col-md-offset-4
+      .btn.btn-primary.btn-lg.btn-block.get-started-button
         Start Your Free Trial Now!

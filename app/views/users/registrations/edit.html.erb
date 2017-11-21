@@ -1,4 +1,4 @@
-<h3> Account Status: <%= current_user.payment_account.try(:status).humanize %></h3>
+<h3> Account Status: <%= current_user.payment_account.try(:status).try(:humanize) %></h3>
 <hr>
 <h3>Edit <%= resource_name.to_s.humanize %> Info</h2>
 

@@ -78,7 +78,7 @@
               %td
                 = number_to_percentage @appointment.weighted_average_imu, precision: 2
               %td
-    = link_to 'Export As CSV', appointment_export_path(@appointment, format: "csv"), class: "btn btn-primary"
+    = link_to 'Export As CSV', appointment_export_path(@appointment, format: "csv"), class: "btn btn-default"
   / Mobile view
   %ul.panel-heading.breadcrumb.visible-xs{:style => "margin-bottom: 0px"}
     %li= link_to "All Appointments", appointments_path
