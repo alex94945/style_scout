@@ -46,6 +46,8 @@ Rails.application.routes.draw do
     resources :users
   end
 
+  resources :contact, only: :index
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
