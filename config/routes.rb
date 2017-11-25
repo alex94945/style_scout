@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   resources :companies
 
   resources :budgets
+
   namespace :api do
     namespace :v1 do
       get '/attachments/:id' => 'attachments#show'
@@ -46,7 +47,7 @@ Rails.application.routes.draw do
     resources :users
   end
 
-  resources :contact, only: :index
+  get 'contact', to: 'contact#show', as: 'contact'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
