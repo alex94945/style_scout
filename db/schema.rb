@@ -71,15 +71,31 @@ ActiveRecord::Schema.define(version: 20171120183046) do
     t.boolean  "trial_period_active"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "coupon"
   end
 
   add_index "payment_accounts", ["user_id"], name: "index_payment_accounts_on_user_id", using: :btree
+
+  create_table "pointless_feedback_messages", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email_address"
+    t.string   "topic"
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "profile_configs", force: :cascade do |t|
     t.boolean  "default_home_my_appointments", default: false
     t.integer  "user_id"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
+  end
+
+  create_table "registrations", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "coupon"
   end
 
   create_table "styles", force: :cascade do |t|
