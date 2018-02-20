@@ -1,0 +1,20 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header modal-header-primary panel-heading-overflow">
+      <div class="half-wide">
+        Edit Product Set: <%= product_set.name %>
+      </div>
+      <div class="half-wide text-right">
+        <%= link_to product_set_path(@product_set), method: :delete,
+          data: {confirm: "Delete product set: #{product_set.name}?"}  do %>
+          <i class="fa fa-trash-o fa-lg" style="color: white"></i>
+        <% end %>
+      </div>
+    </div>
+    <div class="modal-body">
+      <%= form_for product_set, url: product_set_path, method: :put do |f| %>
+          <%= render partial: 'shared/product_sets/form', locals: {form: f} %>
+      <% end %>
+    </div>
+  </div>
+</div>

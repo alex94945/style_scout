@@ -1,0 +1,48 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        = params[:controller] == "users/product_sets" ? "My" : "All"
+        Product Set
+        .pull-right
+          = link_to 'Add New Product Set', new_product_set_path, remote: true
+      %br/
+      .hidden-xs
+        %table.table
+          %thead
+            %tr
+              %th Product Set Name
+              %th Open Styles
+              %th Buyer
+              %th Scout Date
+              %th Avg IMU %
+              %th AIR
+              %th
+          %tbody
+            - @product_sets.each do |product_set|
+              %tr
+                %td
+                  = link_to product_set.name, product_set_path(product_set)
+                %td
+                  = product_set.styles.open.count
+                  of #{product_set.styles.length}
+                %td
+                  = product_set.user.name
+                %td
+                  - if product_set.scout_date.present?
+                    = product_set.scout_date.strftime('%b %e, %Y')
+                  - else
+                    N/A
+                %td
+                  = number_to_percentage product_set.weighted_average_imu, precision: 2
+                %td
+                %td.text-right
+                  = render partial: "shared/product_sets/edit_buttons", locals: {product_set: product_set}
+      .visible-xs
+        - @product_sets.each do |product_set|
+          = link_to product_set_path(product_set) do
+            .panel-body
+              .well
+                = product_set.name
+
+    = will_paginate(@product_sets)
