@@ -4,14 +4,14 @@
     %span.fa.fa-caret-down
   %ul#style-edit-dropdown.dropdown-menu.dropdown-menu-right{"aria-labelledby" => "dropdownMenu1"}
     %li.even
-      = link_to appointment_style_duplicate_path(appointment, style), method: :post do
+      = link_to product_set_style_duplicate_path(product_set, style), method: :post do
         %i.fa.fa-files-o
         %span Duplicate
     %li.odd
-      = link_to edit_appointment_style_path(appointment, style, inline: inline), remote: true  do
+      = link_to edit_product_set_style_path(product_set, style, inline: inline), remote: true  do
         %i.fa.fa-pencil
         %span Edit
     %li.even
-      = link_to appointment_style_path(appointment, style), method: :delete, data: {confirm: "Delete style: #{style.vendor_style_number}?"}  do
+      = link_to product_set_style_path(product_set, style), method: :delete, data: {confirm: "Delete style: #{style.vendor_style_number}?"}  do
         %i.fa.fa-trash-o
         %span Delete

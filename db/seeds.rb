@@ -16,12 +16,12 @@ user = User.create(name: 'Alex Alex', email: 'alex@alex.com', password:'12345678
 # Create a budget
 budget = Budget.create(value: 100000, merch_month: DateTime.current.month, merch_year: DateTime.current.year)
 
-#Create Appointments/Styles
+#Create Product Sets/Styles
 
 dates = [3.months.ago, Date.tomorrow, Date.yesterday, Date.today, 1.month.ago, 4.days.ago, 5.days.ago, 30.days.ago, 2.weeks.from_now]
 
 50.times do
-  a = Appointment.create(user: user, scout_date: dates.sample, name: Faker::Company.name)
+  a = ProductSet.create(user: user, scout_date: dates.sample, name: Faker::Company.name)
   10.times do
     a.styles.create(
       vendor_style_number: Faker::Number.number(10),

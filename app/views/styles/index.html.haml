@@ -33,24 +33,24 @@
               %tr{:id => "style-id-#{style.id}"}
                 %td.text-center
                   - if style.default_photo
-                    = link_to appointment_style_attachments_path(style.appointment.id, style), remote: true do
+                    = link_to product_set_style_attachments_path(style.product_set.id, style), remote: true do
                       = image_tag style.default_photo('square'), style:'width:60px;'
                   - else
                     \--
                 %td
-                  = link_to style.vendor_style_number, appointment_style_path(style.appointment, style)
+                  = link_to style.vendor_style_number, product_set_style_path(style.product_set, style)
                 %td
-                  = style.appointment.name
+                  = style.product_set.name
                 %td
-                  = form_for style, url: appointment_style_update_status_path(style.appointment_id, style), method: :put, remote: true do |f|
+                  = form_for style, url: product_set_style_update_status_path(style.product_set_id, style), method: :put, remote: true do |f|
                     = hidden_field_tag :authenticity_token, form_authenticity_token
                     = f.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, style.status), { }, onchange: "$(this.form).submit();", class: 'form-control'
                     = f.submit ' ', class: "hidden"
                 %td
-                  = style.appointment.user.name
+                  = style.product_set.user.name
                 %td
-                  - if style.appointment.scout_date.present?
-                    = style.appointment.scout_date.strftime('%b %e, %Y')
+                  - if style.product_set.scout_date.present?
+                    = style.product_set.scout_date.strftime('%b %e, %Y')
                   - else
                     N/A
                 %td
@@ -68,7 +68,7 @@
       / end
       .visible-xs
         - @styles.each do |style|
-          = link_to appointment_style_path(style.appointment, style) do
+          = link_to product_set_style_path(style.product_set, style) do
             .panel-body
               .well
                 = style.vendor_style_number
@@ -77,5 +77,5 @@
     - if @styles.empty?
       .row
         .col-md-6.col-md-offset-3
-          = link_to new_appointment_path, remote: true, class: "btn btn-primary btn-block btn-lg" do
-            ADD APPOINTMENT
+          = link_to new_product_set_path, remote: true, class: "btn btn-primary btn-block btn-lg" do
+            ADD PRODUCT SET

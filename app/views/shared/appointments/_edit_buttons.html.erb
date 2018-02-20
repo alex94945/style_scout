@@ -1,7 +1,7 @@
-<%= link_to edit_appointment_path(appointment), remote: true  do %>
+<%= link_to edit_product_set_path(product_set), remote: true  do %>
 	<i class="fa fa-pencil"></i>
 <% end %>
 &nbsp; | &nbsp;
-<%= link_to appointment_path(appointment), method: :delete, data: {confirm: "Delete appointment: #{appointment.name}?"}  do %>
+<%= link_to product_set_path(product_set), method: :delete, data: {confirm: "Delete product_set: #{product_set.name}?"}  do %>
 	<i class="fa fa-trash-o"></i>
 <% end %>
