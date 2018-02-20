@@ -1,4 +1,4 @@
-class Appointment < ActiveRecord::Base
+class ProductSet < ActiveRecord::Base
   has_many :styles, dependent: :destroy
   belongs_to :user
 

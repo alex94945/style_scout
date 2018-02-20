@@ -1,24 +1,24 @@
 .panel.panel-default
   %ul.panel-heading.breadcrumb.hidden-xs{:style => "margin-bottom: 0px"}
-    %li= link_to "All Appointments", appointments_path
+    %li= link_to "All Product Sets", product_sets_path
     %li.active
-      = @appointment.name.titleize
+      = @product_set.name.titleize
       |
-      - if @appointment.scout_date.present?
-        = @appointment.scout_date.strftime('%b %e, %Y')
+      - if @product_set.scout_date.present?
+        = @product_set.scout_date.strftime('%b %e, %Y')
       - else
         N/A
     %span
       .pull-right
-        = render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment}
+        = render partial: "shared/product_sets/edit_buttons", locals: {product_set: @product_set}
   .panel-body.hidden-xs
     / Panel body, upper
     .row
-      #appointment-header.col-md-6
-        = @appointment.name.titleize
+      #product_set-header.col-md-6
+        = @product_set.name.titleize
       .col-md-6
         %span.pull-right
-          = link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary"
+          = link_to "Add New Style", new_product_set_style_path(@product_set), class: "btn btn-primary"
     %br/
     / Panel body, table
     .well.hidden-xs
@@ -41,19 +41,19 @@
               Exclusive?
             %th
           %tbody
-            - @appointment.styles.each do |style|
+            - @product_set.styles.each do |style|
               %tr{:id => "style-id-#{style.id}"}
                 %td.text-center
                   - if style.default_photo
-                    = link_to appointment_style_attachments_path(style.appointment.id, style), remote: true do
+                    = link_to product_set_style_attachments_path(style.product_set.id, style), remote: true do
                       = image_tag style.default_photo('square'), style:'width:60px;'
                   - else
                     \--
                 %td
-                  %a.btn-block.appointment-container-toggle{"data-target" => "#style-notes-metadata-#{style.id}", "data-toggle" => "collapse"}
-                    = link_to style.vendor_style_number, appointment_style_path(@appointment, style)
+                  %a.btn-block.product_set-container-toggle{"data-target" => "#style-notes-metadata-#{style.id}", "data-toggle" => "collapse"}
+                    = link_to style.vendor_style_number, product_set_style_path(@product_set, style)
                 %td
-                  = form_for style, url: appointment_style_update_status_path(@appointment, style), method: :put, remote: true do |f|
+                  = form_for style, url: product_set_style_update_status_path(@product_set, style), method: :put, remote: true do |f|
                     = hidden_field_tag :authenticity_token, form_authenticity_token
                     = f.select :status, options_for_select( Style.statuses.map{ |k,v| [k.humanize, k] }, style.status), { }, onchange: "$(this.form).submit();", class: 'form-control'
                     = f.submit ' ', class: "hidden"
@@ -66,7 +66,7 @@
                 %td
                   = style.exclusive? ? "Yes" : "No"
                 %td.text-right
-                  = render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: style, inline: true}
+                  = render partial: "shared/styles/edit_buttons", locals: {product_set: @product_set, style: style, inline: true}
           %tfoot
             %tr
               %td Averages
@@ -74,37 +74,37 @@
               %td
               %td
               %td
-                = number_to_currency @appointment.average_initial_retail, precision: 2
+                = number_to_currency @product_set.average_initial_retail, precision: 2
               %td
-                = number_to_percentage @appointment.weighted_average_imu, precision: 2
+                = number_to_percentage @product_set.weighted_average_imu, precision: 2
               %td
-    = link_to 'Export As CSV', appointment_export_path(@appointment, format: "csv"), class: "btn btn-default"
+    = link_to 'Export As CSV', product_set_export_path(@product_set, format: "csv"), class: "btn btn-default"
   / Mobile view
   %ul.panel-heading.breadcrumb.visible-xs{:style => "margin-bottom: 0px"}
-    %li= link_to "All Appointments", appointments_path
+    %li= link_to "All Product Sets", product_sets_path
     %li.active
-      = @appointment.name.titleize
+      = @product_set.name.titleize
       |
-      - if @appointment.scout_date.present?
-        = @appointment.scout_date.strftime('%b %e, %Y')
+      - if @product_set.scout_date.present?
+        = @product_set.scout_date.strftime('%b %e, %Y')
       - else
         N/A
     %span
       .pull-right
-        = render partial: "shared/appointments/edit_buttons", locals: {appointment: @appointment}
+        = render partial: "shared/product_sets/edit_buttons", locals: {product_set: @product_set}
   .panel-body.visible-xs
     / Panel body, upper
     .row
-      #appointment-header.col-md-12
-        = @appointment.name.titleize
+      #product_set-header.col-md-12
+        = @product_set.name.titleize
     .row
       .col-md-12
-        = link_to "Add New Style", new_appointment_style_path(@appointment), class: "btn btn-primary mobile-add-style-button"
+        = link_to "Add New Style", new_product_set_style_path(@product_set), class: "btn btn-primary mobile-add-style-button"
   %br/
   / Panel body
   .visible-xs
-    - @appointment.styles.each do |style|
-      = link_to appointment_style_path(@appointment, style) do
+    - @product_set.styles.each do |style|
+      = link_to product_set_style_path(@product_set, style) do
         .well
           .row
             .col-xs-6

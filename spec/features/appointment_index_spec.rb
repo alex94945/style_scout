@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe "visiting the appointments index", type: :feature, js: true do
+describe "visiting the product sets index", type: :feature, js: true do
 
   before do
 

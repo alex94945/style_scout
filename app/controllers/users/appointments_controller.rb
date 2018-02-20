@@ -1,8 +1,8 @@
-class Users::AppointmentsController < ApplicationController
+class Users::ProductSetsController < ApplicationController
 
   def index
-    @appointments = current_user.appointments
-    render "appointments/index"
+    @product_sets = current_user.product_sets
+    render "product_sets/index"
   end
 
 end

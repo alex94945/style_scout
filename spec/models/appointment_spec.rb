@@ -1,9 +1,9 @@
 require "rails_helper"
 
-describe Appointment do
+describe ProductSet do
 
   before do
-    @appointment = Appointment.create(name: 'Appointment')
+    @appointment = ProductSet.create(name: 'Product Set Test Name')
     10.times do
       @appointment.styles.create(quantity: Faker::Number.number(Random.rand(1...3)), negotiated_cost: Faker::Number.decimal(2),
           wholesale_cost: Faker::Number.decimal(2), retail_price: Faker::Number.decimal(2), vendor_style_number: 'yeah' )

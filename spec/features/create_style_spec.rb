@@ -7,7 +7,7 @@ describe "creating a style", type: :feature, js: true do
   before do
     @user = create(:user, :with_valid_payment, company: create(:company))
     create(:appointment, user: @user)
-    @appointment = Appointment.last
+    @appointment = ProductSet.last
     category_names = ["Sweaters", "Pants", "Accessories", "Shoes", "Shirts", "Dresses"]
     @category = category_names.each { |c| Category.create(name: c) }
     login_as(@user, scope: :user)
@@ -19,7 +19,7 @@ context "without a photo" do
 
     @vendor_style_number = Random.rand(1..9).times.map { [*'0'..'9', *'a'..'z'].sample }.join
 
-    visit "/appointments/#{@appointment.id}"
+    visit "/product_sets/#{@appointment.id}"
     click_link('Add New Style')
 
     fill_in('style_vendor_style_number', with: @vendor_style_number)
@@ -43,7 +43,7 @@ context "without a photo" do
     @category = ["Sweaters", "Pants", "Accessories", "Shoes", "Shirts", "Dresses"].sample
     @notes = Faker::Hipster.paragraph
 
-    visit "/appointments/#{@appointment.id}"
+    visit "/product_sets/#{@appointment.id}"
     click_link('Add New Style')
     click_link('Advanced Fields')
 

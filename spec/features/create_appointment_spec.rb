@@ -1,15 +1,15 @@
 require "rails_helper"
 
-describe "creating an appointment", type: :feature, js: true do
+describe "creating an product set", type: :feature, js: true do
 
   before do
     @user = create(:user, :with_valid_payment, company: create(:company))
     login_as(@user, scope: :user)
   end
 
-  it "creates an appointment" do
-    visit '/appointments'
-    click_link('Add New Appointment')
+  it "creates an product set" do
+    visit '/product_sets'
+    click_link('Add New Product Set')
     modal = page.find('#modal')
 
     @name = Faker::Company.name
@@ -21,12 +21,12 @@ describe "creating an appointment", type: :feature, js: true do
     fill_in('appointment_location', with: @location)
     fill_in('appointment_notes', with: @notes)
 
-    click_button("Submit Appointment")
+    click_button("Submit Product Set")
 
-    expect(Appointment.first.name).to eql @name
-    expect(Appointment.first.scout_date).to eql Date.parse('2016-06-11')
-    expect(Appointment.first.location).to eql @location
-    expect(Appointment.first.notes).to eql @notes
+    expect(ProductSet.first.name).to eql @name
+    expect(ProductSet.first.scout_date).to eql Date.parse('2016-06-11')
+    expect(ProductSet.first.location).to eql @location
+    expect(ProductSet.first.notes).to eql @notes
 
   end
 

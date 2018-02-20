@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :appointment do
-    name "Appointment Name"
+    name "Product Set Name"
     user
   end
 end

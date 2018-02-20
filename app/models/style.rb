@@ -1,5 +1,5 @@
 class Style < ActiveRecord::Base
-  belongs_to :appointment
+  belongs_to :product_set
   enum status: [ :created, :pending, :placed, :received, :cancelled, :deleted ]
   INCOMPLETE_STATUSES = [0,1]
 

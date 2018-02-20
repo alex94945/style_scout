@@ -1,49 +1,49 @@
-class AppointmentsController < ApplicationController
+class ProductSetsController < ApplicationController
 
 def index
-  @appointments = current_company.appointments.includes(:styles, :user).paginate(page: params[:page], per_page: 20)
+  @product_sets = current_company.product_sets.includes(:styles, :user).paginate(page: params[:page], per_page: 20)
 end
 
 def create
-	@appointment = Appointment.create(appointment_params)
-	redirect_to appointment_path(@appointment)
+	@product_set = ProductSet.create(product_set_params)
+	redirect_to product_set_path(@product_set)
 end
 
 def new
-	@appointment = Appointment.new
+	@product_set = ProductSet.new
 end
 
 def edit
-  @appointment = current_company.appointments.find(params[:id])
+  @product_set = current_company.product_sets.find(params[:id])
 end
 
 def update
-  @appointment = current_company.appointments.find(params[:id])
-  @appointment.update(appointment_params)
-  redirect_to appointment_path(@appointment)
+  @product_set = current_company.product_sets.find(params[:id])
+  @product_set.update(product_set_params)
+  redirect_to product_set_path(@product_set)
 end
 
 def show
-  @appointment = current_company.appointments.includes(styles: :attachments).find(params[:id])
+  @product_set = current_company.product_sets.includes(styles: :attachments).find(params[:id])
 end
 
 def destroy
-	@appointment = current_company.appointments.find(params[:id])
-	@appointment.destroy
+	@product_set = current_company.product_sets.find(params[:id])
+	@product_set.destroy
 	redirect_to root_url
 end
 
 def export
-  @appointment = current_company.appointments.find(params[:appointment_id])
-  @styles = @appointment.styles
+  @product_set = current_company.product_sets.find(params[:product_set_id])
+  @styles = @product_set.styles
   respond_to do |format|
-    format.csv{ send_data @styles.to_csv, filename: "#{@appointment.name}.csv" }
+    format.csv{ send_data @styles.to_csv, filename: "#{@product_set.name}.csv" }
   end
 end
 
 private
-	def appointment_params
-		params.require(:appointment).permit(:name, :user_id, :scout_date, :location, :notes)
+	def product_set_params
+		params.require(:product_set).permit(:name, :user_id, :scout_date, :location, :notes)
    end
 
 end

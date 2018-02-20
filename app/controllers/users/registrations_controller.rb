@@ -27,8 +27,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   private
-      def appointment_params
-        params.require(:appointment).permit(:name, :buyer, :scout_date, :location)
+      def product_set_params
+        params.require(:product_set).permit(:name, :buyer, :scout_date, :location)
       end
 
   # GET /resource/edit

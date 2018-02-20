@@ -1,24 +1,24 @@
 class AttachmentsController < ApplicationController
 
   def index
-    @appointment = Appointment.find(params[:appointment_id])
-    @style = @appointment.styles.find(params[:style_id])
+    @product_set = ProductSet.find(params[:product_set_id])
+    @style = @product_set.styles.find(params[:style_id])
     @attachments = @style.attachments
   end
 
   def create
-    @appointment = Appointment.find(params[:appointment_id])
-    @style = @appointment.styles.find(params[:style_id])
+    @product_set = ProductSet.find(params[:product_set_id])
+    @style = @product_set.styles.find(params[:style_id])
     @style.upload_attachments(params[:style][:photos])
-    redirect_to appointment_style_path(@appointment, @style)
+    redirect_to product_set_style_path(@product_set, @style)
   end
 
   def destroy
-    @appointment = Appointment.find(params[:appointment_id])
-    @style = @appointment.styles.find(params[:style_id])
+    @product_set = ProductSet.find(params[:product_set_id])
+    @style = @product_set.styles.find(params[:style_id])
     @attachment = @style.attachments.find(params[:id])
     @attachment.destroy
-    redirect_to appointment_style_path(@appointment, @style)
+    redirect_to product_set_style_path(@product_set, @style)
   end
 
 end
