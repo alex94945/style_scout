@@ -1,9 +1,9 @@
 .panel.panel-default
   %ul.panel-heading.breadcrumb.clearfix
-    %li= link_to @appointment.name, appointment_path(@appointment)
+    %li= link_to @product_set.name, product_set_path(@product_set)
     %li.active= @style.vendor_style_number
     %span.pull-right
-      %li= render partial: "shared/styles/edit_buttons", locals: {appointment: @appointment, style: @style, inline: false}
+      %li= render partial: "shared/styles/edit_buttons", locals: {product_set: @product_set, style: @style, inline: false}
   .panel-body
     .row.form-group
       .col-sm-3
@@ -12,7 +12,7 @@
         - else
           %i.fa.fa-file-image-o.fa-5x{ style: "padding: 65px;"}
       .col-sm-9
-        = form_for @style, url: appointment_style_path(@appointment, @style), method: :put do |f|
+        = form_for @style, url: product_set_style_path(@product_set, @style), method: :put do |f|
           .row
             .col-md-4
               .form-inline.form-group
@@ -60,12 +60,12 @@
   - @style.attachments.each do |attachment|
     .col-md-2
       .well
-        = link_to appointment_style_attachments_path(@appointment, @style), remote: true do
+        = link_to product_set_style_attachments_path(@product_set, @style), remote: true do
           = image_tag attachment.photo.url('square'), :style=>'display: block; margin: auto; max-width:100%;'
-        = link_to 'Delete', appointment_style_attachment_path(@appointment, @style, attachment), |
+        = link_to 'Delete', product_set_style_attachment_path(@product_set, @style, attachment), |
           data: {confirm: 'Delete attachment?'}, method: :delete                                      |
         |
-        \#{link_to 'Make Default', appointment_style_path(@appointment, @style, style: {default_attachment_id: attachment.id}), method: :put}
+        \#{link_to 'Make Default', product_set_style_path(@product_set, @style, style: {default_attachment_id: attachment.id}), method: :put}
 
   = render 'styles/add_photo'
 

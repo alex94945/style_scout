@@ -13,7 +13,7 @@ class StyleFinderService
   end
 
   def perform
-    @styles = @current_company.styles.includes(:attachments, appointment: :user).paginate(page: @params[:page], per_page: 20)
+    @styles = @current_company.styles.includes(:attachments, product_set: :user).paginate(page: @params[:page], per_page: 20)
 
     filter
     sort
@@ -31,7 +31,7 @@ class StyleFinderService
 
     def filter
       return unless @filters
-      filter_by_appointment_name
+      filter_by_product_set_name
       filter_by_status
       filter_by_style_number
       filter_by_buyer_name
@@ -82,9 +82,9 @@ class StyleFinderService
       return @styles
     end
 
-    def filter_by_appointment_name
-      if @filters[:appointment_name].present?
-         @styles = @styles.includes(:appointment).where(appointments: { name: @filters[:appointment_name] })
+    def filter_by_product_set_name
+      if @filters[:product_set_name].present?
+         @styles = @styles.includes(:product_set).where(product_sets: { name: @filters[:product_set_name] })
       end
 
       return @styles
@@ -108,7 +108,7 @@ class StyleFinderService
 
     def filter_by_buyer_name
       if @filters[:user_id].present?
-        @styles = @styles.includes(:appointment).where(appointments: { user_id: @filters[:user_id] })
+        @styles = @styles.includes(:product_set).where(product_sets: { user_id: @filters[:user_id] })
       end
 
       return @styles

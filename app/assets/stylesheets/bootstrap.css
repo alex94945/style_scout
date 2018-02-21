@@ -24,7 +24,7 @@ body{
   overflow: hidden;
 }
 
-#appointment-header {
+#product-set-header {
   font-size: x-large;
 }
 
@@ -32,7 +32,7 @@ body{
   margin-top: -10px;
 }
 
-/* Mobile Appointments show page */
+/* Mobile Product Sets show page */
 
 a.mobile-add-style-button {
   margin-bottom: -15px;

@@ -2,11 +2,11 @@
 	<div class="col-md-12">
 		<div class="panel panel-primary">
 			<div class="panel-heading">
-				Enter New Appointment
+				Enter New Product Set
 			</div>
 			<div class="panel-body">
-				<%= form_for @appointment, url: appointments_path, method: :post do |f| %>
-					<%= render partial: 'shared/appointments/form', locals: {form: f} %>
+				<%= form_for @product_set, url: product_sets_path, method: :post do |f| %>
+					<%= render partial: 'shared/product_sets/form', locals: {form: f} %>
 				<% end %>
 			</div>
 		</div>

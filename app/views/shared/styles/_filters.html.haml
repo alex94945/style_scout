@@ -4,10 +4,10 @@
       = form_tag styles_path, method: :get do
         .row.form-group
           .col-md-3
-            %label Appointment Name
-            = select_tag '[filters][appointment_name]',                                    |
-              options_for_select(Appointment.all.map(&:name).insert(0, ['---', nil]).uniq, |
-                params[:filters].try(:[], :appointment_name)),                              |
+            %label Product Set Name
+            = select_tag '[filters][product_set_name]',                                    |
+              options_for_select(ProductSet.all.map(&:name).insert(0, ['---', nil]).uniq, |
+                params[:filters].try(:[], :product_set_name)),                              |
               class: 'form-control'
           .col-md-3
             %label Status

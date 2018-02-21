@@ -1,0 +1,12 @@
+<div class="modal-dialog">
+  <div class="modal-content">
+    <div class="modal-header modal-header-primary">
+      New Product Set
+    </div>
+    <div class="modal-body">
+      <%= form_for @product_set, url: product_sets_path , method: :post do |f| %>
+        <%= render partial: 'shared/product_sets/form', locals: {form: f} %>
+      <% end %>
+    </div>
+  </div>
+</div>

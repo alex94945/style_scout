@@ -1,27 +1,27 @@
 class StylesController < ApplicationController
   skip_before_action :authenticate_user!
   before_action :render_styles_index_or_welcome, only: :index
-  before_action :fetch_appointment, except: :index
+  before_action :fetch_product_set, except: :index
 
   def index
     @styles = StyleFinderService.new(params, current_company).perform
   end
 
    def create
-    @style = @appointment.styles.create(style_params.except(:photos) )
+    @style = @product_set.styles.create(style_params.except(:photos) )
     @style.upload_attachments(params[:style][:photos])
 
-    redirect_to appointment_path(@appointment)
+    redirect_to product_set_path(@product_set)
    end
 
    def new
     @style = Style.new
-    @appointment = Appointment.find(params[:appointment_id])
+    @product_set = ProductSet.find(params[:product_set_id])
 
   end
 
   def edit
-    @style = @appointment.styles.find(params[:id])
+    @style = @product_set.styles.find(params[:id])
     @inline = params[:inline]
   end
 
@@ -30,31 +30,31 @@ class StylesController < ApplicationController
     @style.update(style_params)
 
     if params[:inline] == 'true'
-      redirect_to appointment_path(@appointment)
+      redirect_to product_set_path(@product_set)
     else
-      redirect_to appointment_style_path(@appointment, @style)
+      redirect_to product_set_style_path(@product_set, @style)
     end
   end
 
   def show
-    @style = @appointment.styles.find(params[:id])
+    @style = @product_set.styles.find(params[:id])
   end
 
   def destroy
-    @appointment.styles.find(params[:id]).destroy
-    redirect_to appointment_path(@appointment)
+    @product_set.styles.find(params[:id]).destroy
+    redirect_to product_set_path(@product_set)
   end
 
   #remote true, looking for update_status.js.erb
   def update_status
-    @style = @appointment.styles.find(params[:style_id])
+    @style = @product_set.styles.find(params[:style_id])
     @style.update(style_params)
   end
 
   #TODO: non REST-ful route. Can refactor
   def duplicate
     @duplicate_style = StyleDuplicatorService.new(params[:style_id]).perform
-    redirect_to appointment_path(@appointment)
+    redirect_to product_set_path(@product_set)
 
   end
 
@@ -63,8 +63,8 @@ class StylesController < ApplicationController
       render :welcome unless user_signed_in?
     end
 
-    def fetch_appointment
-      @appointment = Appointment.find(params[:appointment_id])
+    def fetch_product_set
+      @product_set = ProductSet.find(params[:product_set_id])
     end
 
     def style_params

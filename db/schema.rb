@@ -11,21 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171126044330) do
+ActiveRecord::Schema.define(version: 20180220060614) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "appointments", force: :cascade do |t|
-    t.string   "name",       null: false
-    t.date     "scout_date"
-    t.string   "vendor"
-    t.string   "location"
-    t.text     "notes"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer  "user_id"
-  end
 
   create_table "attachments", force: :cascade do |t|
     t.integer  "style_id"
@@ -74,8 +63,19 @@ ActiveRecord::Schema.define(version: 20171126044330) do
     t.datetime "updated_at"
   end
 
+  create_table "product_sets", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.date     "scout_date"
+    t.string   "vendor"
+    t.string   "location"
+    t.text     "notes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+  end
+
   create_table "profile_configs", force: :cascade do |t|
-    t.boolean  "default_home_my_appointments", default: false
+    t.boolean  "default_home_my_product_sets", default: false
     t.integer  "user_id"
     t.datetime "created_at",                                   null: false
     t.datetime "updated_at",                                   null: false
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 20171126044330) do
 
   create_table "styles", force: :cascade do |t|
     t.string   "vendor_style_number",                                            null: false
-    t.integer  "appointment_id"
+    t.integer  "product_set_id"
     t.datetime "created_at",                                                     null: false
     t.datetime "updated_at",                                                     null: false
     t.text     "notes"

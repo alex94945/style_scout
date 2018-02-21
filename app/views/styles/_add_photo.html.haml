@@ -1,4 +1,4 @@
-= form_for :attachment, url: appointment_style_attachments_path(@appointment, @style), method: :post do |f|
+= form_for :attachment, url: product_set_style_attachments_path(@product_set, @style), method: :post do |f|
   = f.file_field :photo, type: 'file', class: 'hidden'
   .col-md-4
     .well.photo-upload-well
@@ -16,6 +16,6 @@
             %img{src:'#'}
       .row
         .col-sm-6
-          = f.submit 'Upload', class: 'btn btn-primary' 
+          = f.submit 'Upload', class: 'btn btn-primary'
         .col-sm-6.text-right
-          = link_to 'Cancel', appointment_style_path()
+          = link_to 'Cancel', product_set_style_path()

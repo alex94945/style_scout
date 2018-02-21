@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :charges, only: [:new, :create]
   get 'thanks', to: 'charges#thanks', as: 'thanks'
 
-  resources :appointments do
+  resources :product_sets do
     get :export
     resources :styles do
       resources :attachments
