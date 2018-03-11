@@ -45,7 +45,7 @@ context "without a photo" do
 
     visit "/product_sets/#{@product_set.id}"
     click_link('Add New Style')
-    click_link('Advanced Fields')
+    click_link('Additional Fields')
 
     fill_in('style_vendor_style_number', with: @vendor_style_number)
     fill_in('style_quantity', with: @style_quantity )
