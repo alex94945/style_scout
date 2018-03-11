@@ -15,46 +15,46 @@
         = form_for @style, url: product_set_style_path(@product_set, @style), method: :put do |f|
           .row
             .col-md-4
-              .form-inline.form-group
+              .form-group
                 %label Style Number:
-                = f.text_field :vendor_style_number, class: 'form-control pull-right'
-              .form-inline.form-group
+                = f.text_field :vendor_style_number, class: 'form-control'
+              .form-group
                 %label Status:
-                = f.select :status, options_for_select(Style.statuses.map{ |k,v| [k.humanize, k] }, @style.status), { }, class: 'form-control pull-right'
-              .form-inline.form-group
+                = f.select :status, options_for_select(Style.statuses.map{ |k,v| [k.humanize, k] }, @style.status), { }, class: 'form-control'
+              .form-group
                 %label Exclusive:
-                = f.check_box :exclusive, class: 'pull-right'
+                = f.check_box :exclusive
             .col-md-4
-              .form-inline.form-group
+              .form-group
                 %label Wholesale Cost:
-                = f.text_field :wholesale_cost, class: 'form-control pull-right'
-              .form-inline.form-group
+                = f.text_field :wholesale_cost, class: 'form-control'
+              .form-group
                 %label Negotiated Cost:
-                = f.text_field :negotiated_cost, class: 'form-control pull-right'
-              .form-inline.form-group
+                = f.text_field :negotiated_cost, class: 'form-control'
+              .form-group
                 %label Retail Price:
-                = f.text_field :retail_price, class: 'form-control pull-right'
-              .form-inline.form-group
+                = f.text_field :retail_price, class: 'form-control'
+              .form-group
                 %label Quantity:
-                = f.text_field :quantity, class: 'form-control pull-right'
-              .form-inline.form-group
+                = f.text_field :quantity, class: 'form-control'
+              .form-group
                 %label IMU:
-                %strong.pull-right#imu-data-display
+                %strong#imu-data-display
                   = number_to_percentage @style.initial_mark_up, precision: 2
             .col-md-4
-              .form-inline.form-group
+              .form-group
                 %label Color:
-                = f.text_field :color, class: 'form-control pull-right'
-              .form-inline.form-group
+                = f.text_field :color, class: 'form-control'
+              .form-group
                 %label Delivery Date:
-                = f.text_field :delivery_date, class: 'form-control pull-right'
+                = f.text_field :delivery_date, class: 'form-control'
           .row.form-group
             .col-md-12
               %label Notes:
               = f.text_area :notes, class: 'form-control', rows: 5
           .row
             .col-md-12
-              = f.submit 'Update', class: 'btn btn-primary pull-right'
+              = f.submit 'Update', class: 'btn btn-primary'
 
 .row
   - @style.attachments.each do |attachment|
