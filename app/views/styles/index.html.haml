@@ -68,9 +68,14 @@
       / end
       .visible-xs
         - @styles.each do |style|
-          = link_to product_set_style_path(style.product_set, style) do
-            .panel-body
-              .well
+          .panel-body
+            .well
+              - if style.default_photo
+                = link_to product_set_style_attachments_path(style.product_set.id, style), remote: true do
+                  = image_tag style.default_photo('square'), style:'width:60px;'
+              - else
+                \--
+              = link_to product_set_style_path(style.product_set, style) do
                 = style.vendor_style_number
     = will_paginate(@styles)
 
