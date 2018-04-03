@@ -40,7 +40,7 @@
                 %td
                   = link_to style.vendor_style_number, product_set_style_path(style.product_set, style)
                 %td
-                  = style.product_set.name
+                  = link_to "#{style.product_set.name}", product_set_path(style.product_set.id)
                 %td
                   = form_for style, url: product_set_style_update_status_path(style.product_set_id, style), method: :put, remote: true do |f|
                     = hidden_field_tag :authenticity_token, form_authenticity_token
@@ -76,7 +76,10 @@
               - else
                 \--
               = link_to product_set_style_path(style.product_set, style) do
-                = style.vendor_style_number
+                = "Style: #{style.vendor_style_number}&nbsp;".html_safe
+              %br
+              = link_to product_set_path(style.product_set.id) do
+                = "Product Set: #{style.product_set.name}"
     = will_paginate(@styles)
 
     - if @styles.empty?
